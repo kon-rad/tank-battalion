@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA,OACC,qBAAuB,CACvB","file":"main.css","sourcesContent":["canvas {\n\tborder: 1px solid black;\n}   "]}

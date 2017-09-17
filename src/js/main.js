@@ -1,12 +1,15 @@
 'use strict';
 
-(function() {
-	require.config({
 
-	})
+(function() { 
+	  requirejs.config({
+	    paths: {
+	      'async': 'vendors/async'
+	    }
+	  })
 
-	require(['modules/game', 'modules/tank'], function(game, tank) {
-		
+	requirejs(['modules/game', 'modules/tank'], function(game, tank) {
+
 		const canvas = document.getElementById('tank');
 		let context = canvas.getContext('2d');
 		let cw = canvas.width;
