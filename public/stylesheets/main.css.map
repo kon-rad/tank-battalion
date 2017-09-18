@@ -1,1 +1,1 @@
-{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA,OACC,qBAAuB,CACvB","file":"main.css","sourcesContent":["canvas {\n\tborder: 1px solid black;\n}   "]}
+{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA,OACI,sBAAsB,AACtB,mBAAmB,AACnB,aAAc,CACjB,AACD,KACC,qBAAuB,CACvB","file":"main.css","sourcesContent":["canvas {\n    border: 2px solid #eee;\n    margin: 20vh auto 0;\n    display: block;\n} \nbody {\n\tbackground-color: black;\n}"]}

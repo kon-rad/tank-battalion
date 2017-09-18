@@ -1,11 +1,11 @@
 extends layout
 
 block content
-	h1= title
-	p Welcome to this awesome #{title}
 	.content
 		.game
-			canvas#tank(width='600', height='400')
+			canvas#tank(width='600', height='600')
 			script(type='text/javascript', data-main='js/main.js', src='js/require.js')
+			img#brick(src='assets/images/brick.png', style='display:none;')
+			img#border(src='assets/images/border.png', style='display:none;')
 
   
