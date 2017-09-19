@@ -10,6 +10,8 @@
 			'events': 'modules/events',
 			'bullets': 'modules/bullets',
 			'draw': 'modules/draw',
+			'audio': 'modules/audio',
+			'images': 'modules/images',
 			'mWorld': 'worlds/mainWorld',
 			'mwObstacle': 'worlds/mwObstacle'
 		}

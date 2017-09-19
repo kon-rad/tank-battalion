@@ -1,10 +1,16 @@
 'use strict';
 
-define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle'], function (game, tank, bullets, mWorld, mwObstacle) {
+define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images'], function (game, tank, bullets, mWorld, mwObstacle, images) {
 
 	var start = function start(action) {
-		game.context.clearRect(0, 0, game.cw, game.ch);
+		game.context.fillStyle = '#000';
+		game.context.fillRect(0, 0, game.cw, game.ch);
 		mWorld.draw();
+		game.context.drawImage(images.eagle, 274, 566);
+		if (bullets.renderExplosion) {
+			game.context.drawImage(images.explosion, bullets.renderExplosion_x - 10, bullets.renderExplosion_y - 10);
+			bullets.renderExplosion = false;
+		}
 
 		game.context.fillStyle = 'green';
 		if (game.tankDirection == 'up') {
@@ -12,8 +18,6 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle'], function (game, tank
 			if (game.moving) {
 				if (!mwObstacle.detect(game.x, game.y - 10, game.tankDirection)) {
 					game.y -= 6;
-				} else {
-					// game.y += 6;
 				}
 			}
 			tank.moving_up();

@@ -1,11 +1,12 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-define(['game', 'mWorld'], function (game, mWorld) {
+define(['game', 'mWorld', 'audio', 'images'], function (game, mWorld, audio, images) {
 
 	var bullets = {};
-
+	bullets.fired = false;
+	bullets.renderExplosion = false;
+	bullets.renderExplosion_x;
+	bullets.renderExplosion_y;
 	bullets.render_bullet = function (bullet, b_i) {
 		switch (bullet.dir) {
 			case 'up':
@@ -22,7 +23,9 @@ define(['game', 'mWorld'], function (game, mWorld) {
 				break;
 		}
 		if (checkBulletCollision(bullet.x, bullet.y, b_i, bullet.dir)) {
-			//removeBullet(b_i);
+			bullets.fired = false;
+			audio.explode.load();
+			audio.explode.play();
 		}
 		game.context.beginPath();
 		game.context.fillStyle = 'red';
@@ -45,10 +48,9 @@ define(['game', 'mWorld'], function (game, mWorld) {
 	var checkBulletCollision = function checkBulletCollision(x, y, b_i, dir) {
 		y = Math.floor(y / 10);
 		x = Math.floor(x / 10);
-		console.log(typeof x === 'undefined' ? 'undefined' : _typeof(x));
-		console.log(typeof y === 'undefined' ? 'undefined' : _typeof(y));
 		if (x <= 0 || x >= 60 || y <= 0 || y >= 60) {
 			game.bullets.splice(b_i, 1);
+			return true;
 		}
 		var row = mWorld.data[y];
 		row = row.split('');
@@ -65,6 +67,9 @@ define(['game', 'mWorld'], function (game, mWorld) {
 			}
 			row = row.join('');
 			mWorld.data[y] = row;
+			bullets.renderExplosion = true;
+			bullets.renderExplosion_x = x * 10;
+			bullets.renderExplosion_y = y * 10;
 			return true;
 		}
 		return false;

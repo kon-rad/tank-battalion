@@ -1,6 +1,6 @@
 'use strict';
 
-define(['game', 'bullets'], function (game, bullets) {
+define(['game', 'bullets', 'audio'], function (game, bullets, audio) {
 
 	var events = {};
 
@@ -8,6 +8,7 @@ define(['game', 'bullets'], function (game, bullets) {
 		if (e.target.id !== 'tank') return;
 		if (e.keyCode === 87 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 68 || e.keyCode === 32) {
 			game.moving = false;
+			audio.move.pause();
 		}
 	};
 
@@ -17,22 +18,34 @@ define(['game', 'bullets'], function (game, bullets) {
 			case 87:
 				game.tankDirection = 'up';
 				game.moving = true;
+				audio.move.play();
 				break;
 			case 65:
 				game.tankDirection = 'left';
 				game.moving = true;
+				audio.move.play();
 				break;
 			case 83:
 				game.tankDirection = 'down';
 				game.moving = true;
+				audio.move.play();
 				break;
 			case 68:
 				game.tankDirection = 'right';
 				game.moving = true;
+				audio.move.play();
 				break;
 			case 32:
-				bullets.fire_bullet(game.x, game.y, game.tankDirection);
+				bullet_check();
 				break;
+		}
+	};
+
+	var bullet_check = function bullet_check() {
+		if (!bullets.fired) {
+			bullets.fire_bullet(game.x, game.y, game.tankDirection);
+			bullets.fired = true;
+			audio.shoot.play();
 		}
 	};
 
