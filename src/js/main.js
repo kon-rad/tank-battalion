@@ -10,7 +10,8 @@
 			'events': 'modules/events',
 			'bullets': 'modules/bullets',
 			'draw': 'modules/draw',
-			'mWorld': 'worlds/mainWorld'
+			'mWorld': 'worlds/mainWorld',
+			'mwObstacle': 'worlds/mwObstacle'
 		}
 	})
 
@@ -19,7 +20,7 @@
 
 
 		draw.start();
-		setInterval(draw.start, 10);
+		setInterval(draw.start, 100);
 		document.addEventListener("keydown", events.handleKeydown, false);
 		document.addEventListener("keyup", events.handleKeyUp, false);
 
