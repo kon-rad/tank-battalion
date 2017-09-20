@@ -12,15 +12,16 @@
 			'audio': 'modules/audio',
 			'images': 'modules/images',
 			'mWorld': 'worlds/mainWorld',
-			'mwObstacle': 'worlds/mwObstacle'
+			'mwObstacle': 'worlds/mwObstacle',
+			'setup': 'setup/setup'
 		}
 	});
 
-	requirejs(['game', 'tank', 'events', 'bullets', 'draw', 'mWorld'], function (game, tank, events, bullets, draw, mWorld) {
+	requirejs(['game', 'tank', 'events', 'bullets', 'draw', 'mWorld', 'setup'], function (game, tank, events, bullets, draw, mWorld, setup) {
 
 		draw.start();
 		setInterval(draw.start, 100);
-		document.addEventListener("keydown", events.handleKeydown, false);
-		document.addEventListener("keyup", events.handleKeyUp, false);
+
+		setup.control();
 	});
 })();

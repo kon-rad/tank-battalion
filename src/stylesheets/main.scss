@@ -1,37 +1,5 @@
-canvas {
-    border: 2px solid #000;
-    display: block;
-    &:focus {
-    	outline: none;
-    }
-}
-.content {
-    margin: 14vh auto; 
-}
-body {
-	background-color: black;
-}
-.game {
-	width: 600px;
-    padding: 40px 40px;
-    margin: 40px auto;
-    height: 600px;
-    background-image:
-      -moz-linear-gradient(45deg, #00ba00 25%, transparent 25%), 
-      -moz-linear-gradient(-45deg, #00ba00 25%, transparent 25%),
-      -moz-linear-gradient(45deg, transparent 75%, #00ba00 75%),
-      -moz-linear-gradient(-45deg, transparent 75%, #00ba00 75%);
-    background-image:
-      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, #00ba00), color-stop(.25, transparent)), 
-      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #00ba00), color-stop(.25, transparent)),
-      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #00ba00)),
-      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #00ba00));
 
-    -moz-background-size:2px 2px;
-    background-size:2px 2px;
-    -webkit-background-size:2px 2px; /* override value for shitty webkit */
-    
-    // background-position:0 0, 50px 0, 50px -50px, 0px 50px;
-    background-position:center;
 
-}
+@import 'util/fonts';
+@import 'sections/game';
+@import 'sections/game_controls';

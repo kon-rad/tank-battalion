@@ -1,5 +1,5 @@
 'use strict';
-
+ 
 var gulp            = require('gulp'),
     babel           = require('gulp-babel'),
     sass            = require('gulp-sass'),
@@ -16,7 +16,7 @@ gulp.task('babel', () =>
 );
 
 gulp.task('workflow', function () {
-  gulp.src('./src/stylesheets/*.scss')
+  gulp.src('./src/stylesheets/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
@@ -27,6 +27,10 @@ gulp.task('workflow', function () {
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./public/stylesheets/'));
 });
+
+gulp.task('copyfonts', () =>
+gulp.src('./src/assets/fonts/*.{ttf,woff,eof,svg}')
+    .pipe(gulp.dest('./public/assets/fonts')))
 
 gulp.task('default', function () {
   gulp.watch('src/stylesheets/*.scss', ['workflow']);

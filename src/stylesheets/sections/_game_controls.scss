@@ -1,0 +1,26 @@
+
+#display_text {
+	font-family: PixelEmulator;
+	font-size:40px;
+	color: white;
+	text-align: center;
+	position: absolute;
+	top: 40vh;
+	left: 0;
+	right: 0;
+
+}
+.display_text__1player {
+	color: white;
+    display: inline-block;
+	&:hover {
+		color:rgb(249,251,68);
+	}
+}
+.display_text__2player {
+	color: white;
+    display: inline-block;
+		&:hover {
+		color:rgb(249,251,68);
+	}
+}

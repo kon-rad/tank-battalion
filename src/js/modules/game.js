@@ -10,13 +10,16 @@ define(function() {
 	game.tankDirection = false;
 	game.moving = false;
 	game.bullets = [];
+	game.stop = true;
+	game.onePlayerBegin = false;
+	game.twoPlayerBegin = false;
+	game.bool = false;
 
-	// set canvas to be a tab stop (necessary to give it focus)
+	// set focus to canvas
 	game.canvas.setAttribute('tabindex','0');
-	// set focus to the canvas
 	game.canvas.focus();
-	game.x = 400;
-	game.y = 200;
+	game.x = 190;
+	game.y = 490;
 	return game;
 
 })
