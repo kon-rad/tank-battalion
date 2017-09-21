@@ -62,8 +62,8 @@ define(['game'], function (game) {
 		var color1 = '#004a00',
 		    color2 = 'green';
 		if (bool) {
-			color1 = black;
-			color2 = black;
+			color1 = 'black';
+			color2 = 'black';
 		}
 		game.context.fillStyle = color1;
 		game.context.fillRect(game.x - 10, game.y - 10, 20, 20);

@@ -19,9 +19,7 @@
 
 	requirejs(['game', 'tank', 'events', 'bullets', 'draw', 'mWorld', 'setup'], function (game, tank, events, bullets, draw, mWorld, setup) {
 
-		draw.start();
-		setInterval(draw.start, 100);
-
+		//game starts
 		setup.control();
 	});
 })();

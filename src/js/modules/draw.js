@@ -11,7 +11,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'setup', 'a
 			return true;
 		} else if (game.onePlayerBegin) {
 			game.moving = false;
-			tank.flashing_right(game.bool);
+			//tank.flashing_right(game.bool);
 			if(game.bool)
 			   game.bool = false;
 			else
