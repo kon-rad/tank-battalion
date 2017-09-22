@@ -1,6 +1,6 @@
 'use strict';
 
-define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw'], function (game, events, audio, mWorld, tank, draw) {
+define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'], function (game, events, audio, mWorld, tank, draw, singlePlayer) {
 
 	var display = document.getElementById('display_text');
 
@@ -35,6 +35,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw'], function (game, ev
 				document.addEventListener("keydown", events.handleKeydown, false);
 				document.addEventListener("keyup", events.handleKeyUp, false);
 				game.onePlayerBegin = false;
+				singlePlayer.init();
 				audio.start.play();
 				game.canvas.setAttribute('tabindex', '0');
 				game.canvas.focus();

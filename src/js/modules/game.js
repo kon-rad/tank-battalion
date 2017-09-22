@@ -1,7 +1,6 @@
 'use strict';
 
 define(function() {
-	console.log('game here');
 
 	const game = {};
 	game.canvas = document.getElementById('tank');
@@ -15,6 +14,10 @@ define(function() {
 	game.onePlayerBegin = false;
 	game.twoPlayerBegin = false;
 	game.bool = true;
+	game.time = 0;
+	game.timer = setInterval(function(){
+		game.time += 100;
+	}, 100);
 
 	// set focus to canvas
 	game.canvas.setAttribute('tabindex','0');

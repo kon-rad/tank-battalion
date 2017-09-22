@@ -1,8 +1,8 @@
 'use strict';
 
-define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio'], function (game, tank, bullets, mWorld, mwObstacle, images, audio) {
+define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 'singlePlayer', 'renderBot'], function (game, tank, bullets, mWorld, mwObstacle, images, audio, singlePlayer, renderBot) {
 
-	var start = function start(action) {
+	var start = function start() {
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
 		mWorld.draw();
@@ -47,6 +47,12 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio'], f
 
 		game.bullets.forEach(function (item, index) {
 			bullets.render_bullet(item, index);
+		});
+
+		var bots = singlePlayer.render();
+		bots.forEach(function (i) {
+			// console.log(i);
+			renderBot.render(i);
 		});
 	};
 

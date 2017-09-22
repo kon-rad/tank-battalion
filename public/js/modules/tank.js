@@ -58,24 +58,6 @@ define(['game'], function (game) {
 		game.context.fillStyle = '#004a00';
 		game.context.fillRect(game.x - 12, game.y + 14, 24, 2);
 	};
-	tank.flashing_right = function (bool) {
-		var color1 = '#004a00',
-		    color2 = 'green';
-		if (bool) {
-			color1 = 'black';
-			color2 = 'black';
-		}
-		game.context.fillStyle = color1;
-		game.context.fillRect(game.x - 10, game.y - 10, 20, 20);
-		game.context.fillStyle = color2;
-		game.context.fillRect(game.x - 10, game.y - 10, 14, 14);
-		game.context.fillRect(game.x + 8, game.y - 2, 12, 4);
-		game.context.fillRect(game.x + 20, game.y - 4, 3, 8);
-		game.context.fillRect(game.x - 12, game.y - 12, 24, 6);
-		game.context.fillRect(game.x - 12, game.y + 8, 24, 6);
-		game.context.fillStyle = color1;
-		game.context.fillRect(game.x - 12, game.y + 14, 24, 2);
-	};
 
 	return tank;
 });
