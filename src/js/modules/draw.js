@@ -1,24 +1,12 @@
 'use strict';
 
-define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'setup', 'audio'], 
-	function(game, tank, bullets, mWorld, mwObstacle, images, setup, audio) {
+define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio'], 
+	function(game, tank, bullets, mWorld, mwObstacle, images, audio) {
 
 	const start = (action) => {
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
 		mWorld.draw();
-		if(game.stop) {
-			return true;
-		} else if (game.onePlayerBegin) {
-			game.moving = false;
-			//tank.flashing_right(game.bool);
-			if(game.bool)
-			   game.bool = false;
-			else
-			   game.bool = true;
-			audio.start.play();
-			setTimeout(setup.startGame, 2000);
-		}
 
 		game.context.drawImage(images.eagle, 274, 566);
 		if(bullets.renderExplosion){
