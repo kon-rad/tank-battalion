@@ -69,7 +69,6 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		} else if (bot_i.dir == 'left') {
 			return bot.moving_left(bot_i.x, bot_i.y);
 		}
-		console.log('hello this bot ');
 	};
 
 	return {

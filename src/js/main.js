@@ -17,9 +17,11 @@
 			'startOnePlayer': 'setup/startOnePlayer',
 			'setup': 'setup/setup',
 			'singlePlayer': 'singlePlayer/singlePlayer',
-			'renderBot': 'singlePlayer/renderBot'
+			'renderBot': 'singlePlayer/renderBot',
+			'botMap': 'singlePlayer/botMap'
 		}
 	})
+
 
 	requirejs(['draw', 'game', 'events', 'audio', 'setup'],
 	   function(draw, game, events, audio, setup) {

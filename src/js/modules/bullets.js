@@ -1,6 +1,6 @@
 'use strict';
 
-define(['game', 'mWorld', 'audio', 'images'], function(game, mWorld, audio, images) {
+define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function(game, mWorld, audio, images, singlePlayer) {
 
 	const bullets = {};
 	bullets.fired = false;
@@ -74,7 +74,19 @@ define(['game', 'mWorld', 'audio', 'images'], function(game, mWorld, audio, imag
 			bullets.renderExplosion_x = (x*10);
 			bullets.renderExplosion_y = (y*10);
 			return true;
-		} 
+		}
+		console.log(singlePlayer.botsArr);
+		console.log(x, y);
+		let len = singlePlayer.botsArr.length;
+		for(var k = 0; k<len; k++) {
+			let b = singlePlayer.botsArr[k];
+				let b_x = Math.floor(b.x/10);
+				let b_y = Math.floor(b.y/10);
+			if((x == b_x || x == b_x+1 || x==b_x-1) && (y==b_y || y==b_y+1 || y==b_y-1)) {
+				console.log('bullet collision with bot');
+			}
+		}
+
 		return false; 
 	}
 	const eraseBlock = (x, y) => {
