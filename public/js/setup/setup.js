@@ -23,9 +23,9 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'], fu
 		};
 
 		var loadOnePlayer = function loadOnePlayer() {
-			var startNow = false;
 			game.stop = false;
 			game.onePlayerBegin = true;
+			game.playerOneLives = 3;
 			display.innerHTML = '';
 			var startGame = setInterval(loading, 100);
 			setTimeout(clearLoading, 1000);

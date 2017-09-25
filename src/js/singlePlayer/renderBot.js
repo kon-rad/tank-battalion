@@ -63,7 +63,84 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		}
 
 
+		const render_bullet = (bullet, bullet_index, bot_index) => {
+			switch(bullet.dir) {
+				case 'up':
+					bullet.y-=8;
+					break;
+				case 'down':
+					bullet.y+=8;
+					break;
+				case 'right':
+					bullet.x+=8;
+					break;
+				case 'left':
+					bullet.x-=8;
+					break;
+			}
+			if(checkBulletCollision(bullet.x, bullet.y, bullet_index, bullet.dir, bot_index)){
+				singlePlayer.botsArr[bot_index].bullets.splice(bullet_index, 1);
+				audio.explode.load();
+				audio.explode.play();
+			}
+			game.context.beginPath();
+			game.context.fillStyle = 'orange';
+			game.context.arc(bullet.x, bullet.y, 4, 0, Math.PI*2);
+			game.context.fill();
+			game.context.closePath(); 
+		}
+
+
+		const checkBulletCollision = (x, y, bullet_index, dir, bot_index) => {
+			y = Math.floor(y/10);
+			x = Math.floor(x/10);
+			if (x <= 0 || x >= 60 || y<=0 || y>= 60) {
+				singlePlayer.botsArr[bot_index].bullets.splice(bullet_index, 1);
+				audio.dud.load();
+				audio.dud.play();
+				return false;
+			}
+			let row = (mWorld.data[y]);
+			row = row.split('');
+			let pos = Number(row[x]);
+			if (pos) {
+				row[x] = '0';
+				if(dir =='up' || dir == 'down') {
+					row[x-1] = '0';
+					row[x+1] = '0';
+				} else if (dir == 'left' || dir == 'right') {
+					eraseBlock(x, y-1);
+					eraseBlock(x, y+1);
+				}
+				row = row.join('');
+				mWorld.data[y] = row;
+				bullets.renderExplosion = true;
+				bullets.renderExplosion_x = (x*10);
+				bullets.renderExplosion_y = (y*10);
+				return true;
+			}
+			let player1_x = Math.floor(game.x/10);
+			let player1_y = Math.floor(game.y/10);
+			if((player1_x == x || player1_x-1 == x || player1_x+1 == x) 
+				&& (player1_y == y || player1_y-1 == y || player1_y+1 == y)) {
+				game.context.drawImage(images.bigRedExplosion, (x*10)-10, (y*10)-10);
+				game.playerOneLives -= 1;
+				// setup.loadOnePlayer();
+				return true;
+			}
+			return false; 
+		}
+
+		const eraseBlock = (x, y) => {
+			let row = mWorld.data[y];
+			row = row.split('');
+			row[x] = '0';
+			row = row.join('');
+			mWorld.data[y] = row;
+		}
+
 		const render = (bot_i) => {
+			console.log('bot_i', bot_i);
 			if (bot_i.dir == 'up') {
 				return bot.moving_up(bot_i.x, bot_i.y);
 			} else if (bot_i.dir == 'down') {
@@ -76,6 +153,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		}
 
 		return  {
-			render: render
+			render: render,
+			render_bullet: render_bullet
 		}
 });

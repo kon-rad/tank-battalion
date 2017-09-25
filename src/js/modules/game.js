@@ -15,6 +15,8 @@ define(function() {
 	game.twoPlayerBegin = false;
 	game.bool = true;
 	game.time = 0;
+	game.playerOnePoints = 0;
+	game.playerOneLives = 0;
 	game.timer = setInterval(function(){
 		game.time += 100;
 	}, 100);
@@ -23,7 +25,7 @@ define(function() {
 	game.canvas.setAttribute('tabindex','0');
 	game.canvas.focus();
 	game.x = 190;
-	game.y = 490;
+	game.y = 20;
 	return game;
 
 })

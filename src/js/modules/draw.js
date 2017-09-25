@@ -16,7 +16,6 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 
 		game.context.fillStyle = 'green';
 		if(game.tankDirection == 'up') {
-
 			if(game.moving) {
 				if(!mwObstacle.detect(game.x, game.y-10, game.tankDirection)){
 					game.y -= 6; 
@@ -50,10 +49,18 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			bullets.render_bullet(item, index);
 		});
 
-		let bots = singlePlayer.render();
-		bots.forEach(function(i){
+		let bots = singlePlayer.botsArr;
+		bots.forEach(function(bot, bot_index){
 			// console.log(i);
-			renderBot.render(i);
+			if(bot.moving) {
+				renderBot.render(bot);
+			}
+			bot.bullets.forEach((bullet, bullet_index) => {
+				renderBot.render_bullet(bullet, bullet_index, bot_index);
+				console.log('bullet, bullet_index, bot_index', bullet, bullet_index, bot_index);
+			});
+
+			// renderBotBullets.render(i);
 		})
 	}
 
