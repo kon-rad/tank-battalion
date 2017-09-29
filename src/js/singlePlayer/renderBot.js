@@ -1,7 +1,7 @@
 'use strict';
 
-define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 'singlePlayer', 'renderBot'], 
-	function(game, tank, bullets, mWorld, mwObstacle, images, audio, singlePlayer, renderBot) {
+define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 'singlePlayer', 'renderBot' ], 
+	function(game, tank, bullets, mWorld, mwObstacle, images, audio, singlePlayer, renderBot ) {
 
 
 
@@ -79,7 +79,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 					break;
 			}
 			if(checkBulletCollision(bullet.x, bullet.y, bullet_index, bullet.dir, bot_index)){
-				singlePlayer.botsArr[bot_index].bullets.splice(bullet_index, 1);
+				singlePlayer.ai.bots[bot_index].bullets.splice(bullet_index, 1);
 				audio.explode.load();
 				audio.explode.play();
 			}
@@ -95,7 +95,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			y = Math.floor(y/10);
 			x = Math.floor(x/10);
 			if (x <= 0 || x >= 60 || y<=0 || y>= 60) {
-				singlePlayer.botsArr[bot_index].bullets.splice(bullet_index, 1);
+				singlePlayer.ai.bots[bot_index].bullets.splice(bullet_index, 1);
 				audio.dud.load();
 				audio.dud.play();
 				return false;
@@ -124,8 +124,13 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			if((player1_x == x || player1_x-1 == x || player1_x+1 == x) 
 				&& (player1_y == y || player1_y-1 == y || player1_y+1 == y)) {
 				game.context.drawImage(images.bigRedExplosion, (x*10)-10, (y*10)-10);
-				game.playerOneLives -= 1;
-				// setup.loadOnePlayer();
+				game.newGame = true;
+				return true;
+			}
+			if((game.eagle1_x == x || game.eagle1_x-1 == x || game.eagle1_x+1 == x) 
+				&& (game.eagle1_y == y || game.eagle1_y-1 == y || game.eagle1_y+1 == y)) {
+				game.context.drawImage(images.bigRedExplosion, (x*10)-10, (y*10)-10);
+				game.newGame = true;
 				return true;
 			}
 			return false; 
@@ -140,7 +145,6 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		}
 
 		const render = (bot_i) => {
-			console.log('bot_i', bot_i);
 			if (bot_i.dir == 'up') {
 				return bot.moving_up(bot_i.x, bot_i.y);
 			} else if (bot_i.dir == 'down') {

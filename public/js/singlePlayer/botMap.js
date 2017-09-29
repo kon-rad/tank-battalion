@@ -4,7 +4,7 @@ define(['game', 'tank', 'mWorld', 'singlePlayer'], function (game, tank, mWorld,
 
 	var detect = function detect(x, y) {
 
-		singlePlayer.botsArr.forEach(function (b) {
+		singlePlayer.ai.bots.forEach(function (b) {
 			console.log(x, y, b.x, b.y);
 		});
 	};

@@ -75,16 +75,16 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function(game, mWo
 			bullets.renderExplosion_y = (y*10);
 			return true;
 		}
-		let len = singlePlayer.botsArr.length;
+		let len = singlePlayer.ai.bots.length;
 		for(var k = 0; k<len; k++) {
-			let b = singlePlayer.botsArr[k];
+			let b = singlePlayer.ai.bots[k];
 			let b_x = Math.floor(b.x/10);
 			let b_y = Math.floor(b.y/10);
 			if(b.moving && (x == b_x || x == b_x+1 || x==b_x-1) && (y==b_y || y==b_y+1 || y==b_y-1)) {
 				game.bullets.splice(b_i, 1);
 				game.context.drawImage(images.bigRedExplosion, (x*10)-10, (y*10)-10);
 				game.playerOnePoints += 1;
-				singlePlayer.botsArr[k].moving = false;
+				singlePlayer.ai.bots[k].moving = false;
 				return true;
 			}
 		}

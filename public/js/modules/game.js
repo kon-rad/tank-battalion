@@ -17,6 +17,10 @@ define(function () {
 	game.time = 0;
 	game.playerOnePoints = 0;
 	game.playerOneLives = 0;
+	game.newGame = false;
+	game.bots;
+	game.eagle1_y = 57;
+	game.eagle1_x = 28;
 	game.timer = setInterval(function () {
 		game.time += 100;
 	}, 100);
@@ -24,7 +28,6 @@ define(function () {
 	// set focus to canvas
 	game.canvas.setAttribute('tabindex', '0');
 	game.canvas.focus();
-	game.x = 190;
-	game.y = 20;
+
 	return game;
 });

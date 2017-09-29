@@ -3,7 +3,8 @@
 define(['game', 'tank', 'bullets'], function(game, tank, bullets) {
  
 	const mWorld = {};
-	mWorld.data = [
+
+	mWorld.org = [
 		 '000000000000000000000000000000000000000000000000000000000000',
 		 '000000000000000000000000000000000000000000000000000000000000',
 		 '000000000000000000000000000000000000000000000000000000000000',
@@ -65,6 +66,7 @@ define(['game', 'tank', 'bullets'], function(game, tank, bullets) {
 		 '000000000000000000000111100000000111100000000000000000000000',
 		 '000000000000000000000111100000000111100000000000000000000000',
 	];
+	mWorld.data;
 
 	let img = document.getElementById('brick'),
 		brick = game.context.createPattern(img,"repeat"),

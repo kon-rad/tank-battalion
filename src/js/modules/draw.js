@@ -4,6 +4,21 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 	function(game, tank, bullets, mWorld, mwObstacle, images, audio, singlePlayer, renderBot) {
 
 	const start = () => {
+		console.log('start');
+		game.onePlayerGame = setInterval(go, 100);
+	}
+
+	const go = () => {
+		if(game.newGame) {
+			game.newGame = false;
+			clearInterval(game.onePlayerGame);
+			clearInterval(game.bots);
+			clearInterval(game.loadBots);
+			require(['setup'], function(setup) {
+				setup.loadOnePlayer();
+
+			})
+		}
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
 		mWorld.draw();
@@ -49,23 +64,20 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			bullets.render_bullet(item, index);
 		});
 
-		let bots = singlePlayer.botsArr;
+		let bots = singlePlayer.ai.bots;
 		bots.forEach(function(bot, bot_index){
-			// console.log(i);
 			if(bot.moving) {
 				renderBot.render(bot);
 			}
 			bot.bullets.forEach((bullet, bullet_index) => {
 				renderBot.render_bullet(bullet, bullet_index, bot_index);
-				console.log('bullet, bullet_index, bot_index', bullet, bullet_index, bot_index);
 			});
-
-			// renderBotBullets.render(i);
 		})
 	}
 
 
 	return {
-		start: start
+		start: start,
+		go: go
 	};
 });

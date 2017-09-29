@@ -13,14 +13,12 @@
 			'images': 'modules/images',
 			'mWorld': 'worlds/mainWorld',
 			'mwObstacle': 'worlds/mwObstacle',
-			'startOnePlayer': 'setup/startOnePlayer',
 			'setup': 'setup/setup',
 			'singlePlayer': 'singlePlayer/singlePlayer',
 			'renderBot': 'singlePlayer/renderBot',
 			'botMap': 'singlePlayer/botMap'
 		}
 	});
-
 	requirejs(['draw', 'game', 'events', 'audio', 'setup'], function (draw, game, events, audio, setup) {
 		setup.control();
 	});

@@ -2,11 +2,12 @@
 
 define(['game', 'bullets', 'mwObstacle', 'audio'], 
 	function(game, bullets, mwObstacle, audio) {
-
 		var ai = {};
-		ai.elapsedTime = game.time;
 		ai.bots = [];
+
+		ai.elapsedTime = game.time;
 		ai.dir = ['up', 'down', 'right', 'left'];
+
 
 		const loadBot = () => {
 			let dir = (game.time%2==0)?'right':'left';
@@ -23,15 +24,16 @@ define(['game', 'bullets', 'mwObstacle', 'audio'],
 		}
 
 		const init = () => {
-			console.log('ai here');
+
+
 			setTimeout(loadBot, 500);
-			let loading = setInterval(function() {
+			game.loadBots = setInterval(function() {
 				loadBot();
 				if(ai.bots.length >= 10) {
-					clearInterval(loading);
+					clearInterval(game.loadBots);
 				}
 			}, 7000);
-			let botEngine = setInterval(function() {
+			game.bots = setInterval(function() {
 				ai.bots.forEach(function(bot) {
 					if(bot.moving) {
 						if(bot.dir=='up') {
@@ -135,7 +137,7 @@ define(['game', 'bullets', 'mwObstacle', 'audio'],
 
 		return {
 			init: init,
-			botsArr: ai.bots
+			ai: ai
 		}
 
 });
