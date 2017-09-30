@@ -58,6 +58,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'], fu
 			return gameOver();
 		}
 		if (game.newRound) {
+
 			game.newRound = false;
 			game.round_display.innerHTML = game.round;
 			game.difficulty += .2;
@@ -67,6 +68,8 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'], fu
 			restorePlayerOneLives();
 			restoreOnScreenBots();
 			restoreDestroyedBots();
+			mWorld.data = mWorld.org.slice();
+			mWorld.draw();
 			if (game.round >= 5) {
 				return youWin();
 			}
