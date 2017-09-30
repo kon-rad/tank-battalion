@@ -79,8 +79,8 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'], fu
 		display_lives[game.playerOneLives].style.display = 'none';
 		restoreOnScreenBots();
 
-		game.x = 500;
-		game.y = 20;
+		game.x = 460;
+		game.y = 580;
 		game.stop = false;
 		display.innerHTML = '';
 		var startGame = setInterval(loading, 100);
