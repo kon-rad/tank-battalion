@@ -10,6 +10,11 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 
 	const go = () => {
 		if(game.newGame) {
+			if(game.explosion) {
+				console.log('explode');
+				game.context.drawImage(images.explosion, (game.x)-10, (game.y)-10);
+				game.explosion = false;
+			}
 			game.newGame = false;
 			clearInterval(game.onePlayerGame);
 			clearInterval(game.bots);

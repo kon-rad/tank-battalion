@@ -64,18 +64,19 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 
 
 		const render_bullet = (bullet, bullet_index, bot_index) => {
+			const speed = (game.difficulty+1)*8;
 			switch(bullet.dir) {
 				case 'up':
-					bullet.y-=8;
+					bullet.y-=speed;
 					break;
 				case 'down':
-					bullet.y+=8;
+					bullet.y+=speed;
 					break;
 				case 'right':
-					bullet.x+=8;
+					bullet.x+=speed;
 					break;
 				case 'left':
-					bullet.x-=8;
+					bullet.x-=speed;
 					break;
 			}
 			if(checkBulletCollision(bullet.x, bullet.y, bullet_index, bullet.dir, bot_index)){

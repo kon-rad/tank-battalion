@@ -33,6 +33,6 @@ gulp.src('./src/assets/fonts/*.{ttf,woff,eof,svg}')
     .pipe(gulp.dest('./public/assets/fonts')))
 
 gulp.task('default', function () {
-  gulp.watch('src/stylesheets/*.scss', ['workflow']);
+  gulp.watch('src/stylesheets/**/*.scss', ['workflow']);
   gulp.watch('./src/js/**/*.js', ['babel']);
 });

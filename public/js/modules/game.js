@@ -21,6 +21,15 @@ define(function () {
 	game.bots;
 	game.eagle1_y = 57;
 	game.eagle1_x = 28;
+	game.bots_destroyed;
+	game.bots_on_screen = -1;
+	game.newRound = false;
+	game.round = 1;
+	game.difficulty = 0;
+	game.round_display = document.getElementById('score__round_num');
+	game.display_bots = document.getElementsByClassName('score__enemy_tank');
+	game.score_num = document.getElementById('score__current_num');
+	game.high_num = document.getElementById('score__high_num');
 	game.timer = setInterval(function () {
 		game.time += 100;
 	}, 100);

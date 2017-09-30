@@ -1,6 +1,7 @@
 'use strict';
 
-define(['game', 'bullets', 'mwObstacle', 'audio'], function (game, bullets, mwObstacle, audio) {
+define(['game', 'bullets', 'mwObstacle', 'audio', 'images'], function (game, bullets, mwObstacle, audio, images) {
+
 	var ai = {};
 	ai.bots = [];
 
@@ -19,14 +20,19 @@ define(['game', 'bullets', 'mwObstacle', 'audio'], function (game, bullets, mwOb
 			bullets: []
 		};
 		ai.bots.push(bot);
+		game.bots_on_screen++;
+		console.log('game.bots_on_screen', game.bots_on_screen);
+		game.display_bots[game.bots_on_screen - 1].classList.add('on_screen');
 	};
 
 	var init = function init() {
 
+		var speed = (game.difficulty + 1) * 6;
+		var detect_dist = 1 * 16;
 		setTimeout(loadBot, 500);
 		game.loadBots = setInterval(function () {
 			loadBot();
-			if (ai.bots.length >= 10) {
+			if (ai.bots.length - game.bots_destroyed >= 20) {
 				clearInterval(game.loadBots);
 			}
 		}, 7000);
@@ -34,53 +40,60 @@ define(['game', 'bullets', 'mwObstacle', 'audio'], function (game, bullets, mwOb
 			ai.bots.forEach(function (bot) {
 				if (bot.moving) {
 					if (bot.dir == 'up') {
-						if (detect(bot.x, bot.y - 16, bot.index)) {
+						// detect if collision with player
+						detectCollision(bot.x, bot.y - detect_dist);
+						// detect if collision with other enemy tanks
+						if (detect(bot.x, bot.y - detect_dist, bot.index)) {
 							bot.y += 8;
 							bot.dir = 'down';
-						} else if (mwObstacle.detect(bot.x, bot.y - 16, bot.dir)) {
-							bot.y += 6;
+							// detect if collision with walls
+						} else if (mwObstacle.detect(bot.x, bot.y - detect_dist, bot.dir)) {
+							bot.y += speed;
 							bot.dir = ai.dir[Math.floor(Math.random() * 4)];
 						} else {
-							bot.y -= 6;
+							bot.y -= speed;
 							if (shootBool()) {
 								shootBullet(bot.x, bot.y, bot.index, bot.dir);
 							}
 						}
 					} else if (bot.dir == 'down') {
-						if (detect(bot.x, bot.y + 16, bot.index)) {
+						detectCollision(bot.x, bot.y + detect_dist);
+						if (detect(bot.x, bot.y + detect_dist, bot.index)) {
 							bot.y -= 8;
 							bot.dir = 'up';
-						} else if (mwObstacle.detect(bot.x, bot.y + 16, bot.dir)) {
-							bot.y -= 6;
+						} else if (mwObstacle.detect(bot.x, bot.y + detect_dist, bot.dir)) {
+							bot.y -= speed;
 							bot.dir = ai.dir[Math.floor(Math.random() * 4)];
 						} else {
-							bot.y += 6;
+							bot.y += speed;
 							if (shootBool()) {
 								shootBullet(bot.x, bot.y, bot.index, bot.dir);
 							}
 						}
 					} else if (bot.dir == 'right') {
-						if (detect(bot.x + 16, bot.y, bot.index)) {
+						detectCollision(bot.x + detect_dist, bot.y);
+						if (detect(bot.x + detect_dist, bot.y, bot.index)) {
 							bot.x -= 8;
 							bot.dir = 'left';
-						} else if (mwObstacle.detect(bot.x + 16, bot.y, bot.dir)) {
-							bot.x -= 6;
+						} else if (mwObstacle.detect(bot.x + detect_dist, bot.y, bot.dir)) {
+							bot.x -= speed;
 							bot.dir = ai.dir[Math.floor(Math.random() * 4)];
 						} else {
-							bot.x += 6;
+							bot.x += speed;
 							if (shootBool()) {
 								shootBullet(bot.x, bot.y, bot.index, bot.dir);
 							}
 						}
 					} else if (bot.dir == 'left') {
-						if (detect(bot.x - 16, bot.y, bot.index)) {
+						detectCollision(bot.x - detect_dist, bot.y);
+						if (detect(bot.x - detect_dist, bot.y, bot.index)) {
 							bot.x += 8;
 							bot.dir = 'right';
-						} else if (mwObstacle.detect(bot.x - 16, bot.y, bot.dir)) {
-							bot.x += 6;
+						} else if (mwObstacle.detect(bot.x - detect_dist, bot.y, bot.dir)) {
+							bot.x += speed;
 							bot.dir = ai.dir[Math.floor(Math.random() * 4)];
 						} else {
-							bot.x -= 6;
+							bot.x -= speed;
 							if (shootBool()) {
 								shootBullet(bot.x, bot.y, bot.index, bot.dir);
 							}
@@ -110,8 +123,8 @@ define(['game', 'bullets', 'mwObstacle', 'audio'], function (game, bullets, mwOb
 	};
 
 	var shootBool = function shootBool() {
-		var random = Math.floor(Math.random() * 30);
-		return random === 0;
+		var random = Math.floor(Math.random() * (30 * (1 - game.difficulty)));
+		return random === 7;
 	};
 
 	var shootBullet = function shootBullet(b_x, b_y, i, b_dir) {
@@ -124,6 +137,21 @@ define(['game', 'bullets', 'mwObstacle', 'audio'], function (game, bullets, mwOb
 		};
 
 		ai.bots[i].bullets.push(bullet);
+	};
+
+	var detectCollision = function detectCollision(x, y) {
+		var g_x = Math.floor(game.x / 10);
+		var g_y = Math.floor(game.y / 10);
+		x = Math.floor(x / 10);
+		y = Math.floor(y / 10);
+		if ((g_x == x || g_x - 1 == x || g_x + 1 == x) && (g_y == y || g_y - 1 == y || g_y + 1 == y)) {
+			audio.explode.load();
+			audio.explode.play();
+			// game.context.drawImage(images.bigRedExplosion, (x*10)-10, (y*10)-10);
+			game.explosion = true;
+			game.newGame = true;
+			return true;
+		}
 	};
 
 	return {

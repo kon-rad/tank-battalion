@@ -2,6 +2,7 @@
 
 define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function(game, mWorld, audio, images, singlePlayer) {
 
+	const display_bots = document.getElementsByClassName('score__enemy_tank');
 	const bullets = {};
 	bullets.fired = false;
 	bullets.renderExplosion = false;
@@ -83,8 +84,17 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function(game, mWo
 			if(b.moving && (x == b_x || x == b_x+1 || x==b_x-1) && (y==b_y || y==b_y+1 || y==b_y-1)) {
 				game.bullets.splice(b_i, 1);
 				game.context.drawImage(images.bigRedExplosion, (x*10)-10, (y*10)-10);
-				game.playerOnePoints += 1;
+				game.playerOnePoints++;
+				game.bots_destroyed++;
 				singlePlayer.ai.bots[k].moving = false;
+				console.log('game.bots_destroyed-1', game.bots_destroyed-1);
+				game.display_bots[game.bots_destroyed-1].style.visibility = 'hidden';
+				game.score_num.innerHTML = game.playerOnePoints * 10;
+				if(game.bots_destroyed >= 1) {
+					game.newRound = true;
+					game.round++;
+					game.newGame = true;
+				}
 				return true;
 			}
 		}

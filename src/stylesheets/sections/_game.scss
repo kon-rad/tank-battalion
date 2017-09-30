@@ -6,33 +6,72 @@ canvas {
     }
 }
 .content {
-    margin: 14vh auto; 
+  margin: 14vh auto 0;
+  display: flex;
+  width: 800px;
 }
 body {
 	background-color: black;
 }
 .game {
 	width: 600px;
-    padding: 40px 40px;
-    margin: 40px auto;
-    height: 600px;
-    background-image:
-      -moz-linear-gradient(45deg, #00ba00 25%, transparent 25%), 
-      -moz-linear-gradient(-45deg, #00ba00 25%, transparent 25%),
-      -moz-linear-gradient(45deg, transparent 75%, #00ba00 75%),
-      -moz-linear-gradient(-45deg, transparent 75%, #00ba00 75%);
-    background-image:
-      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, #00ba00), color-stop(.25, transparent)), 
-      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #00ba00), color-stop(.25, transparent)),
-      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #00ba00)),
-      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #00ba00));
+  padding: 40px 40px;
+  margin: 0px 20px;
+  height: 600px;
+  background-image:
+    -moz-linear-gradient(45deg, #00ba00 25%, transparent 25%), 
+    -moz-linear-gradient(-45deg, #00ba00 25%, transparent 25%),
+    -moz-linear-gradient(45deg, transparent 75%, #00ba00 75%),
+    -moz-linear-gradient(-45deg, transparent 75%, #00ba00 75%);
+  background-image:
+    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, #00ba00), color-stop(.25, transparent)), 
+    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #00ba00), color-stop(.25, transparent)),
+    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #00ba00)),
+    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #00ba00));
 
-    -moz-background-size:2px 2px;
-    background-size:2px 2px;
-    -webkit-background-size:2px 2px; /* override value for shitty webkit */
-    
-    // background-position:0 0, 50px 0, 50px -50px, 0px 50px;
-    background-position:center;
-
+  -moz-background-size:2px 2px;
+  background-size:2px 2px;
+  -webkit-background-size:2px 2px; /* override value for shitty webkit */
+  background-position:center;
 }
-
+.score {
+  width: 100%;
+  color: white;
+  font-family: PixelEmulator;
+  font-size:30px;
+}
+.score__current {
+  margin-top: 50px;
+}
+.score__enemy_tanks {
+  margin-top: 50px;
+}
+.score__enemy_row {
+  width: 120px;
+  height: 26px;
+  display: flex;
+}
+.score__enemy_tank {
+  background: url('../assets/images/enemy_tank.png') center center;
+  background-size: contain;
+  width: 27px;
+  height: 28px;
+}
+.score__lives {
+  margin-top: 50px;
+}
+.score__lives_tank {
+  background: url('../assets/images/tank_lives.png') center center;
+  background-size: cover;
+  width: 40px;
+  height: 60px;
+}
+.score__lives_row {
+  display: flex;
+  width: 120px;
+  height: 80px;
+}
+.on_screen {
+  background: linear-gradient(       rgba(0, 0, 0, 0.45),        rgba(0, 0, 0, 0.45)     ), url(../assets/images/enemy_tank.png) 50%;
+  background-size: contain;
+}

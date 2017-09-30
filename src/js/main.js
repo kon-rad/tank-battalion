@@ -16,8 +16,7 @@
 			'mwObstacle': 'worlds/mwObstacle',
 			'setup': 'setup/setup',
 			'singlePlayer': 'singlePlayer/singlePlayer',
-			'renderBot': 'singlePlayer/renderBot',
-			'botMap': 'singlePlayer/botMap'
+			'renderBot': 'singlePlayer/renderBot'
 		}
 	})
 	requirejs(['draw', 'game', 'events', 'audio', 'setup'],
