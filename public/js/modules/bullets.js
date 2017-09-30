@@ -4,27 +4,28 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
 
 	var display_bots = document.getElementsByClassName('score__enemy_tank');
 	var bullets = {};
-	bullets.fired = false;
+	game.bullets_fired = false;
 	bullets.renderExplosion = false;
 	bullets.renderExplosion_x;
 	bullets.renderExplosion_y;
 	bullets.render_bullet = function (bullet, b_i) {
+		var speed = game.bullet_speed;
 		switch (bullet.dir) {
 			case 'up':
-				bullet.y -= 8;
+				bullet.y -= speed;
 				break;
 			case 'down':
-				bullet.y += 8;
+				bullet.y += speed;
 				break;
 			case 'right':
-				bullet.x += 8;
+				bullet.x += speed;
 				break;
 			case 'left':
-				bullet.x -= 8;
+				bullet.x -= speed;
 				break;
 		}
 		if (checkBulletCollision(bullet.x, bullet.y, b_i, bullet.dir)) {
-			bullets.fired = false;
+			game.bullets_fired = false;
 			audio.explode.load();
 			audio.explode.play();
 		}

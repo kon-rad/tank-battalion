@@ -38,6 +38,7 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'],
 	const startOnePlayer = () => {
 		game.stop = false;
 		game.playerOneLives = 3;
+		game.bullets = [];
 		game.bots_destroyed = 0;
 		game.bots_on_screen = 0;
 		game.round = 1;
@@ -65,17 +66,21 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'],
 			game.difficulty+=.2;
 			game.playerOneLives = 3;
 			game.bots_destroyed = 0;
+			game.bots_loaded = 0;
 			game.bots_on_screen = 0;
 			restorePlayerOneLives();
 			restoreOnScreenBots();
 			restoreDestroyedBots();
 			mWorld.data = mWorld.org.slice();
 			mWorld.draw();
+			game.bots_loaded = 0;
+
 			if(game.round >= 5) {
 				return youWin();
 			}
 		}
 		game.bots_on_screen = game.bots_destroyed;
+		game.bots_loaded = game.bots_on_screen;
 		game.playerOneLives--;
 		display_lives[game.playerOneLives].style.display = 'none';
 		restoreOnScreenBots();
@@ -83,6 +88,8 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'],
 		game.x = 460;
 		game.y = 580;
 		game.stop = false;
+		game.bullets = [];
+		game.bullets_fired = false;
 		display.innerHTML = '';
 		var startGame = setInterval(loading, 100);
 		setTimeout(clearLoading, 1400);

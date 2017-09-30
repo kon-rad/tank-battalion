@@ -42,9 +42,9 @@ define(['game', 'bullets', 'audio'], function (game, bullets, audio) {
 	};
 
 	var bullet_check = function bullet_check() {
-		if (!bullets.fired) {
+		if (!game.bullets_fired) {
 			bullets.fire_bullet(game.x, game.y, game.tankDirection);
-			bullets.fired = true;
+			game.bullets_fired = true;
 			audio.shoot.play();
 		}
 	};

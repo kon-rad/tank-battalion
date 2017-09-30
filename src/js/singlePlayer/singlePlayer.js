@@ -22,21 +22,22 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'],
 			};
 			ai.bots.push(bot);
 			game.bots_on_screen++;
+			game.bots_loaded++;
 			console.log('game.bots_on_screen',game.bots_on_screen);
 			game.display_bots[game.bots_on_screen-1].classList.add('on_screen');
 		}
 
 		const init = () => {
 
-			const speed = (game.difficulty + 1)*6;
+			const speed = (game.difficulty + 1)*game.enemy_speed;
 			const detect_dist = (1)*16;
 			setTimeout(loadBot, 500);
 			game.loadBots = setInterval(function() {
 				loadBot();
-				if(ai.bots.length - game.bots_destroyed >= 20) {
+				if(game.bots_loaded >= 20) {
 					clearInterval(game.loadBots);
 				}
-			}, 7000);
+			}, 3000);
 			game.bots = setInterval(function() {
 				ai.bots.forEach(function(bot) {
 					if(bot.moving) {
@@ -151,8 +152,8 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'],
 			let g_y = Math.floor(game.y/10);
 			x = Math.floor(x/10);
 			y = Math.floor(y/10);
-			if ((g_x == x || g_x-1 == x || g_x+1 == x) 
-				&& (g_y == y || g_y-1 == y || g_y+1 == y)) {
+			if ((g_x == x || g_x-1 == x || g_x+1 == x || g_x+2 == x || g_x-2 == x) 
+				&& (g_y == y || g_y-1 == y || g_y+1 == y || g_y+2 == y || g_y-2 == y)) {
 				audio.explode.load();
 				audio.explode.play();
 				// game.context.drawImage(images.bigRedExplosion, (x*10)-10, (y*10)-10);

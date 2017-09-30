@@ -9,6 +9,7 @@ define(function () {
 	game.ch = game.canvas.height;
 	game.tankDirection = false;
 	game.moving = false;
+	game.bots_loaded = 0;
 	game.bullets = [];
 	game.stop = true;
 	game.onePlayerBegin = false;
@@ -26,6 +27,7 @@ define(function () {
 	game.newRound = false;
 	game.round = 1;
 	game.difficulty = 0;
+	game.bullets_fired = false;
 	game.round_display = document.getElementById('score__round_num');
 	game.display_bots = document.getElementsByClassName('score__enemy_tank');
 	game.score_num = document.getElementById('score__current_num');
@@ -33,6 +35,12 @@ define(function () {
 	game.timer = setInterval(function () {
 		game.time += 100;
 	}, 100);
+
+	// speed settings
+	game.enemy_bullet_speed = 14;
+	game.enemy_speed = 10;
+	game.bullet_speed = 14;
+	game.playerOneSpeed = 10;
 
 	// set focus to canvas
 	game.canvas.setAttribute('tabindex', '0');

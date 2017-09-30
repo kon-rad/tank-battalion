@@ -60,7 +60,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 	};
 
 	var render_bullet = function render_bullet(bullet, bullet_index, bot_index) {
-		var speed = (game.difficulty + 1) * 8;
+		var speed = (game.difficulty + 1) * game.enemy_bullet_speed;
 		switch (bullet.dir) {
 			case 'up':
 				bullet.y -= speed;

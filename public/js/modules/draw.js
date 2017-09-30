@@ -24,6 +24,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		}
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
+		var speed = game.playerOneSpeed;
 		mWorld.draw();
 
 		game.context.drawImage(images.eagle, 274, 566);
@@ -36,28 +37,28 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		if (game.tankDirection == 'up') {
 			if (game.moving) {
 				if (!mwObstacle.detect(game.x, game.y - 10, game.tankDirection)) {
-					game.y -= 6;
+					game.y -= speed;
 				}
 			}
 			tank.moving_up();
 		} else if (game.tankDirection == 'down') {
 			if (game.moving) {
 				if (!mwObstacle.detect(game.x, game.y + 10, game.tankDirection)) {
-					game.y += 6;
+					game.y += speed;
 				}
 			}
 			tank.moving_down();
 		} else if (game.tankDirection == 'right') {
 			if (game.moving) {
 				if (!mwObstacle.detect(game.x + 15, game.y, game.tankDirection)) {
-					game.x += 6;
+					game.x += speed;
 				}
 			}
 			tank.moving_right();
 		} else if (game.tankDirection == 'left') {
 			if (game.moving) {
 				if (!mwObstacle.detect(game.x - 15, game.y, game.tankDirection)) {
-					game.x -= 6;
+					game.x -= speed;
 				}
 			}
 			tank.moving_left();
