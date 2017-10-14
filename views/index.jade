@@ -4,9 +4,6 @@ block content
 	.content
 		.game
 			canvas#tank(width='600', height='600')
-			script(type='text/javascript', data-main='js/main.js', src='js/require.js')
-			img#brick(src='assets/images/brick.png', style='display:none;')
-			img#border(src='assets/images/border.png', style='display:none;')
 		.score
 			.score__high high-<br>score
 				#score__high_num 0
@@ -46,6 +43,12 @@ block content
 					.score__lives_tank
 			.score__round round
 				#score__round_num 1
+			.controls 
+				.controls__icon &#8505;
+				.controls__content(style="display:none;") Controls: <br />W, A, S, D, <br />Space Bar
 		#display_text
+	script(type='text/javascript', data-main='js/main.js', src='js/require.js')
+	img#brick(src='assets/images/brick.png', style='display:none;')
+	img#border(src='assets/images/border.png', style='display:none;')
 
   

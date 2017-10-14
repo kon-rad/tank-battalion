@@ -15,10 +15,11 @@
 			'mwObstacle': 'worlds/mwObstacle',
 			'setup': 'setup/setup',
 			'singlePlayer': 'singlePlayer/singlePlayer',
-			'renderBot': 'singlePlayer/renderBot'
+			'renderBot': 'singlePlayer/renderBot',
+			'util': 'modules/util'
 		}
 	});
-	requirejs(['draw', 'game', 'events', 'audio', 'setup'], function (draw, game, events, audio, setup) {
+	requirejs(['util', 'draw', 'game', 'events', 'audio', 'setup'], function (util, draw, game, events, audio, setup) {
 		setup.control();
 	});
 })();
