@@ -18,7 +18,7 @@
 			'singlePlayer': 'singlePlayer/singlePlayer',
 			'renderBot': 'singlePlayer/renderBot',
 			'util': 'modules/util',
-			// 'io': 'modules/socket.io'
+			'multiPlayer': 'multiPlayer/multiPlayer'
 		}
 	})
 	requirejs(['util', 'draw', 'game', 'events', 'audio', 'setup'],

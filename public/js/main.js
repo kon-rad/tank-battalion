@@ -16,8 +16,8 @@
 			'setup': 'setup/setup',
 			'singlePlayer': 'singlePlayer/singlePlayer',
 			'renderBot': 'singlePlayer/renderBot',
-			'util': 'modules/util'
-			// 'io': 'modules/socket.io'
+			'util': 'modules/util',
+			'multiPlayer': 'multiPlayer/multiPlayer'
 		}
 	});
 	requirejs(['util', 'draw', 'game', 'events', 'audio', 'setup'], function (util, draw, game, events, audio, setup) {

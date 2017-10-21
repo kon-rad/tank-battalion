@@ -43,4 +43,36 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+
+
+
+var debug = require('debug')('tank-battalion:server');
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = ('8000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+var commonPort = app.listen(port, () => {
+	console.log('App running on localhost:8000');
+});
+
+var io = require('socket.io').listen(commonPort);
+
+// socket.io communication
+io.on('connection', function(socket) {
+	io.emit('msg', 'user connected');
+	io.emit('tank', 'tank loaded');
+	socket.on('tank', function(msg){
+		console.log('message: ' + msg);
+		socket.broadcast.emit('msg', msg);
+	});
+});

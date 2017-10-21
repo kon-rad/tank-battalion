@@ -2,16 +2,18 @@
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'], function (game, events, audio, mWorld, tank, draw, singlePlayer) {
+define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'multiPlayer'], function (game, events, audio, mWorld, tank, draw, singlePlayer, multiPlayer) {
 
 	var display = document.getElementById('display_text');
 	var display_lives = document.getElementsByClassName('score__lives_tank');
 
 	var control = function control() {
 
-		display.innerHTML = '<div class="display_text__1player">' + 'START GAME</div>';
+		display.innerHTML = '<div class="display_text__1player">' + 'VS COMPUTER</div></br>' + '<div class="display_text__2player">MULTIPLAYER</div>';
 		var onePlayer = document.getElementsByClassName('display_text__1player')[0];
+		var multiPlayer = document.getElementsByClassName('display_text__2player')[0];
 		onePlayer.addEventListener('click', startOnePlayer);
+		multiPlayer.addEventListener('click', startMultiPlayer);
 		startScreen();
 	};
 
@@ -54,8 +56,32 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'], fu
 		loadOnePlayer();
 	};
 
+	var startMultiPlayer = function startMultiPlayer() {
+		// game.stop = false;
+		// game.round = 1;
+		// game.round_display.innerHTML = game.round;
+		// game.difficulty = 0;
+
+		// if(parseInt(game.high_num.innerHTML) <= game.playerOnePoints*10) {
+		// 	game.high_num.innerHTML = game.playerOnePoints*10;
+		// }
+
+		// document.addEventListener("keydown", events.handleKeydown, false);
+		// document.addEventListener("keyup", events.handleKeyUp, false);
+		// multiPlayer.init();
+		// audio.start.play();
+		// game.canvas.setAttribute('tabindex','0');
+		// game.canvas.focus();
+		// tank.moving_up();
+		// game.tankDirection = 'up';
+
+
+		multiPlayer.init();
+	};
+
 	var loadOnePlayer = function loadOnePlayer() {
 		if (game.playerOneLives <= 0) {
+			singlePlayer.ai.bots = [];
 			return gameOver();
 		}
 		if (game.newRound) {
@@ -139,6 +165,14 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'], fu
 		display.innerHTML = '<div id="win" class="display_text__1player_win">' + 'Game Over!</div>';
 		var win = document.getElementById('win');
 		win.addEventListener('click', control);
+		game.bullets = [];
+		game.bots_destroyed = 0;
+		game.bots_on_screen = 0;
+		game.playerOnePoints = 0;
+		game.score_num.innerHTML = game.playerOnePoints * 10;
+		restorePlayerOneLives();
+		restoreOnScreenBots();
+		restoreDestroyedBots();
 	};
 
 	return {

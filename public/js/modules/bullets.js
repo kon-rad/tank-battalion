@@ -85,7 +85,6 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
 				game.playerOnePoints++;
 				game.bots_destroyed++;
 				singlePlayer.ai.bots[k].moving = false;
-				console.log('game.bots_destroyed-1', game.bots_destroyed - 1);
 				game.display_bots[game.bots_destroyed - 1].style.visibility = 'hidden';
 				game.score_num.innerHTML = game.playerOnePoints * 10;
 				if (game.bots_destroyed >= 20) {

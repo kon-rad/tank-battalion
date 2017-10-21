@@ -1,7 +1,7 @@
 'use strict';
 
-define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'], 
-	function ( game, events, audio, mWorld, tank, draw, singlePlayer) {
+define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'multiPlayer'], 
+	function ( game, events, audio, mWorld, tank, draw, singlePlayer, multiPlayer) {
 
 	const display = document.getElementById('display_text');
 	const display_lives = document.getElementsByClassName('score__lives_tank');
@@ -9,9 +9,12 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'],
 	const control = () => {
 
 		display.innerHTML = '<div class="display_text__1player">' 
-		+ 'START GAME</div>';
+		+ 'VS COMPUTER</div></br>'
+		+ '<div class="display_text__2player">MULTIPLAYER</div>';
 		const onePlayer = document.getElementsByClassName('display_text__1player')[0];
+		const multiPlayer = document.getElementsByClassName('display_text__2player')[0];
 		onePlayer.addEventListener('click', startOnePlayer);
+		multiPlayer.addEventListener('click', startMultiPlayer);
 		startScreen();
 	};
 
@@ -55,8 +58,35 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'],
 		loadOnePlayer();
 	}
 
+	const startMultiPlayer = () => {
+		// game.stop = false;
+		// game.round = 1;
+		// game.round_display.innerHTML = game.round;
+		// game.difficulty = 0;
+
+		// if(parseInt(game.high_num.innerHTML) <= game.playerOnePoints*10) {
+		// 	game.high_num.innerHTML = game.playerOnePoints*10;
+		// }
+
+		// document.addEventListener("keydown", events.handleKeydown, false);
+		// document.addEventListener("keyup", events.handleKeyUp, false);
+		// multiPlayer.init();
+		// audio.start.play();
+		// game.canvas.setAttribute('tabindex','0');
+		// game.canvas.focus();
+		// tank.moving_up();
+		// game.tankDirection = 'up';
+
+
+
+
+		multiPlayer.init();
+
+	}
+
 	const loadOnePlayer = () => {
 		if (game.playerOneLives <= 0) {
+			singlePlayer.ai.bots = [];
 			return gameOver();
 		}
 		if (game.newRound) {
@@ -142,6 +172,14 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer'],
 		+ 'Game Over!</div>';
 		const win= document.getElementById('win');
 		win.addEventListener('click', control);
+		game.bullets = [];
+		game.bots_destroyed = 0;
+		game.bots_on_screen = 0;
+		game.playerOnePoints = 0;
+		game.score_num.innerHTML = game.playerOnePoints*10;
+		restorePlayerOneLives();
+		restoreOnScreenBots();
+		restoreDestroyedBots();
 	}
 
 	return {
