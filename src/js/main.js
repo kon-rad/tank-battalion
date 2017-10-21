@@ -18,7 +18,8 @@
 			'singlePlayer': 'singlePlayer/singlePlayer',
 			'renderBot': 'singlePlayer/renderBot',
 			'util': 'modules/util',
-			'multiPlayer': 'multiPlayer/multiPlayer'
+			'multiPlayer': 'multiPlayer/multiPlayer',
+			'multiPlayer_draw': 'multiPlayer/multiPlayer_draw'
 		}
 	})
 	requirejs(['util', 'draw', 'game', 'events', 'audio', 'setup'],

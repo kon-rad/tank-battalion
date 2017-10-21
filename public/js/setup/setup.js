@@ -9,7 +9,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 
 	var control = function control() {
 
-		display.innerHTML = '<div class="display_text__1player">' + 'VS COMPUTER</div></br>' + '<div class="display_text__2player">MULTIPLAYER</div>';
+		display.innerHTML = '<div class="display_text__1player">' + 'VS COMPUTER</div></br></br>' + '<div class="display_text__2player">MULTIPLAYER</div>';
 		var onePlayer = document.getElementsByClassName('display_text__1player')[0];
 		var multiPlayer = document.getElementsByClassName('display_text__2player')[0];
 		onePlayer.addEventListener('click', startOnePlayer);
@@ -57,25 +57,33 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 	};
 
 	var startMultiPlayer = function startMultiPlayer() {
-		// game.stop = false;
-		// game.round = 1;
-		// game.round_display.innerHTML = game.round;
-		// game.difficulty = 0;
+		game.stop = false;
+		game.round = 1;
+		game.round_display.innerHTML = game.round;
+		game.difficulty = 0;
 
-		// if(parseInt(game.high_num.innerHTML) <= game.playerOnePoints*10) {
-		// 	game.high_num.innerHTML = game.playerOnePoints*10;
-		// }
+		if (parseInt(game.high_num.innerHTML) <= game.playerOnePoints * 10) {
+			game.high_num.innerHTML = game.playerOnePoints * 10;
+		}
 
-		// document.addEventListener("keydown", events.handleKeydown, false);
-		// document.addEventListener("keyup", events.handleKeyUp, false);
-		// multiPlayer.init();
-		// audio.start.play();
-		// game.canvas.setAttribute('tabindex','0');
-		// game.canvas.focus();
-		// tank.moving_up();
-		// game.tankDirection = 'up';
+		mWorld.data = mWorld.org.slice();
+		mWorld.draw();
 
+		document.addEventListener("keydown", events.handleKeydown, false);
+		document.addEventListener("keyup", events.handleKeyUp, false);
 
+		game.x = 460;
+		game.y = 580;
+		game.stop = false;
+		game.bullets = [];
+		game.bullets_fired = false;
+
+		audio.start.play();
+		game.canvas.setAttribute('tabindex', '0');
+		game.canvas.focus();
+		tank.moving_up();
+		game.tankDirection = 'up';
+		display.innerHTML = '';
 		multiPlayer.init();
 	};
 
