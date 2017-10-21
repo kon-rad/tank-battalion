@@ -3,14 +3,12 @@
 define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 'singlePlayer', 'renderBot'], function (game, tank, bullets, mWorld, mwObstacle, images, audio, singlePlayer, renderBot) {
 
 	var start = function start() {
-		console.log('start');
 		game.onePlayerGame = setInterval(go, 100);
 	};
 
 	var go = function go() {
 		if (game.newGame) {
 			if (game.explosion) {
-				console.log('explode');
 				game.context.drawImage(images.explosion, game.x - 10, game.y - 10);
 				game.explosion = false;
 			}

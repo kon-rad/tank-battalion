@@ -13,7 +13,8 @@
     "jade": "~1.11.0",
     "morgan": "~1.8.1",
     "requirejs": "^2.3.5",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.0",

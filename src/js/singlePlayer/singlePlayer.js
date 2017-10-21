@@ -23,7 +23,6 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'],
 			ai.bots.push(bot);
 			game.bots_on_screen++;
 			game.bots_loaded++;
-			console.log('game.bots_on_screen',game.bots_on_screen);
 			game.display_bots[game.bots_on_screen-1].classList.add('on_screen');
 		}
 
