@@ -13,7 +13,6 @@ define(function() {
 	game.bullets = [];
 	game.stop = true;
 	game.onePlayerBegin = false;
-	game.twoPlayerBegin = false;
 	game.bool = true;
 	game.time = 0;
 	game.playerOnePoints = 0;
@@ -36,16 +35,41 @@ define(function() {
 		game.time += 100;
 	}, 100);
 
-	// speed settings
+	/*
+	 * Speed Settings
+	 */
+
 	game.enemy_bullet_speed = 14;
 	game.enemy_speed = 10;
 	game.bullet_speed = 14;
 	game.playerOneSpeed = 10;
 
-	// set focus to canvas
+	/*
+	 * Set focus to canvas
+	 */
+
 	game.canvas.setAttribute('tabindex','0');
 	game.canvas.focus();
 
+	/*
+	 * Multiplayer game state
+	 */
+
+	game.multiplayer = false;
+	game.mpPlayers;
+	game.currentPlayer;
+	game.mpCurrentId;
+	game.id = () => {
+	  return '_' + Math.random().toString(36).substr(2, 9);
+	};
+	game.find_mpCurrentIndex = () => {
+		let len = game.mpPlayers.length;
+		for(let i = 0; i < len; i++) {
+			if(game.mpPlayers[i].id === game.mpCurrentId) {
+				return i;
+			}
+		}
+	}
 
 	return game;
 

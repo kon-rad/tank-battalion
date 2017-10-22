@@ -31,7 +31,7 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		mWorld.draw();
 		if (game.bool) {
 			game.bool = false;
-			tank.moving_up();
+			tank.moving_up(game.x, game.y);
 		} else {
 			game.bool = true;
 
@@ -63,6 +63,7 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		game.round = 1;
 		game.round_display.innerHTML = game.round;
 		game.difficulty = 0;
+		game.multiplayer = true;
 
 		if(parseInt(game.high_num.innerHTML) <= game.playerOnePoints*10) {
 			game.high_num.innerHTML = game.playerOnePoints*10;
@@ -74,21 +75,33 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		document.addEventListener("keydown", events.handleKeydown, false);
 		document.addEventListener("keyup", events.handleKeyUp, false);
 
-		game.x = 460;
-		game.y = 580;
-		game.stop = false;
-		game.bullets = [];
-		game.bullets_fired = false;
+		let plr = {};
+		plr.x = Math.floor(Math.random()*600);
+		plr.y = Math.floor(Math.random()*600);
+		plr.moving = false;
+		plr.bullets = [];
+		plr.color = 'green';
+		plr.tankDirection = 'up';
+		plr.speed = 10;
+
+	   	game.socket = io();
+	   	game.socket.emit('create-player', plr);
 
 		audio.start.play();
 		game.canvas.setAttribute('tabindex','0');
 		game.canvas.focus();
-		tank.moving_up();
-		game.tankDirection = 'up';
+		// tank.moving_up(plr.x, plr.y);
+		// game.tankDirection = 'up';
 		display.innerHTML = '';
+		game.socket.on('player-created', function(data) {
+			console.log('data recieved from setup: ', data);
+			game.currentPlayer = data.pd;
+			game.mpCurrentId = data.pd.id;
+			game.mpPlayers = data.players;
+		});
 		multiPlayer.init();
-
 	}
+
 
 	const loadOnePlayer = () => {
 		if (game.playerOneLives <= 0) {
@@ -139,7 +152,7 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 			audio.start.play();
 			game.canvas.setAttribute('tabindex','0');
 			game.canvas.focus();
-			tank.moving_up();
+			tank.moving_up(game.x, game.y);
 			game.tankDirection = 'up'
 			draw.start();
 		}

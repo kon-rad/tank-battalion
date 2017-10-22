@@ -38,28 +38,28 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 					game.y -= speed;
 				}
 			}
-			tank.moving_up();
+			tank.moving_up(game.x, game.y);
 		} else if (game.tankDirection == 'down') {
 			if (game.moving) {
 				if (!mwObstacle.detect(game.x, game.y + 10, game.tankDirection)) {
 					game.y += speed;
 				}
 			}
-			tank.moving_down();
+			tank.moving_down(game.x, game.y);
 		} else if (game.tankDirection == 'right') {
 			if (game.moving) {
 				if (!mwObstacle.detect(game.x + 15, game.y, game.tankDirection)) {
 					game.x += speed;
 				}
 			}
-			tank.moving_right();
+			tank.moving_right(game.x, game.y);
 		} else if (game.tankDirection == 'left') {
 			if (game.moving) {
 				if (!mwObstacle.detect(game.x - 15, game.y, game.tankDirection)) {
 					game.x -= speed;
 				}
 			}
-			tank.moving_left();
+			tank.moving_left(game.x, game.y);
 		}
 
 		game.bullets.forEach(function (item, index) {

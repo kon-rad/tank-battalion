@@ -4,65 +4,76 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio'], f
 
 	var start = function start() {
 		game.multiPlayerGame = setInterval(go, 100);
+		game.socket.on('send-game-state', function (gameState) {
+			game.mpPlayers = gameState.players;
+		});
 	};
 
 	var go = function go() {
-		console.log('draw ml here');
+
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
-		var speed = game.playerOneSpeed;
 		mWorld.draw();
-
 		game.context.drawImage(images.eagle, 274, 566);
-		if (bullets.renderExplosion) {
-			game.context.drawImage(images.explosion, bullets.renderExplosion_x - 10, bullets.renderExplosion_y - 10);
-			bullets.renderExplosion = false;
+
+		/**
+   * Render Current Player
+   */
+
+		game.context.fillStyle = game.currentPlayer.color;
+		if (game.currentPlayer.tankDirection == 'up') {
+			if (game.currentPlayer.moving) {
+				if (!mwObstacle.detect(game.currentPlayer.x, game.currentPlayer.y - 10, game.currentPlayer.tankDir)) {
+					game.currentPlayer.y -= game.currentPlayer.speed;
+				}
+			}
+			tank.moving_up(game.currentPlayer.x, game.currentPlayer.y);
+		} else if (game.currentPlayer.tankDirection == 'down') {
+			if (game.currentPlayer.moving) {
+				if (!mwObstacle.detect(game.currentPlayer.x, game.currentPlayer.y + 10, game.currentPlayer.tankDir)) {
+					game.currentPlayer.y += game.currentPlayer.speed;
+				}
+			}
+			tank.moving_down(game.currentPlayer.x, game.currentPlayer.y);
+		} else if (game.currentPlayer.tankDirection == 'right') {
+			if (game.currentPlayer.moving) {
+				if (!mwObstacle.detect(game.currentPlayer.x + 15, game.currentPlayer.y, game.currentPlayer.tankDir)) {
+					game.currentPlayer.x += game.currentPlayer.speed;
+				}
+			}
+			tank.moving_right(game.currentPlayer.x, game.currentPlayer.y);
+		} else if (game.currentPlayer.tankDirection == 'left') {
+			if (game.currentPlayer.moving) {
+				if (!mwObstacle.detect(game.currentPlayer.x - 15, game.currentPlayer.y, game.currentPlayer.tankDir)) {
+					game.currentPlayer.x -= game.currentPlayer.speed;
+					// game.socket.emit('player-state', game.currentPlayer);
+				}
+			}
+			tank.moving_left(game.currentPlayer.x, game.currentPlayer.y);
 		}
 
-		game.context.fillStyle = 'green';
-		if (game.tankDirection == 'up') {
-			if (game.moving) {
-				if (!mwObstacle.detect(game.x, game.y - 10, game.tankDirection)) {
-					game.y -= speed;
-				}
+		var len = game.mpPlayers.length;
+
+		for (var i = 0; i < len; i++) {
+			if (game.mpPlayers[i].id === game.mpCurrentId) continue;
+
+			game.context.fillStyle = game.mpPlayers[i].color;
+			if (game.mpPlayers[i].tankDirection == 'up') {
+				tank.moving_up(game.mpPlayers[i].x, game.mpPlayers[i].y);
+			} else if (game.mpPlayers[i].tankDirection == 'down') {
+				tank.moving_down(game.mpPlayers[i].x, game.mpPlayers[i].y);
+			} else if (game.mpPlayers[i].tankDirection == 'right') {
+				tank.moving_right(game.mpPlayers[i].x, game.mpPlayers[i].y);
+			} else if (game.mpPlayers[i].tankDirection == 'left') {
+				tank.moving_left(game.mpPlayers[i].x, game.mpPlayers[i].y);
 			}
-			tank.moving_up();
-		} else if (game.tankDirection == 'down') {
-			if (game.moving) {
-				if (!mwObstacle.detect(game.x, game.y + 10, game.tankDirection)) {
-					game.y += speed;
-				}
-			}
-			tank.moving_down();
-		} else if (game.tankDirection == 'right') {
-			if (game.moving) {
-				if (!mwObstacle.detect(game.x + 15, game.y, game.tankDirection)) {
-					game.x += speed;
-				}
-			}
-			tank.moving_right();
-		} else if (game.tankDirection == 'left') {
-			if (game.moving) {
-				if (!mwObstacle.detect(game.x - 15, game.y, game.tankDirection)) {
-					game.x -= speed;
-				}
-			}
-			tank.moving_left();
 		}
 
-		game.bullets.forEach(function (item, index) {
-			bullets.render_bullet(item, index);
-		});
+		/*
+   * Send multiplayer data
+   */
 
-		// let bots = singlePlayer.ai.bots;
-		// bots.forEach(function(bot, bot_index){
-		// 	if(bot.moving) {
-		// 		renderBot.render(bot);
-		// 	}
-		// 	bot.bullets.forEach((bullet, bullet_index) => {
-		// 		renderBot.render_bullet(bullet, bullet_index, bot_index);
-		// 	});
-		// })
+		// game.socket.emit('player data', game.mpPlayers);
 	};
 
 	return {

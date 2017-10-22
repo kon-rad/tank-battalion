@@ -26,10 +26,6 @@
 	   function(util, draw, game, events, audio, setup) {
 	   	setup.control();
 
-	   	var socket = io();
-	   	socket.on('msg', function(msg) {
-	   		console.log(msg);
-	   	});
 	});
 
 })()

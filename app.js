@@ -1,14 +1,17 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+const index = require('./routes/index');
+const users = require('./routes/users');
 
-var app = express();
+const Player  = require('./lib/Player');
+const  GameState  = require('./lib/GameState');
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,14 +23,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));	
 
 // use requireJS
-var requirejs = require('requirejs');
+let requirejs = require('requirejs');
 
 app.use('/', index);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -43,36 +46,73 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-
-
-var debug = require('debug')('tank-battalion:server');
-var http = require('http');
+const debug = require('debug')('tank-battalion:server');
+const http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = ('8000');
+const port = ('8000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
-var commonPort = app.listen(port, () => {
+const server = http.createServer(app);
+const commonPort = app.listen(port, () => {
 	console.log('App running on localhost:8000');
 });
 
-var io = require('socket.io').listen(commonPort);
+const io = require('socket.io').listen(commonPort);
 
-// socket.io communication
+/**
+ * Socket.io Communication.
+ */ 
+
+let playerSockets = [];
+let gameState = new GameState();
+
 io.on('connection', function(socket) {
+
 	io.emit('msg', 'user connected');
-	io.emit('tank', 'tank loaded');
-	socket.on('tank', function(msg){
-		console.log('message: ' + msg);
-		socket.broadcast.emit('msg', msg);
+
+	/**
+	 *  User disconnected.
+	 */ 
+
+	socket.on('disconnect', () => {
+	    console.log('player disconnected')
+	    console.log('player before: ', playerSockets);
+
+	    let player = playerSockets.find(function(player) {
+	      return player.socket == socket
+	    });
+	    console.log('player after: ', player);
+
+	    // if (player === undefined)
+	    //   return new Error()
+	    // console.log('gameState before filter: ', gameState.players);
+	    gameState.players = gameState.players.filter(function(p) {
+	      return p.id != player.id
+	    });
+	    console.log('gameState after filter: ', gameState.players);
+	    io.emit('player-disconnected', {id: socket.id })
+	  })
+
+	socket.on('create-player', function(data){
+		console.log('create-player: ', data);
+		let id = socket.id;
+		playerSockets.push({id: id, socket: socket});
+		socket.emit('your-id', id);
+		let np = new Player(id, data.x, data.y, data.tankDirection, data.speed, data.moving, data.color);
+		gameState.players.push(np);
+		socket.emit('player-created', { pd: np, players: gameState.players});
+		console.log(gameState.players);
 	});
 });
+
+setInterval(() => {
+  io.emit('send-game-state', gameState)
+}, 100)

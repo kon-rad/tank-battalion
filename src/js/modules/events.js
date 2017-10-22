@@ -8,7 +8,11 @@ define(['game', 'bullets', 'audio'], function(game, bullets, audio) {
 		if(e.target.id !== 'tank')
 			return;
 		if(e.keyCode === 87 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 68 || e.keyCode === 32) {
-			game.moving = false;
+			if (game.multiplayer) {
+				game.currentPlayer.moving = false;
+			} else {
+				game.moving = false;
+			}
 			audio.move.pause();
 		}
 	}
@@ -19,23 +23,43 @@ define(['game', 'bullets', 'audio'], function(game, bullets, audio) {
 			return;
 		switch (e.keyCode){
 			case 87: 
-				game.tankDirection = 'up';
-				game.moving = true;
+				if (game.multiplayer) {
+					game.currentPlayer.moving = true;
+					game.currentPlayer.tankDirection = 'up';
+				} else {
+					game.moving = true;
+					game.tankDirection = 'up';
+				}
 				audio.move.play();
 				break;
 			case 65: 
-				game.tankDirection = 'left';
-				game.moving = true;
+				if (game.multiplayer) {
+					game.currentPlayer.moving = true;
+					game.currentPlayer.tankDirection = 'left';
+				} else {
+					game.moving = true;
+					game.tankDirection = 'left';
+				}
 				audio.move.play();
 				break;
 			case 83: 
-				game.tankDirection = 'down';
-				game.moving = true;
+				if (game.multiplayer) {
+					game.currentPlayer.moving = true;
+					game.currentPlayer.tankDirection = 'down';
+				} else {
+					game.moving = true;
+					game.tankDirection = 'down';
+				}
 				audio.move.play();
 				break;
 			case 68: 
-				game.tankDirection = 'right';
-				game.moving = true;
+				if (game.multiplayer) {
+					game.currentPlayer.moving = true;
+					game.currentPlayer.tankDirection = 'right';
+				} else {
+					game.moving = true;
+					game.tankDirection = 'right';
+				}
 				audio.move.play();
 				break;
 			case 32:
