@@ -7,7 +7,6 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 	const display_lives = document.getElementsByClassName('score__lives_tank');
 
 	const control = () => {
-
 		display.innerHTML = '<div class="display_text__1player">' 
 		+ 'VS COMPUTER</div></br></br>'
 		+ '<div class="display_text__2player">MULTIPLAYER</div>';
@@ -21,14 +20,14 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 	const startScreen = () => {
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
-		mWorld.data = mWorld.org.slice();
-		mWorld.draw();
+		game.worldData = mWorld.parent.slice();
+		mWorld.draw(game.worldData);
 	}
 
 	const loading = () => {
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
-		mWorld.draw();
+		mWorld.draw(game.worldData);
 		if (game.bool) {
 			game.bool = false;
 			tank.moving_up(game.x, game.y);
@@ -69,9 +68,6 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 			game.high_num.innerHTML = game.playerOnePoints*10;
 		}
 
-		mWorld.data = mWorld.org.slice();
-		mWorld.draw();
-
 		document.addEventListener("keydown", events.handleKeydown, false);
 		document.addEventListener("keyup", events.handleKeyUp, false);
 
@@ -79,10 +75,11 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		plr.x = Math.floor(Math.random()*600);
 		plr.y = Math.floor(Math.random()*600);
 		plr.moving = false;
-		plr.bullets = [];
+		plr.bullet = {};
 		plr.color = 'green';
 		plr.tankDirection = 'up';
 		plr.speed = 10;
+		plr.bulletFired = false;
 
 	   	game.socket = io();
 	   	game.socket.emit('create-player', plr);
@@ -90,14 +87,15 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		audio.start.play();
 		game.canvas.setAttribute('tabindex','0');
 		game.canvas.focus();
-		// tank.moving_up(plr.x, plr.y);
-		// game.tankDirection = 'up';
 		display.innerHTML = '';
 		game.socket.on('player-created', function(data) {
 			console.log('data recieved from setup: ', data);
-			game.currentPlayer = data.pd;
-			game.mpCurrentId = data.pd.id;
+			game.currentPlayer = data.newPlayer;
+			game.mpCurrentId = data.newPlayer.id;
 			game.mpPlayers = data.players;
+			game.mpWorld = data.world;
+			console.log(game.mpWorld);
+			mWorld.draw(game.mpWorld);
 		});
 		multiPlayer.init();
 	}
@@ -120,8 +118,8 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 			restorePlayerOneLives();
 			restoreOnScreenBots();
 			restoreDestroyedBots();
-			mWorld.data = mWorld.org.slice();
-			mWorld.draw();
+			game.worldData = mWorld.parent.slice();
+			mWorld.draw(game.worldData);
 			game.bots_loaded = 0;
 
 			if(game.round >= 5) {
@@ -182,14 +180,14 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 	const youWin = () => {
 		display.innerHTML = '<div id="win" class="display_text__1player_win">' 
 		+ 'You Won the Game!</div>';
-		const win= document.getElementById('win');
+		const win = document.getElementById('win');
 		win.addEventListener('click', control);
 	}
 
 	const gameOver = () => {
 		display.innerHTML = '<div id="win" class="display_text__1player_win">' 
 		+ 'Game Over!</div>';
-		const win= document.getElementById('win');
+		const win = document.getElementById('win');
 		win.addEventListener('click', control);
 		game.bullets = [];
 		game.bots_destroyed = 0;

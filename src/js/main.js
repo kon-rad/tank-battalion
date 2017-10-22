@@ -19,7 +19,8 @@
 			'renderBot': 'singlePlayer/renderBot',
 			'util': 'modules/util',
 			'multiPlayer': 'multiPlayer/multiPlayer',
-			'multiPlayer_draw': 'multiPlayer/multiPlayer_draw'
+			'multiPlayer_draw': 'multiPlayer/multiPlayer_draw',
+			'multiPlayer_bullet': 'multiPlayer/multiPlayer_bullet'
 		}
 	})
 	requirejs(['util', 'draw', 'game', 'events', 'audio', 'setup'],

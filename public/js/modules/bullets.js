@@ -54,7 +54,7 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
 			game.bullets.splice(b_i, 1);
 			return true;
 		}
-		var row = mWorld.data[y];
+		var row = game.worldData[y];
 		row = row.split('');
 		var pos = Number(row[x]);
 		if (pos) {
@@ -68,7 +68,7 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
 				eraseBlock(x, y + 1);
 			}
 			row = row.join('');
-			mWorld.data[y] = row;
+			game.worldData[y] = row;
 			bullets.renderExplosion = true;
 			bullets.renderExplosion_x = x * 10;
 			bullets.renderExplosion_y = y * 10;
@@ -99,11 +99,11 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
 		return false;
 	};
 	var eraseBlock = function eraseBlock(x, y) {
-		var row = mWorld.data[y];
+		var row = game.worldData[y];
 		row = row.split('');
 		row[x] = '0';
 		row = row.join('');
-		mWorld.data[y] = row;
+		game.worldData[y] = row;
 	};
 
 	return bullets;

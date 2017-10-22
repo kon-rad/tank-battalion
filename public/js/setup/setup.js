@@ -8,7 +8,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 	var display_lives = document.getElementsByClassName('score__lives_tank');
 
 	var control = function control() {
-
 		display.innerHTML = '<div class="display_text__1player">' + 'VS COMPUTER</div></br></br>' + '<div class="display_text__2player">MULTIPLAYER</div>';
 		var onePlayer = document.getElementsByClassName('display_text__1player')[0];
 		var multiPlayer = document.getElementsByClassName('display_text__2player')[0];
@@ -20,14 +19,14 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 	var startScreen = function startScreen() {
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
-		mWorld.data = mWorld.org.slice();
-		mWorld.draw();
+		game.worldData = mWorld.parent.slice();
+		mWorld.draw(game.worldData);
 	};
 
 	var loading = function loading() {
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
-		mWorld.draw();
+		mWorld.draw(game.worldData);
 		if (game.bool) {
 			game.bool = false;
 			tank.moving_up(game.x, game.y);
@@ -67,9 +66,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 			game.high_num.innerHTML = game.playerOnePoints * 10;
 		}
 
-		mWorld.data = mWorld.org.slice();
-		mWorld.draw();
-
 		document.addEventListener("keydown", events.handleKeydown, false);
 		document.addEventListener("keyup", events.handleKeyUp, false);
 
@@ -77,10 +73,11 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 		plr.x = Math.floor(Math.random() * 600);
 		plr.y = Math.floor(Math.random() * 600);
 		plr.moving = false;
-		plr.bullets = [];
+		plr.bullet = {};
 		plr.color = 'green';
 		plr.tankDirection = 'up';
 		plr.speed = 10;
+		plr.bulletFired = false;
 
 		game.socket = io();
 		game.socket.emit('create-player', plr);
@@ -88,14 +85,15 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 		audio.start.play();
 		game.canvas.setAttribute('tabindex', '0');
 		game.canvas.focus();
-		// tank.moving_up(plr.x, plr.y);
-		// game.tankDirection = 'up';
 		display.innerHTML = '';
 		game.socket.on('player-created', function (data) {
 			console.log('data recieved from setup: ', data);
-			game.currentPlayer = data.pd;
-			game.mpCurrentId = data.pd.id;
+			game.currentPlayer = data.newPlayer;
+			game.mpCurrentId = data.newPlayer.id;
 			game.mpPlayers = data.players;
+			game.mpWorld = data.world;
+			console.log(game.mpWorld);
+			mWorld.draw(game.mpWorld);
 		});
 		multiPlayer.init();
 	};
@@ -117,8 +115,8 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 			restorePlayerOneLives();
 			restoreOnScreenBots();
 			restoreDestroyedBots();
-			mWorld.data = mWorld.org.slice();
-			mWorld.draw();
+			game.worldData = mWorld.parent.slice();
+			mWorld.draw(game.worldData);
 			game.bots_loaded = 0;
 
 			if (game.round >= 5) {

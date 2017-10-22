@@ -48,7 +48,7 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'],
 								bot.y+=8;
 								bot.dir='down';
 							// detect if collision with walls
-							} else if(mwObstacle.detect(bot.x, bot.y-detect_dist, bot.dir)) {
+							} else if(mwObstacle.detect(bot.x, bot.y-detect_dist, bot.dir, game.worldData)) {
 								bot.y+=speed;
 								bot.dir = ai.dir[Math.floor(Math.random()*4)];
 							} else {
@@ -62,7 +62,7 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'],
 							if (detect(bot.x, bot.y+detect_dist, bot.index)) {
 								bot.y-=8;
 								bot.dir = 'up';
-							} else if(mwObstacle.detect(bot.x, bot.y+detect_dist, bot.dir)) {
+							} else if(mwObstacle.detect(bot.x, bot.y+detect_dist, bot.dir, game.worldData)) {
 								bot.y-=speed;
 								bot.dir = ai.dir[Math.floor(Math.random()*4)];
 							} else {
@@ -76,7 +76,7 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'],
 							if (detect(bot.x+detect_dist, bot.y, bot.index)) {
 								bot.x-=8;
 								bot.dir = 'left';
-							} else if(mwObstacle.detect(bot.x+detect_dist, bot.y, bot.dir)) {
+							} else if(mwObstacle.detect(bot.x+detect_dist, bot.y, bot.dir, game.worldData)) {
 								bot.x-=speed;
 								bot.dir = ai.dir[Math.floor(Math.random()*4)];
 							} else {
@@ -90,7 +90,7 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'],
 							if (detect(bot.x-detect_dist, bot.y, bot.index)) {
 								bot.x+=8;
 								bot.dir = 'right';
-							} else if(mwObstacle.detect(bot.x-detect_dist, bot.y, bot.dir)) {
+							} else if(mwObstacle.detect(bot.x-detect_dist, bot.y, bot.dir, game.worldData)) {
 								bot.x+=speed;
 								bot.dir = ai.dir[Math.floor(Math.random()*4)];
 							} else {

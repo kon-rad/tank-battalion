@@ -1,6 +1,6 @@
 'use strict';
 
-define(['game', 'bullets', 'audio'], function (game, bullets, audio) {
+define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bullets, audio, mpBullet) {
 
 	var events = {};
 
@@ -66,7 +66,11 @@ define(['game', 'bullets', 'audio'], function (game, bullets, audio) {
 	};
 
 	var bullet_check = function bullet_check() {
-		if (!game.bullets_fired) {
+		if (game.multiplayer && !game.currentPlayer.bulletFired) {
+			mpBullet.fire_bullet(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.tankDirection);
+			game.currentPlayer.bulletFired = true;
+			audio.shoot.play();
+		} else if (!game.multiplayer && !game.bullets_fired) {
 			bullets.fire_bullet(game.x, game.y, game.tankDirection);
 			game.bullets_fired = true;
 			audio.shoot.play();

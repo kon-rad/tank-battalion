@@ -25,7 +25,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
 		let speed = game.playerOneSpeed;
-		mWorld.draw();
+		mWorld.draw(game.worldData);
 
 		game.context.drawImage(images.eagle, 274, 566);
 		if(bullets.renderExplosion){
@@ -36,28 +36,28 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		game.context.fillStyle = 'green';
 		if(game.tankDirection == 'up') {
 			if(game.moving) {
-				if(!mwObstacle.detect(game.x, game.y-10, game.tankDirection)){
+				if(!mwObstacle.detect(game.x, game.y-10, game.tankDirection, game.worldData)){
 					game.y -= speed; 
 				}
 			}
 			tank.moving_up(game.x, game.y);
 		} else if(game.tankDirection == 'down') {
 			if(game.moving) {
-				if(!mwObstacle.detect(game.x, game.y+10, game.tankDirection)) {
+				if(!mwObstacle.detect(game.x, game.y+10, game.tankDirection, game.worldData)) {
 					game.y += speed;
 				}  
 			}
 			tank.moving_down(game.x, game.y);
 		} else if(game.tankDirection == 'right') {
 			if(game.moving) {
-				if (!mwObstacle.detect(game.x+15, game.y, game.tankDirection)) {
+				if (!mwObstacle.detect(game.x+15, game.y, game.tankDirection, game.worldData)) {
 					game.x += speed; 
 				}
 			} 
 			tank.moving_right(game.x, game.y);
 		} else if(game.tankDirection == 'left') {
 			if(game.moving) {
-				if (!mwObstacle.detect(game.x-15, game.y, game.tankDirection)) {
+				if (!mwObstacle.detect(game.x-15, game.y, game.tankDirection, game.worldData)) {
 					game.x -= speed;
 				}
 			}

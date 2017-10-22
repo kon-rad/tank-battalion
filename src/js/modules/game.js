@@ -34,6 +34,7 @@ define(function() {
 	game.timer = setInterval(function(){
 		game.time += 100;
 	}, 100);
+	game.worldData;
 
 	/*
 	 * Speed Settings
@@ -59,6 +60,7 @@ define(function() {
 	game.mpPlayers;
 	game.currentPlayer;
 	game.mpCurrentId;
+	game.mpWorld;
 	game.id = () => {
 	  return '_' + Math.random().toString(36).substr(2, 9);
 	};

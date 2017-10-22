@@ -9,7 +9,7 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 
 const Player  = require('./lib/Player');
-const  GameState  = require('./lib/GameState');
+const GameState  = require('./lib/GameState');
 
 const app = express();
 
@@ -83,33 +83,34 @@ io.on('connection', function(socket) {
 	 */ 
 
 	socket.on('disconnect', () => {
-	    console.log('player disconnected')
-	    console.log('player before: ', playerSockets);
-
 	    let player = playerSockets.find(function(player) {
 	      return player.socket == socket
 	    });
-	    console.log('player after: ', player);
-
-	    // if (player === undefined)
-	    //   return new Error()
-	    // console.log('gameState before filter: ', gameState.players);
 	    gameState.players = gameState.players.filter(function(p) {
 	      return p.id != player.id
 	    });
-	    console.log('gameState after filter: ', gameState.players);
 	    io.emit('player-disconnected', {id: socket.id })
-	  })
+	});
+
+	/**
+	 *  User Created.
+	 */ 
 
 	socket.on('create-player', function(data){
-		console.log('create-player: ', data);
 		let id = socket.id;
 		playerSockets.push({id: id, socket: socket});
-		socket.emit('your-id', id);
-		let np = new Player(id, data.x, data.y, data.tankDirection, data.speed, data.moving, data.color);
-		gameState.players.push(np);
-		socket.emit('player-created', { pd: np, players: gameState.players});
-		console.log(gameState.players);
+		let newPlayer = new Player(id, data.x, data.y, data.tankDirection, data.speed, data.moving, data.color, data.bullet, data.bulletFired);
+		gameState.players.push(newPlayer);
+		socket.emit('player-created', { newPlayer: newPlayer, players: gameState.players, world: gameState.world});
+	});
+
+	/**
+	 *  Update Player and Game Sates.
+	 */ 
+
+	socket.on('game-state', function (update) {
+		gameState.updatePlayer(update.player.id, update.player);
+		gameState.updateWorld();
 	});
 });
 
