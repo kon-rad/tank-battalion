@@ -70,6 +70,7 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 
 		document.addEventListener("keydown", events.handleKeydown, false);
 		document.addEventListener("keyup", events.handleKeyUp, false);
+		document.getElementsByClassName('score')[0].style.visibility = 'hidden';
 
 		let plr = {};
 		plr.x = Math.floor(Math.random()*600);
