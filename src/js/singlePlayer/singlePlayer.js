@@ -14,10 +14,10 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'],
 			let bot = {
 				id: game.time+'',
 				index: ai.bots.length,
-				dir: 'right',
+				dir: (game.time%2==0)?'right':'left',
 				moving: true,
-				x: 520,
-				y:20,
+				x: game.randomBotPositionX(),
+				y: 20,
 				bullets: []
 			};
 			ai.bots.push(bot);

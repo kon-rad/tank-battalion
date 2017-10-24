@@ -35,6 +35,9 @@ define(function () {
 	game.timer = setInterval(function () {
 		game.time += 100;
 	}, 100);
+	game.randomBotPositionX = function () {
+		return Math.floor(Math.random() * 60) * 10;
+	};
 
 	// speed settings
 	game.enemy_bullet_speed = 14;
