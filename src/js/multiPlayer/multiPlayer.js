@@ -5,7 +5,6 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
 
 	const init = () => {
 
-	   	console.log('init here, tank emit done');
 	   	multiPlayer_draw.start();
 
 	   	game.socket.on('player-disconnected', () => {
@@ -13,7 +12,14 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
 	   	});
 	    game.socket.on('send-game-state', (gameState) => {
 			game.mpPlayers = gameState.players;
-			console.log('game state recieved: ', gameState.players);
+			game.mpWorld = gameState.world;
+			for(let i = 0; i < game.mpPlayers.length; i++) {
+				if(game.mpPlayers[i].id == game.mpCurrentId) {
+					game.currentPlayer.bulletFired = game.mpPlayers[i].bulletFired;
+					game.currentPlayer.bullet = game.mpPlayers[i].bullet;
+					break;
+				}
+			}
 	   	})
 	}
 

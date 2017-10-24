@@ -10,6 +10,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function(game, bullet
 		if(e.keyCode === 87 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 68 || e.keyCode === 32) {
 			if (game.multiplayer) {
 				game.currentPlayer.moving = false;
+				game.socket.emit('game-state', {player:game.currentPlayer, world:game.mpWorld});
 			} else {
 				game.moving = false;
 			}
@@ -26,6 +27,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function(game, bullet
 				if (game.multiplayer) {
 					game.currentPlayer.moving = true;
 					game.currentPlayer.tankDirection = 'up';
+					game.socket.emit('game-state', {player:game.currentPlayer, world:game.mpWorld});
 				} else {
 					game.moving = true;
 					game.tankDirection = 'up';
@@ -36,6 +38,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function(game, bullet
 				if (game.multiplayer) {
 					game.currentPlayer.moving = true;
 					game.currentPlayer.tankDirection = 'left';
+					game.socket.emit('game-state', {player:game.currentPlayer, world:game.mpWorld});
 				} else {
 					game.moving = true;
 					game.tankDirection = 'left';
@@ -46,6 +49,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function(game, bullet
 				if (game.multiplayer) {
 					game.currentPlayer.moving = true;
 					game.currentPlayer.tankDirection = 'down';
+					game.socket.emit('game-state', {player:game.currentPlayer, world:game.mpWorld});
 				} else {
 					game.moving = true;
 					game.tankDirection = 'down';
@@ -56,6 +60,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function(game, bullet
 				if (game.multiplayer) {
 					game.currentPlayer.moving = true;
 					game.currentPlayer.tankDirection = 'right';
+					game.socket.emit('game-state', {player:game.currentPlayer, world:game.mpWorld});
 				} else {
 					game.moving = true;
 					game.tankDirection = 'right';
@@ -70,8 +75,8 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function(game, bullet
 
 	const bullet_check = () => {
 		if(game.multiplayer && !game.currentPlayer.bulletFired) {
-			mpBullet.fire_bullet(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.tankDirection);
 			game.currentPlayer.bulletFired = true;
+			mpBullet.fire_bullet(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.tankDirection);
 			audio.shoot.play();
 		} else if(!game.multiplayer && !game.bullets_fired) {
 			bullets.fire_bullet(game.x, game.y, game.tankDirection);

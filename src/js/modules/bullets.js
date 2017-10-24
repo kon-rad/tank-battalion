@@ -78,7 +78,7 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function(game, mWo
 			return true;
 		}
 		let len = singlePlayer.ai.bots.length;
-		for(var k = 0; k<len; k++) {
+		for(let k = 0; k<len; k++) {
 			let b = singlePlayer.ai.bots[k];
 			let b_x = Math.floor(b.x/10);
 			let b_y = Math.floor(b.y/10);

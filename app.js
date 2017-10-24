@@ -10,6 +10,7 @@ const users = require('./routes/users');
 
 const Player  = require('./lib/Player');
 const GameState  = require('./lib/GameState');
+const gameUpdate = require('./lib/gameUpdate');
 
 const app = express();
 
@@ -71,6 +72,14 @@ const io = require('socket.io').listen(commonPort);
  * Socket.io Communication.
  */ 
 
+let render = 0;
+const renderFn = () => {
+	render = setInterval(() => {
+		gameState = gameUpdate(gameState);
+		io.emit('send-game-state', gameState);
+	}, 30);
+}
+
 let playerSockets = [];
 let gameState = new GameState();
 
@@ -86,6 +95,8 @@ io.on('connection', function(socket) {
 	    let player = playerSockets.find(function(player) {
 	      return player.socket == socket
 	    });
+	    if(player == undefined)
+	    	return new Error();
 	    gameState.players = gameState.players.filter(function(p) {
 	      return p.id != player.id
 	    });
@@ -108,12 +119,11 @@ io.on('connection', function(socket) {
 	 *  Update Player and Game Sates.
 	 */ 
 
-	socket.on('game-state', function (update) {
-		gameState.updatePlayer(update.player.id, update.player);
-		gameState.updateWorld();
+	socket.on('game-state', function (newGameState) {
+		clearInterval(render);
+		gameState.updatePlayer(newGameState.player.id, newGameState.player);
+		renderFn();
 	});
 });
 
-setInterval(() => {
-  io.emit('send-game-state', gameState)
-}, 100)
+renderFn();

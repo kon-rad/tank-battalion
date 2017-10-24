@@ -26,6 +26,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 			if (game.currentPlayer.moving) {
 				if (!mwObstacle.detect(game.currentPlayer.x, game.currentPlayer.y - 10, game.currentPlayer.tankDir, game.mpWorld)) {
 					game.currentPlayer.y -= game.currentPlayer.speed;
+					game.socket.emit('game-state', { player: game.currentPlayer, world: game.mpWorld });
 				}
 			}
 			tank.moving_up(game.currentPlayer.x, game.currentPlayer.y);
@@ -33,6 +34,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 			if (game.currentPlayer.moving) {
 				if (!mwObstacle.detect(game.currentPlayer.x, game.currentPlayer.y + 10, game.currentPlayer.tankDir, game.mpWorld)) {
 					game.currentPlayer.y += game.currentPlayer.speed;
+					game.socket.emit('game-state', { player: game.currentPlayer, world: game.mpWorld });
 				}
 			}
 			tank.moving_down(game.currentPlayer.x, game.currentPlayer.y);
@@ -40,6 +42,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 			if (game.currentPlayer.moving) {
 				if (!mwObstacle.detect(game.currentPlayer.x + 15, game.currentPlayer.y, game.currentPlayer.tankDir, game.mpWorld)) {
 					game.currentPlayer.x += game.currentPlayer.speed;
+					game.socket.emit('game-state', { player: game.currentPlayer, world: game.mpWorld });
 				}
 			}
 			tank.moving_right(game.currentPlayer.x, game.currentPlayer.y);
@@ -47,18 +50,30 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 			if (game.currentPlayer.moving) {
 				if (!mwObstacle.detect(game.currentPlayer.x - 15, game.currentPlayer.y, game.currentPlayer.tankDir, game.mpWorld)) {
 					game.currentPlayer.x -= game.currentPlayer.speed;
+					game.socket.emit('game-state', { player: game.currentPlayer, world: game.mpWorld });
 				}
 			}
 			tank.moving_left(game.currentPlayer.x, game.currentPlayer.y);
 		}
 
-		if (game.currentPlayer.bulletFired) {
-			mpBullet.render_bullet(game.currentPlayer.bullet);
-		}
+		// if (game.currentPlayer.bulletFired) {
+		// 	mpBullet.render_bullet(game.currentPlayer.bullet);
+		// }
 
 		var len = game.mpPlayers.length;
 
 		for (var i = 0; i < len; i++) {
+			if (game.mpPlayers[i].bulletFired) {
+				mpBullet.render_mpBullet(game.mpPlayers[i].bullet);
+			}
+			if (game.mpPlayers[i].explosion && game.mpPlayers[i].explosion.exe) {
+				console.log('explosion here');
+				audio.explode.load();
+				audio.explode.play();
+				game.context.drawImage(images.explosion, game.mpPlayers[i].explosion.x - 10, game.mpPlayers[i].explosion.y - 10);
+				game.mpPlayers[i].explosion = null;
+				game.socket.emit('game-state', { player: game.mpPlayers[i], world: game.mpWorld });
+			}
 			if (game.mpPlayers[i].id === game.mpCurrentId) continue;
 
 			game.context.fillStyle = game.mpPlayers[i].color;
@@ -71,16 +86,12 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 			} else if (game.mpPlayers[i].tankDirection == 'left') {
 				tank.moving_left(game.mpPlayers[i].x, game.mpPlayers[i].y);
 			}
-			if (game.mpPlayers[i].bulletFired) {
-				mpBullet.render_mpBullet(game.mpPlayers[i].bullet);
-			}
 		}
 
 		/*
    * Send multiplayer data
    */
 
-		game.socket.emit('game-state', { player: game.currentPlayer, world: game.mpWorld });
 		// game.socket.emit('player data', game.mpPlayers);
 	};
 

@@ -94,12 +94,10 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 			game.mpCurrentId = data.newPlayer.id;
 			game.mpPlayers = data.players;
 			game.mpWorld = data.world;
-			console.log(game.mpWorld);
 			mWorld.draw(game.mpWorld);
 		});
 		multiPlayer.init();
 	}
-
 
 	const loadOnePlayer = () => {
 		if (game.playerOneLives <= 0) {
