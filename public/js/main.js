@@ -16,7 +16,10 @@
 			'setup': 'setup/setup',
 			'singlePlayer': 'singlePlayer/singlePlayer',
 			'renderBot': 'singlePlayer/renderBot',
-			'util': 'modules/util'
+			'util': 'modules/util',
+			'multiPlayer': 'multiPlayer/multiPlayer',
+			'multiPlayer_draw': 'multiPlayer/multiPlayer_draw',
+			'multiPlayer_bullet': 'multiPlayer/multiPlayer_bullet'
 		}
 	});
 	requirejs(['util', 'draw', 'game', 'events', 'audio', 'setup'], function (util, draw, game, events, audio, setup) {

@@ -11,9 +11,7 @@ define(function () {
 	game.moving = false;
 	game.bots_loaded = 0;
 	game.bullets = [];
-	game.stop = true;
 	game.onePlayerBegin = false;
-	game.twoPlayerBegin = false;
 	game.bool = true;
 	game.time = 0;
 	game.playerOnePoints = 0;
@@ -38,16 +36,44 @@ define(function () {
 	game.randomBotPositionX = function () {
 		return Math.floor(Math.random() * 60) * 10;
 	};
+	game.worldData;
 
-	// speed settings
+	/*
+  * Speed Settings
+  */
+
 	game.enemy_bullet_speed = 14;
 	game.enemy_speed = 10;
 	game.bullet_speed = 14;
 	game.playerOneSpeed = 10;
 
-	// set focus to canvas
+	/*
+  * Set focus to canvas
+  */
+
 	game.canvas.setAttribute('tabindex', '0');
 	game.canvas.focus();
+
+	/*
+  * Multiplayer game state
+  */
+
+	game.multiplayer = false;
+	game.mpPlayers;
+	game.currentPlayer;
+	game.mpCurrentId;
+	game.mpWorld;
+	game.id = function () {
+		return '_' + Math.random().toString(36).substr(2, 9);
+	};
+	game.find_mpCurrentIndex = function () {
+		var len = game.mpPlayers.length;
+		for (var i = 0; i < len; i++) {
+			if (game.mpPlayers[i].id === game.mpCurrentId) {
+				return i;
+			}
+		}
+	};
 
 	return game;
 });

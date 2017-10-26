@@ -4,7 +4,7 @@ define(['game', 'tank', 'bullets'], function(game, tank, bullets) {
  
 	const mWorld = {};
 
-	mWorld.org = [
+	mWorld.parent = [
 		 '000000000000000000000000000000000000000000000000000000000000',
 		 '000000000000000000000000000000000000000000000000000000000000',
 		 '000000000000000000000000000000000000000000000000000000000000',
@@ -66,20 +66,19 @@ define(['game', 'tank', 'bullets'], function(game, tank, bullets) {
 		 '000000000000000000000011100000000111000000000000000000000000',
 		 '000000000000000000000011100000000111000000000000000000000000',
 	];
-	mWorld.data;
 
 	let img = document.getElementById('brick'),
 		brick = game.context.createPattern(img,"repeat"),
 		img2 = document.getElementById('border'),
 		border = game.context.createPattern(img2,"repeat");
 
-	function createWallSegment(x, y, w, h, ptrn) {
+	const createWallSegment = (x, y, w, h, ptrn) => {
 		game.context.fillStyle = ptrn;
 		game.context.fillRect(x, y, w, h);
 	}
 
-	mWorld.draw = () => {
-		mWorld.data.forEach((i, index) => {
+	mWorld.draw = (worldData) => {
+		worldData.forEach((i, index) => {
 			i = i.split('');
 			i.map((cell, cell_i) => {
 				if(Number(cell)){

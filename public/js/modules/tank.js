@@ -14,49 +14,61 @@ define(['game'], function (game) {
 		game.context.fillRect(game.x, game.y, 6, 24);
 	};
 
-	tank.moving_up = function () {
+	tank.moving_up = function (x, y, color) {
+		if (color == undefined) {
+			color = 'green';
+		}
 		game.context.fillStyle = '#004a00';
-		game.context.fillRect(game.x - 10, game.y - 10, 20, 20);
-		game.context.fillStyle = 'green';
-		game.context.fillRect(game.x - 10, game.y - 10, 14, 14);
-		game.context.fillRect(game.x - 2, game.y - 18, 4, 10);
-		game.context.fillRect(game.x - 3, game.y - 20, 6, 3);
-		game.context.fillRect(game.x - 12, game.y - 12, 6, 24);
-		game.context.fillRect(game.x + 6, game.y - 12, 6, 24);
+		game.context.fillRect(x - 10, y - 10, 20, 20);
+		game.context.fillStyle = color;
+		game.context.fillRect(x - 10, y - 10, 14, 14);
+		game.context.fillRect(x - 2, y - 18, 4, 10);
+		game.context.fillRect(x - 3, y - 20, 6, 3);
+		game.context.fillRect(x - 12, y - 12, 6, 24);
+		game.context.fillRect(x + 6, y - 12, 6, 24);
 	};
-	tank.moving_down = function () {
+	tank.moving_down = function (x, y, color) {
+		if (color == undefined) {
+			color = 'green';
+		}
 		game.context.fillStyle = '#004a00';
-		game.context.fillRect(game.x - 10, game.y - 10, 20, 20);
-		game.context.fillStyle = 'green';
-		game.context.fillRect(game.x - 10, game.y - 10, 14, 14);
-		game.context.fillRect(game.x - 2, game.y + 10, 4, 10);
-		game.context.fillRect(game.x - 3, game.y + 20, 6, 3);
-		game.context.fillRect(game.x - 12, game.y - 12, 6, 24);
-		game.context.fillRect(game.x + 6, game.y - 12, 6, 24);
+		game.context.fillRect(x - 10, y - 10, 20, 20);
+		game.context.fillStyle = color;
+		game.context.fillRect(x - 10, y - 10, 14, 14);
+		game.context.fillRect(x - 2, y + 10, 4, 10);
+		game.context.fillRect(x - 3, y + 20, 6, 3);
+		game.context.fillRect(x - 12, y - 12, 6, 24);
+		game.context.fillRect(x + 6, y - 12, 6, 24);
 	};
-	tank.moving_right = function () {
+	tank.moving_right = function (x, y, color) {
+		if (color == undefined) {
+			color = 'green';
+		}
 		game.context.fillStyle = '#004a00';
-		game.context.fillRect(game.x - 10, game.y - 10, 20, 20);
-		game.context.fillStyle = 'green';
-		game.context.fillRect(game.x - 10, game.y - 10, 14, 14);
-		game.context.fillRect(game.x + 8, game.y - 2, 12, 4);
-		game.context.fillRect(game.x + 20, game.y - 4, 3, 8);
-		game.context.fillRect(game.x - 12, game.y - 12, 24, 6);
-		game.context.fillRect(game.x - 12, game.y + 8, 24, 6);
+		game.context.fillRect(x - 10, y - 10, 20, 20);
+		game.context.fillStyle = color;
+		game.context.fillRect(x - 10, y - 10, 14, 14);
+		game.context.fillRect(x + 8, y - 2, 12, 4);
+		game.context.fillRect(x + 20, y - 4, 3, 8);
+		game.context.fillRect(x - 12, y - 12, 24, 6);
+		game.context.fillRect(x - 12, y + 8, 24, 6);
 		game.context.fillStyle = '#004a00';
-		game.context.fillRect(game.x - 12, game.y + 14, 24, 2);
+		game.context.fillRect(x - 12, y + 14, 24, 2);
 	};
-	tank.moving_left = function () {
+	tank.moving_left = function (x, y, color) {
+		if (color == undefined) {
+			color = 'green';
+		}
 		game.context.fillStyle = '#004a00';
-		game.context.fillRect(game.x - 10, game.y - 10, 20, 20);
-		game.context.fillStyle = 'green';
-		game.context.fillRect(game.x - 4, game.y - 10, 14, 14);
-		game.context.fillRect(game.x - 20, game.y - 2, 12, 4);
-		game.context.fillRect(game.x - 22, game.y - 4, 3, 8);
-		game.context.fillRect(game.x - 12, game.y - 12, 24, 6);
-		game.context.fillRect(game.x - 12, game.y + 8, 24, 6);
+		game.context.fillRect(x - 10, y - 10, 20, 20);
+		game.context.fillStyle = color;
+		game.context.fillRect(x - 4, y - 10, 14, 14);
+		game.context.fillRect(x - 20, y - 2, 12, 4);
+		game.context.fillRect(x - 22, y - 4, 3, 8);
+		game.context.fillRect(x - 12, y - 12, 24, 6);
+		game.context.fillRect(x - 12, y + 8, 24, 6);
 		game.context.fillStyle = '#004a00';
-		game.context.fillRect(game.x - 12, game.y + 14, 24, 2);
+		game.context.fillRect(x - 12, y + 14, 24, 2);
 	};
 
 	return tank;

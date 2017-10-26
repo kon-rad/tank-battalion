@@ -57,7 +57,7 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function(game, mWo
 			game.bullets.splice(b_i, 1);
 			return true;
 		}
-		let row = (mWorld.data[y]);
+		let row = (game.worldData[y]);
 		row = row.split('');
 		let pos = Number(row[x]);
 		if (pos) {
@@ -71,14 +71,14 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function(game, mWo
 				eraseBlock(x, y+1);
 			}
 			row = row.join('');
-			mWorld.data[y] = row;
+			game.worldData[y] = row;
 			bullets.renderExplosion = true;
 			bullets.renderExplosion_x = (x*10);
 			bullets.renderExplosion_y = (y*10);
 			return true;
 		}
 		let len = singlePlayer.ai.bots.length;
-		for(var k = 0; k<len; k++) {
+		for(let k = 0; k<len; k++) {
 			let b = singlePlayer.ai.bots[k];
 			let b_x = Math.floor(b.x/10);
 			let b_y = Math.floor(b.y/10);
@@ -88,7 +88,6 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function(game, mWo
 				game.playerOnePoints++;
 				game.bots_destroyed++;
 				singlePlayer.ai.bots[k].moving = false;
-				console.log('game.bots_destroyed-1', game.bots_destroyed-1);
 				game.display_bots[game.bots_destroyed-1].style.visibility = 'hidden';
 				game.score_num.innerHTML = game.playerOnePoints * 10;
 				if(game.bots_destroyed >= 20) {
@@ -103,11 +102,11 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function(game, mWo
 		return false; 
 	}
 	const eraseBlock = (x, y) => {
-		let row = mWorld.data[y];
+		let row = game.worldData[y];
 		row = row.split('');
 		row[x] = '0';
 		row = row.join('');
-		mWorld.data[y] = row;
+		game.worldData[y] = row;
 	}
 
 	return bullets;

@@ -1,6 +1,6 @@
 'use strict';
 
-define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 'singlePlayer', 'renderBot'], function (game, tank, bullets, mWorld, mwObstacle, images, audio, singlePlayer, renderBot) {
+define(['game', 'tank', 'bullets', 'mWorld', 'images', 'audio', 'singlePlayer', 'renderBot'], function (game, tank, bullets, mWorld, images, audio, singlePlayer, renderBot) {
 
 	var bot = {};
 
@@ -96,7 +96,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			audio.dud.play();
 			return false;
 		}
-		var row = mWorld.data[y];
+		var row = game.worldData[y];
 		row = row.split('');
 		var pos = Number(row[x]);
 		if (pos) {
@@ -109,7 +109,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 				eraseBlock(x, y + 1);
 			}
 			row = row.join('');
-			mWorld.data[y] = row;
+			game.worldData[y] = row;
 			bullets.renderExplosion = true;
 			bullets.renderExplosion_x = x * 10;
 			bullets.renderExplosion_y = y * 10;
@@ -131,11 +131,11 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 	};
 
 	var eraseBlock = function eraseBlock(x, y) {
-		var row = mWorld.data[y];
+		var row = game.worldData[y];
 		row = row.split('');
 		row[x] = '0';
 		row = row.join('');
-		mWorld.data[y] = row;
+		game.worldData[y] = row;
 	};
 
 	var render = function render(bot_i) {
