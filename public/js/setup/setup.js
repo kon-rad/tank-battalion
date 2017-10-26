@@ -36,7 +36,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 	};
 
 	var startOnePlayer = function startOnePlayer() {
-		game.stop = false;
 		game.playerOneLives = 3;
 		game.bullets = [];
 		game.bots_destroyed = 0;
@@ -56,11 +55,8 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 	};
 
 	var startMultiPlayer = function startMultiPlayer() {
-		game.stop = false;
-		game.round = 1;
-		game.round_display.innerHTML = game.round;
 		game.difficulty = 0;
-		game.multiplayer = true;
+		loadMultiplayerMenu();
 
 		if (parseInt(game.high_num.innerHTML) <= game.playerOnePoints * 10) {
 			game.high_num.innerHTML = game.playerOnePoints * 10;
@@ -68,14 +64,17 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 
 		document.addEventListener("keydown", events.handleKeydown, false);
 		document.addEventListener("keyup", events.handleKeyUp, false);
-		document.getElementsByClassName('score')[0].style.visibility = 'hidden';
+	};
+
+	var loadMultiplayer = function loadMultiplayer(name, color) {
 
 		var plr = {};
 		plr.x = Math.floor(Math.random() * 600);
 		plr.y = Math.floor(Math.random() * 600);
 		plr.moving = false;
 		plr.bullet = {};
-		plr.color = 'green';
+		plr.color = color;
+		plr.name = name;
 		plr.tankDirection = 'up';
 		plr.speed = 10;
 		plr.bulletFired = false;
@@ -86,7 +85,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 		audio.start.play();
 		game.canvas.setAttribute('tabindex', '0');
 		game.canvas.focus();
-		display.innerHTML = '';
 		game.socket.on('player-created', function (data) {
 			console.log('data recieved from setup: ', data);
 			game.currentPlayer = data.newPlayer;
@@ -131,7 +129,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 
 		game.x = 460;
 		game.y = 580;
-		game.stop = false;
 		game.bullets = [];
 		game.bullets_fired = false;
 		display.innerHTML = '';
@@ -192,6 +189,20 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 		restorePlayerOneLives();
 		restoreOnScreenBots();
 		restoreDestroyedBots();
+	};
+
+	var loadMultiplayerMenu = function loadMultiplayerMenu() {
+		display.innerHTML = '<div class="display_text__multiplayerMenu"><input id="mpName"' + ' type="text" placeholder="Username"><select id="mpColor" name="mpColor">' + '<option value="#76ff03">neon green</option>' + '<option value="#7b1fa2">purple</option>' + '<option value="#03a9f4">blue</option>' + '<option value="#e91e63">pink</option>' + '</select><button id="mpSubmit">Enter</button></div>';
+		var mpForm = document.getElementById('mpSubmit');
+		var color = document.getElementById('mpColor').value;
+		mpForm.addEventListener('click', mpFormSubmit);
+	};
+
+	var mpFormSubmit = function mpFormSubmit() {
+		var name = document.getElementById('mpName').value;
+		var color = document.getElementById('mpColor').value;
+		display.innerHTML = '';
+		loadMultiplayer(name, color);
 	};
 
 	return {

@@ -11,7 +11,6 @@ define(function() {
 	game.moving = false;
 	game.bots_loaded = 0;
 	game.bullets = [];
-	game.stop = true;
 	game.onePlayerBegin = false;
 	game.bool = true;
 	game.time = 0;

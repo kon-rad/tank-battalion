@@ -110,8 +110,9 @@ io.on('connection', function(socket) {
 	socket.on('create-player', function(data){
 		let id = socket.id;
 		playerSockets.push({id: id, socket: socket});
-		let newPlayer = new Player(id, data.x, data.y, data.tankDirection, data.speed, data.moving, data.color, data.bullet, data.bulletFired);
+		let newPlayer = new Player(id, data.x, data.y, data.tankDirection, data.speed, data.moving, data.color, data.bullet, data.bulletFired, data.name);
 		gameState.players.push(newPlayer);
+		gameState.game.users[id] = {name:data.name, color:data.color, points:0, lives:3, explosion:false};
 		socket.emit('player-created', { newPlayer: newPlayer, players: gameState.players, world: gameState.world});
 	});
 
