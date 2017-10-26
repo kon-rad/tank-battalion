@@ -69,8 +69,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 	var loadMultiplayer = function loadMultiplayer(name, color) {
 
 		var plr = {};
-		plr.x = Math.floor(Math.random() * 600);
-		plr.y = Math.floor(Math.random() * 600);
 		plr.moving = false;
 		plr.bullet = {};
 		plr.color = color;

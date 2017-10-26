@@ -15,7 +15,6 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
 		mWorld.draw(game.mpWorld);
-		game.context.drawImage(images.eagle, 274, 566);
 
 		/**
    * Render Current Player

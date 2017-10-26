@@ -82,15 +82,14 @@ const renderFn = () => {
 
 let playerSockets = [];
 let gameState = new GameState();
+const spawnPosition = [{x:100,y:580}, {x:580,y:300}, {x:20,y:350}, {x:300,y:20}];
+var xy = Math.floor(Math.random()*4);
 
 io.on('connection', function(socket) {
 
 	socket.on('game-restart', function() {
 		clearInterval(render);
-		// console.log('game restart', playerSockets);
 		gameState = new GameState();
-		console.log('game restart post', gameState);
-
 		renderFn();
 	})
 
@@ -119,7 +118,9 @@ io.on('connection', function(socket) {
 	socket.on('create-player', function(data){
 		let id = socket.id;
 		playerSockets.push({id: id, socket: socket});
-		let newPlayer = new Player(id, data.x, data.y, data.tankDirection, data.speed, data.moving, data.color, data.bullet, data.bulletFired, data.name);
+		xy = ((xy+1>=4)?0:xy+1);
+		let posX = spawnPosition[xy].x, posY = spawnPosition[xy].y;
+		let newPlayer = new Player(id, posX, posY, data.tankDirection, data.speed, data.moving, data.color, data.bullet, data.bulletFired, data.name);
 		gameState.players.push(newPlayer);
 		gameState.game.users[id] = {name:data.name, color:data.color, points:0, lives:3, explosion:false};
 		socket.emit('player-created', { newPlayer: newPlayer, players: gameState.players, world: gameState.world});

@@ -71,8 +71,6 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 	const loadMultiplayer = (name, color) => {
 
 		let plr = {};
-		plr.x = Math.floor(Math.random()*600);
-		plr.y = Math.floor(Math.random()*600);
 		plr.moving = false;
 		plr.bullet = {};
 		plr.color = color;
