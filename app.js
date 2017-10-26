@@ -54,7 +54,7 @@ const http = require('http');
  * Get port from environment and store in Express.
  */
 
-const port = ('8000');
+var port = (process.env.PORT || '8000');
 app.set('port', port);
 
 /**
