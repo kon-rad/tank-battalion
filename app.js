@@ -85,6 +85,15 @@ let gameState = new GameState();
 
 io.on('connection', function(socket) {
 
+	socket.on('game-restart', function() {
+		clearInterval(render);
+		// console.log('game restart', playerSockets);
+		gameState = new GameState();
+		console.log('game restart post', gameState);
+
+		renderFn();
+	})
+
 	io.emit('msg', 'user connected');
 
 	/**

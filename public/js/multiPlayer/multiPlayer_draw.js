@@ -22,6 +22,9 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
    */
 
 		// game.context.fillStyle = game.currentPlayer.color;
+		if (game.mpGame.users[game.mpCurrentId].lives < 0) {
+			game.currentPlayer.moving = false;
+		}
 		if (game.currentPlayer.tankDirection == 'up') {
 			if (game.currentPlayer.moving) {
 				if (!mwObstacle.detect(game.currentPlayer.x, game.currentPlayer.y - 10, game.currentPlayer.tankDir, game.mpWorld)) {

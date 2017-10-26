@@ -27,16 +27,14 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
 	const displayMultiplayer = () => {
 		console.log('displayMultiplayer');
 		let displayScore = document.getElementsByClassName('score')[0];
-		console.log(displayScore);
 		displayScore.innerHTML = '';
 		displayScore.innerHTML += '<div id="mpS"></div>';
 		for(let user in game.mpGame.users) {
-			console.log(user);
 			let obj = game.mpGame.users;
 			const mpDisplay = document.getElementById('mpS');
 			mpDisplay.innerHTML += '<div class="mpS__user"><span>user:</span>'
-			+ obj[user].name + '<div id="mpS_'+ obj[user].id + '"class="mpS__score"><span>score</span>'+ obj[user].points + '</div>'
-			+ '<div class="mpS__lives"><span>lives</span>'+obj[user].lives+'</div></div>';
+			+ obj[user].name + '<div class="mpS__display"><div id="mpS_'+ obj[user].id + '"class="mpS__score"><span>score</span>'+ obj[user].points + '</div>'
+			+ '<div class="mpS__lives"><span>lives</span>'+obj[user].lives+'</div></div></div>';
 		}
 	}
 

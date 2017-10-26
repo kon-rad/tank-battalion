@@ -94,6 +94,10 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 			mWorld.draw(game.mpWorld);
 		});
 		multiPlayer.init();
+		document.getElementById('resetGameButton').addEventListener('click', function () {
+			console.log('test');
+			game.socket.emit('game-restart');
+		});
 	};
 
 	var loadOnePlayer = function loadOnePlayer() {
