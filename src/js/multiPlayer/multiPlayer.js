@@ -25,7 +25,6 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
 	}
 
 	const displayMultiplayer = () => {
-		console.log('displayMultiplayer');
 		let displayScore = document.getElementsByClassName('score')[0];
 		displayScore.innerHTML = '';
 		displayScore.innerHTML += '<div id="mpS"></div>';

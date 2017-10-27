@@ -24,7 +24,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'], functi
 	};
 
 	var displayMultiplayer = function displayMultiplayer() {
-		console.log('displayMultiplayer');
 		var displayScore = document.getElementsByClassName('score')[0];
 		displayScore.innerHTML = '';
 		displayScore.innerHTML += '<div id="mpS"></div>';
