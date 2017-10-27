@@ -94,6 +94,8 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 		document.getElementById('resetGameButton').addEventListener('click', function () {
 			console.log('test');
 			game.socket.emit('game-restart');
+
+			location.reload();
 		});
 	};
 
