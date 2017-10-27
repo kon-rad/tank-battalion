@@ -4,59 +4,37 @@ define(['game', 'tank', 'bullets', 'mWorld', 'images', 'audio', 'singlePlayer', 
 
 	var bot = {};
 
-	bot.drawBot = function (x, y) {
-		game.context.fillStyle = '#004a00';
-		game.context.fillRect(x - 10, game.y - 10, 20, 20);
-		game.context.fillStyle = 'blue';
-		game.context.fillRect(x, y, 14, 14);
-		game.context.fillRect(x, y, 4, 10);
-		game.context.fillRect(x, y, 6, 24);
-		game.context.fillRect(x, y, 6, 24);
-	};
-
 	bot.moving_up = function (x, y) {
-		game.context.fillStyle = '#004a00';
-		game.context.fillRect(x - 10, y - 10, 20, 20);
 		game.context.fillStyle = 'blue';
-		game.context.fillRect(x - 10, y - 10, 14, 14);
-		game.context.fillRect(x - 2, y - 18, 4, 10);
-		game.context.fillRect(x - 3, y - 20, 6, 3);
-		game.context.fillRect(x - 12, y - 12, 6, 24);
-		game.context.fillRect(x + 6, y - 12, 6, 24);
+		game.context.fillRect(x-8, y-8, 14, 14);
+		game.context.fillRect(x-2, y-18, 4, 12);
+		game.context.fillRect(x-3, y-20, 6, 3);
+		game.context.fillRect(x-12, y-12, 6, 24);
+		game.context.fillRect(x+6, y-12, 6, 24);
 	};
 	bot.moving_down = function (x, y) {
-		game.context.fillStyle = '#004a00';
-		game.context.fillRect(x - 10, y - 10, 20, 20);
 		game.context.fillStyle = 'blue';
-		game.context.fillRect(x - 10, y - 10, 14, 14);
-		game.context.fillRect(x - 2, y + 10, 4, 10);
-		game.context.fillRect(x - 3, y + 20, 6, 3);
-		game.context.fillRect(x - 12, y - 12, 6, 24);
-		game.context.fillRect(x + 6, y - 12, 6, 24);
+		game.context.fillRect(x-8, y-7, 14, 14);
+		game.context.fillRect(x-2, y+6, 4, 12);
+		game.context.fillRect(x-3, y+18, 6, 3);
+		game.context.fillRect(x-12, y-12, 6, 24);
+		game.context.fillRect(x+6, y-12, 6, 24);
 	};
 	bot.moving_right = function (x, y) {
-		game.context.fillStyle = '#004a00';
-		game.context.fillRect(x - 10, y - 10, 20, 20);
 		game.context.fillStyle = 'blue';
-		game.context.fillRect(x - 10, y - 10, 14, 14);
-		game.context.fillRect(x + 8, y - 2, 12, 4);
-		game.context.fillRect(x + 20, y - 4, 3, 8);
-		game.context.fillRect(x - 12, y - 12, 24, 6);
-		game.context.fillRect(x - 12, y + 8, 24, 6);
-		game.context.fillStyle = '#004a00';
-		game.context.fillRect(x - 12, y + 14, 24, 2);
+		game.context.fillRect(x-7, y-6, 14, 14);
+		game.context.fillRect(x+7, y-2, 12, 4);
+		game.context.fillRect(x+20, y-4, 3, 8);
+		game.context.fillRect(x-12, y-12, 24, 6);
+		game.context.fillRect(x-12, y+8, 24, 6);
 	};
 	bot.moving_left = function (x, y) {
-		game.context.fillStyle = '#004a00';
-		game.context.fillRect(x - 10, y - 10, 20, 20);
 		game.context.fillStyle = 'blue';
-		game.context.fillRect(x - 4, y - 10, 14, 14);
-		game.context.fillRect(x - 20, y - 2, 12, 4);
-		game.context.fillRect(x - 22, y - 4, 3, 8);
-		game.context.fillRect(x - 12, y - 12, 24, 6);
-		game.context.fillRect(x - 12, y + 8, 24, 6);
-		game.context.fillStyle = '#004a00';
-		game.context.fillRect(x - 12, y + 14, 24, 2);
+		game.context.fillRect(x-8, y-6, 14, 14);
+		game.context.fillRect(x-20, y-2, 12, 4);
+		game.context.fillRect(x-22, y-4, 3, 8);
+		game.context.fillRect(x-12, y-12, 24, 6);
+		game.context.fillRect(x-12, y+8, 24, 6);
 	};
 
 	var render_bullet = function render_bullet(bullet, bullet_index, bot_index) {
