@@ -30,9 +30,8 @@ define(['game'], function (game) {
 		if (color == undefined) {
 			color = 'green';
 		}
-		game.context.fillStyle = color;
 		game.context.fillRect(x - 7, y - 6, 14, 14);
-		game.context.fillRect(x + 7, y - 2, 12, 4);
+		game.context.fillRect(x + 7, y - 2, 13, 4);
 		game.context.fillRect(x + 20, y - 4, 3, 8);
 		game.context.fillRect(x - 12, y - 12, 24, 6);
 		game.context.fillRect(x - 12, y + 8, 24, 6);
