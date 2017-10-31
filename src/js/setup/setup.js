@@ -107,7 +107,6 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 			return gameOver();
 		}
 		if (game.newRound) {
-
 			game.newRound = false;
 			game.round_display.innerHTML = game.round;
 			game.difficulty+=.2;
@@ -131,8 +130,8 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		game.playerOneLives--;
 		display_lives[game.playerOneLives].style.display = 'none';
 		restoreOnScreenBots();
-
-		game.x = 460;
+		let posX = [100, 200, 440, 560]
+		game.x = posX[Math.floor(Math.random()*4)];
 		game.y = 580;
 		game.bullets = [];
 		game.bullets_fired = false;
