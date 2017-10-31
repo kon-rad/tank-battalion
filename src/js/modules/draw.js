@@ -36,14 +36,14 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		game.context.fillStyle = 'green';
 		if(game.tankDirection == 'up') {
 			if(game.moving) {
-				if(!mwObstacle.detect(game.x, game.y-10, game.tankDirection, game.worldData)){
+				if(!mwObstacle.detect(game.x, game.y-15, game.tankDirection, game.worldData)){
 					game.y -= speed; 
 				}
 			}
 			tank.moving_up(game.x, game.y);
 		} else if(game.tankDirection == 'down') {
 			if(game.moving) {
-				if(!mwObstacle.detect(game.x, game.y+10, game.tankDirection, game.worldData)) {
+				if(!mwObstacle.detect(game.x, game.y+15, game.tankDirection, game.worldData)) {
 					game.y += speed;
 				}  
 			}

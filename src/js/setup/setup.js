@@ -102,7 +102,7 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 	}
 
 	const loadOnePlayer = () => {
-		if (game.playerOneLives <= 0) {
+		if (game.playerOneLives <= 0 && !game.newRound) {
 			singlePlayer.ai.bots = [];
 			return gameOver();
 		}

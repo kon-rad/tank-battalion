@@ -32,7 +32,7 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'], function (game, bul
 		setTimeout(loadBot, 500);
 		game.loadBots = setInterval(function () {
 			loadBot();
-			if (game.bots_loaded >= 20) {
+			if (game.bots_loaded >= game.numberOfBotsLoaded) {
 				clearInterval(game.loadBots);
 			}
 		}, 3000);

@@ -28,6 +28,7 @@ define(function() {
 	game.bullets_fired = false;
 	game.round_display = document.getElementById('score__round_num');
 	game.display_bots = document.getElementsByClassName('score__enemy_tank');
+	game.numberOfBotsLoaded = 20;
 	game.score_num = document.getElementById('score__current_num');
 	game.high_num = document.getElementById('score__high_num');
 	game.timer = setInterval(function(){
