@@ -19,13 +19,13 @@ body {
   margin: 0px 20px;
   height: 600px;
   background-image:
-    -moz-linear-gradient(45deg, #00ba00 25%, transparent 25%), 
-    -moz-linear-gradient(-45deg, #00ba00 25%, transparent 25%),
+    -moz-linear-gradient(45deg, #00ba00 40%, transparent 40%), 
+    -moz-linear-gradient(-45deg, #00ba00 40%, transparent 40%),
     -moz-linear-gradient(45deg, transparent 75%, #00ba00 75%),
     -moz-linear-gradient(-45deg, transparent 75%, #00ba00 75%);
   background-image:
-    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, #00ba00), color-stop(.25, transparent)), 
-    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #00ba00), color-stop(.25, transparent)),
+    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.40, #00ba00), color-stop(.40, transparent)), 
+    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.40, #00ba00), color-stop(.40, transparent)),
     -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #00ba00)),
     -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #00ba00));
 

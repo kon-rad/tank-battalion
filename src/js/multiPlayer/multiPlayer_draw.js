@@ -59,10 +59,6 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 			tank.moving_left(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.color);
 		}
 
-		// if (game.currentPlayer.bulletFired) {
-		// 	mpBullet.render_bullet(game.currentPlayer.bullet);
-		// }
-
 		let len = game.mpPlayers.length;
 
 		for(let i = 0; i < len; i++) {
@@ -70,7 +66,6 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 				mpBullet.render_mpBullet(game.mpPlayers[i].bullet);
 			}
 			if(game.mpPlayers[i].explosion && game.mpPlayers[i].explosion.exe) {
-				console.log('explosion here');
 				audio.explode.load();
 				audio.explode.play();
 				game.context.drawImage(images.explosion, game.mpPlayers[i].explosion.x-10, game.mpPlayers[i].explosion.y-10);

@@ -10,13 +10,14 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'], function (game, bul
 
 	var loadBot = function loadBot() {
 		var dir = game.time % 2 == 0 ? 'right' : 'left';
+		var loc = game.randomBotPosition();
 		var bot = {
 			id: game.time + '',
 			index: ai.bots.length,
 			dir: game.time % 2 == 0 ? 'right' : 'left',
 			moving: true,
-			x: game.randomBotPositionX(),
-			y: 20,
+			x: loc.x,
+			y: loc.y,
 			bullets: []
 		};
 		ai.bots.push(bot);
@@ -35,7 +36,7 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'], function (game, bul
 			if (game.bots_loaded >= game.numberOfBotsLoaded) {
 				clearInterval(game.loadBots);
 			}
-		}, 3000);
+		}, game.timeBetweenBotSpawn);
 		game.bots = setInterval(function () {
 			ai.bots.forEach(function (bot) {
 				if (bot.moving) {
@@ -144,7 +145,7 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'], function (game, bul
 		var g_y = Math.floor(game.y / 10);
 		x = Math.floor(x / 10);
 		y = Math.floor(y / 10);
-		if ((g_x == x || g_x - 1 == x || g_x + 1 == x || g_x + 2 == x || g_x - 2 == x) && (g_y == y || g_y - 1 == y || g_y + 1 == y || g_y + 2 == y || g_y - 2 == y)) {
+		if ((g_x == x || g_x - 1 == x || g_x + 1 == x || g_x + 2 == x || g_x - 2 == x) && (g_y == y || g_y - 1 == y || g_y + 1 == y || g_y + 2 == y || g_y - 2 == y) || (game.eagle1_x == x || game.eagle1_x - 1 == x || game.eagle1_x + 1 == x || game.eagle1_x + 2 == x || game.eagle1_x - 2 == x) && (game.eagle1_y == y || game.eagle1_y - 1 == y || game.eagle1_y + 1 == y || game.eagle1_y + 2 == y || game.eagle1_y - 2 == y)) {
 			audio.explode.load();
 			audio.explode.play();
 			// game.context.drawImage(images.bigRedExplosion, (x*10)-10, (y*10)-10);
