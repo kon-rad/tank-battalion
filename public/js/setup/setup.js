@@ -100,7 +100,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 		game.canvas.setAttribute('tabindex', '0');
 		game.canvas.focus();
 		game.socket.on('player-created', function (data) {
-			console.log(data);
 			game.currentPlayer = data.newPlayer;
 			game.mpCurrentId = data.newPlayer.id;
 			game.mpPlayers = data.players;

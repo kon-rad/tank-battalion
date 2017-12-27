@@ -94,7 +94,6 @@ io.on('connection', function(socket) {
 	 */ 
 
 	socket.on('disconnect', () => {
-		console.log('playya disconnecting', gameState.players);
 	    let player = playerSockets.find(function(player) {
 	      return player.socket == socket
 	    });
@@ -104,7 +103,6 @@ io.on('connection', function(socket) {
 	      return p.id != player.id
 		});
 		delete gameState.game.users[player.id];
-		console.log('playya disconnecting after', gameState.players);
 	    io.emit('player-disconnected', {id: socket.id })
 	});
 

@@ -97,5 +97,4 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
 	}
 
 	return mpBullet;
-
 });
