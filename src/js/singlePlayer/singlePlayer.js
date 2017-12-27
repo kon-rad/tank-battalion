@@ -42,13 +42,13 @@ define(['game', 'bullets', 'mwObstacle', 'audio', 'images'],
 				ai.bots.forEach(function(bot) {
 					if(bot.moving) {
 						if(bot.dir=='up') {
-							// detect if collision with player
+							// detect collision with player or eagle
 							detectCollision(bot.x, bot.y-detect_dist);
-							// detect if collision with other enemy tanks
+							// detect collision with other enemy tanks
 							if(detect(bot.x, bot.y-detect_dist, bot.index)) {
 								bot.y+=8;
 								bot.dir='down';
-							// detect if collision with walls
+							// detect collision with walls
 							} else if(mwObstacle.detect(bot.x, bot.y-detect_dist, bot.dir, game.worldData)) {
 								bot.y+=speed;
 								bot.dir = ai.dir[Math.floor(Math.random()*4)];
