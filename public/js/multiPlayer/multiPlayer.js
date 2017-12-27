@@ -5,7 +5,8 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'], functi
 	var init = function init() {
 		multiPlayer_draw.start();
 		game.socket.on('player-disconnected', function () {
-			console.log('player disconnected');
+			var mpDisplay = document.getElementById('mpS');
+			mpDisplay.innerHTML = '';
 		});
 		game.socket.on('send-game-state', function (gameState) {
 			game.mpPlayers = gameState.players;
@@ -15,6 +16,8 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'], functi
 				if (game.mpPlayers[i].id == game.mpCurrentId) {
 					game.currentPlayer.bulletFired = game.mpPlayers[i].bulletFired;
 					game.currentPlayer.bullet = game.mpPlayers[i].bullet;
+					game.currentPlayer.lives = game.mpPlayers[i].lives;
+					game.currentPlayer.points = game.mpPlayers[i].points;
 					break;
 				}
 			}
@@ -24,13 +27,32 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'], functi
 	};
 
 	var displayMultiplayer = function displayMultiplayer() {
-		var displayScore = document.getElementsByClassName('score')[0];
-		displayScore.innerHTML = '';
-		displayScore.innerHTML += '<div id="mpS"></div>';
+		var mpDisplay = document.getElementById('mpS');
 		for (var user in game.mpGame.users) {
 			var obj = game.mpGame.users;
-			var mpDisplay = document.getElementById('mpS');
-			mpDisplay.innerHTML += '<div class="mpS__user"><span>user:</span>' + obj[user].name + '<div class="mpS__display"><div id="mpS_' + obj[user].id + '"class="mpS__score"><span>score</span>' + obj[user].points + '</div>' + '<div class="mpS__lives"><span>lives</span>' + obj[user].lives + '</div></div></div>';
+			var userId = 'mpS_' + obj[user].id;
+			var userIdScore = 'mpS_' + obj[user].id + '_score';
+			var userIdLives = 'mpS_' + obj[user].id + '_lives';
+			var userDisplay = '';
+			if (document.getElementById(userId)) {
+				if (parseInt(document.getElementById(userIdScore).innerHTML) != obj[user].points) {
+					document.getElementById(userIdScore).innerHTML = obj[user].points;
+				}
+				if (parseInt(document.getElementById(userIdLives).innerHTML) != obj[user].lives) {
+					if (obj[user].lives < 0) {
+						mpDisplay.innerHTML = '';
+					} else {
+						document.getElementById(userIdLives).innerHTML = obj[user].lives;
+					}
+				}
+
+				if (obj[user].lives < 0) {
+					mpDisplay.innerHTML = '';
+				}
+			} else {
+				userDisplay = '<div id="' + userId + '"class="mpS__user"><span>user:</span>' + obj[user].name + '<div class="mpS__display"><div class="mpS__score"><span>score</span><span id="' + userIdScore + '"> ' + obj[user].points + '</span></div>' + '<div class="mpS__lives"><span>lives</span><span id="' + userIdLives + '"> ' + obj[user].lives + '</span></div></div></div>';
+				mpDisplay.innerHTML += userDisplay;
+			}
 		}
 	};
 

@@ -36,21 +36,6 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
 	}
 
 	mpBullet.render_mpBullet = function(bullet) {
-		// let speed = 14;
-		// switch(bullet.dir) {
-		// 	case 'up':
-		// 		bullet.y-=speed;
-		// 		break;
-		// 	case 'down':
-		// 		bullet.y+=speed;
-		// 		break;
-		// 	case 'right':
-		// 		bullet.x+=speed;
-		// 		break;
-		// 	case 'left':
-		// 		bullet.x-=speed;
-		// 		break;
-		// }
 		game.context.beginPath();
 		game.context.fillStyle = 'red';
 		game.context.arc(bullet.x, bullet.y, 4, 0, Math.PI*2);
@@ -69,6 +54,7 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
 			'dir':tankDirection
 		}
 		game.currentPlayer.bullet = bullet;
+
 		game.socket.emit('game-state', {player:game.currentPlayer, world:game.mpWorld});
 	}
 

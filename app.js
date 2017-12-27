@@ -87,12 +87,6 @@ var xy = Math.floor(Math.random()*4);
 
 io.on('connection', function(socket) {
 
-	socket.on('game-restart', function() {
-		clearInterval(render);
-		gameState = new GameState();
-		renderFn();
-	})
-
 	io.emit('msg', 'user connected');
 
 	/**
@@ -100,6 +94,7 @@ io.on('connection', function(socket) {
 	 */ 
 
 	socket.on('disconnect', () => {
+		console.log('playya disconnecting', gameState.players);
 	    let player = playerSockets.find(function(player) {
 	      return player.socket == socket
 	    });
@@ -107,7 +102,9 @@ io.on('connection', function(socket) {
 	    	return new Error();
 	    gameState.players = gameState.players.filter(function(p) {
 	      return p.id != player.id
-	    });
+		});
+		delete gameState.game.users[player.id];
+		console.log('playya disconnecting after', gameState.players);
 	    io.emit('player-disconnected', {id: socket.id })
 	});
 
@@ -122,12 +119,12 @@ io.on('connection', function(socket) {
 		let posX = spawnPosition[xy].x, posY = spawnPosition[xy].y;
 		let newPlayer = new Player(id, posX, posY, data.tankDirection, data.speed, data.moving, data.color, data.bullet, data.bulletFired, data.name);
 		gameState.players.push(newPlayer);
-		gameState.game.users[id] = {name:data.name, color:data.color, points:0, lives:3, explosion:false};
-		socket.emit('player-created', { newPlayer: newPlayer, players: gameState.players, world: gameState.world});
+		gameState.game.users[id] = {id:id, name:data.name, color:data.color, points:0, lives:3, explosion:false};
+		socket.emit('player-created', { newPlayer: newPlayer, players: gameState.players, world: gameState.world, gameState: gameState});
 	});
 
 	/**
-	 *  Update Player and Game Sates.
+	 *  Update Player and Game States.
 	 */ 
 
 	socket.on('game-state', function (newGameState) {

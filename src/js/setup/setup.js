@@ -7,7 +7,13 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 	const display_lives = document.getElementsByClassName('score__lives_tank');
 
 	const control = () => {
-		display.innerHTML = '<div class="display_text__1player">' 
+		// instructions modal open/close listeners
+		const inst_modal_button = document.getElementById('instructions_button');
+		const inst_modal_close = document.getElementById('instructions_modal__close');
+		inst_modal_button.addEventListener('click', showInstructions);
+		inst_modal_close.addEventListener('click', hideInstructions);
+		
+		display.innerHTML = '<div class="display_text__1player">'
 		+ 'VS COMPUTER</div></br></br>'
 		+ '<div class="display_text__2player">MULTIPLAYER</div>';
 		const onePlayer = document.getElementsByClassName('display_text__1player')[0];
@@ -16,6 +22,16 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		multiPlayer.addEventListener('click', startMultiPlayer);
 		startScreen();
 	};
+
+	const showInstructions = () => {
+		const instructions_modal = document.getElementById('instructions_modal');
+		instructions_modal.style.display = 'block';
+	}
+
+	const hideInstructions = () => {
+		const instructions_modal = document.getElementById('instructions_modal');
+		instructions_modal.style.display = 'none';
+	}
 
 	const startScreen = () => {
 		game.context.fillStyle = '#000';
@@ -86,19 +102,22 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		game.canvas.setAttribute('tabindex','0');
 		game.canvas.focus();
 		game.socket.on('player-created', function(data) {
+			console.log(data);
 			game.currentPlayer = data.newPlayer;
 			game.mpCurrentId = data.newPlayer.id;
 			game.mpPlayers = data.players;
 			game.mpWorld = data.world;
+			game.mpGame = data.gameState.game;
 			mWorld.draw(game.mpWorld);
 		});
+		let displayScore = document.getElementById('singlePlayerScore');
+		displayScore.style.display = 'none';
 		multiPlayer.init();
-	   	document.getElementById('resetGameButton').addEventListener('click', () => {
-	   		console.log('test');
-	   		game.socket.emit('game-restart');
-	   		
-	   		location.reload();
-	   	});
+	   	document.getElementById('resetGameButton').addEventListener('click', reset);
+	}
+	const reset = () => {
+		game.socket.disconnect();
+		location.reload();
 	}
 
 	const loadOnePlayer = () => {
@@ -197,6 +216,20 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		restoreDestroyedBots();
 	}
 
+	const gameOverMultiplayer = () => {
+		display.innerHTML = '<div id="win" class="display_text__1player_win">' 
+		+ 'Game Over!<br/>Play again?</div>';
+		const win = document.getElementById('win');
+		win.addEventListener('click', control);
+		game.bullets = [];
+		game.bots_destroyed = 0;
+		game.bots_on_screen = 0;
+		game.playerOnePoints = 0;
+		game.score_num.innerHTML = game.playerOnePoints*10;
+		restorePlayerOneLives();
+		restoreOnScreenBots();
+		restoreDestroyedBots();
+	}
 	const loadMultiplayerMenu = () => {
 		display.innerHTML = '<div class="display_text__multiplayerMenu"><input id="mpName"'
 			+ ' type="text" placeholder="Username"><select id="mpColor" name="mpColor">'
@@ -219,6 +252,7 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 
 	return {
 		control: control,
-		loadOnePlayer: loadOnePlayer
+		loadOnePlayer: loadOnePlayer,
+		reset: reset
 	};
 });

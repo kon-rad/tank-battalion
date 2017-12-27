@@ -6,7 +6,7 @@ canvas {
     }
 }
 .content {
-  margin: 14vh auto 0;
+  margin: 20px auto 0;
   display: flex;
   width: 800px;
 }
@@ -33,6 +33,15 @@ body {
   background-size:2px 2px;
   -webkit-background-size:2px 2px; /* override value for shitty webkit */
   background-position:center;
+}
+.game_title {
+  margin-bottom:20px;
+}
+.game_title img {
+  display:block;
+  margin: 0 auto;
+  width: 500px;
+  height: auto;
 }
 .score {
   width: 100%;
