@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
+const serveStatic = require('serve-static');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -13,6 +13,15 @@ const GameState  = require('./lib/GameState');
 const gameUpdate = require('./lib/gameUpdate');
 
 const app = express();
+
+// favicon
+app.use(serveStatic(__dirname + '/public/favicon/apple-touch-icon.png'));
+app.use(serveStatic(__dirname + '/public/favicon/favicon-32x32.png'));
+app.use(serveStatic(__dirname + '/public/favicon/favicon-16x16.png'));
+app.use(serveStatic(__dirname + '/public/favicon/favicon.ico'));
+app.use(serveStatic(__dirname + '/public/favicon/manifest.json'));
+app.use(serveStatic(__dirname + '/public/favicon/safari-pinned-tab.svg'));
+app.use(serveStatic(__dirname + '/public/favicon/browserconfig.xml'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

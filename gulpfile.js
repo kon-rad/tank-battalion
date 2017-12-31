@@ -31,8 +31,12 @@ gulp.task('workflow', function () {
 gulp.task('copyfonts', () =>
 gulp.src('./src/assets/fonts/*.{ttf,woff,eof,svg}')
     .pipe(gulp.dest('./public/assets/fonts')))
-
-gulp.task('default', function () {
+ 
+gulp.task('moveFavicon', () =>
+gulp.src('src/favicon/**.*')
+    .pipe(gulp.dest('public/favicon/'))
+);
+gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon'], function () {
   gulp.watch('src/stylesheets/**/*.scss', ['workflow']);
   gulp.watch('./src/js/**/*.js', ['babel']);
 });
