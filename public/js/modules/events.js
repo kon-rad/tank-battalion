@@ -2,11 +2,17 @@
 
 define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bullets, audio, mpBullet) {
 
+	window.addEventListener('keydown', function (e) {
+		if (e.keyCode == 32 || e.keyCode === 38 || e.keyCode === 37 || e.keyCode === 40 || e.keyCode === 39) {
+			e.preventDefault();
+		}
+	});
+
 	var events = {};
 
 	events.handleKeyUp = function (e) {
 		if (e.target.id !== 'tank') return;
-		if (e.keyCode === 87 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 68 || e.keyCode === 32) {
+		if (e.keyCode === 87 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 68 || e.keyCode === 38 || e.keyCode === 37 || e.keyCode === 40 || e.keyCode === 39) {
 			if (game.multiplayer) {
 				game.currentPlayer.moving = false;
 				game.socket.emit('game-state', { player: game.currentPlayer, world: game.mpWorld });
@@ -20,6 +26,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
 	events.handleKeydown = function (e) {
 		if (e.target.id !== 'tank') return;
 		switch (e.keyCode) {
+			case 38:
 			case 87:
 				if (game.multiplayer) {
 					game.currentPlayer.moving = true;
@@ -31,6 +38,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
 				}
 				audio.move.play();
 				break;
+			case 37:
 			case 65:
 				if (game.multiplayer) {
 					game.currentPlayer.moving = true;
@@ -42,6 +50,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
 				}
 				audio.move.play();
 				break;
+			case 40:
 			case 83:
 				if (game.multiplayer) {
 					game.currentPlayer.moving = true;
@@ -53,6 +62,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
 				}
 				audio.move.play();
 				break;
+			case 39:
 			case 68:
 				if (game.multiplayer) {
 					game.currentPlayer.moving = true;

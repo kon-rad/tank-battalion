@@ -37,7 +37,7 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
 	};
 
 	bullets.fire_bullet = function (x, y, tankDirection) {
-		if (tankDirection == 'up') y -= 20;else if (tankDirection == 'down') y += 20;else if (tankDirection == 'right') x += 20;else if (tankDirection == 'left') x -= 20;
+		if (tankDirection == 'up') y -= 2;else if (tankDirection == 'down') y += 2;else if (tankDirection == 'right') x += 2;else if (tankDirection == 'left') x -= 2;
 		var bullet = {
 			'x': x,
 			'y': y,

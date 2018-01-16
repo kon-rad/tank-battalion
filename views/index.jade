@@ -49,7 +49,7 @@ block content
 						#score__round_num 1
 					.controls 
 						.controls__icon &#8505;
-						.controls__content(style="display:none;") Controls: <br />W, A, S, D, <br />Space Bar
+						.controls__content(style="display:none;") Controls: <br />arrow keys or W, A, S, D, <br />Space Bar
 		#display_text
 		#resetGameButton &nbsp;
 	script(type='text/javascript', src='socket.io.js')
@@ -60,7 +60,7 @@ block content
 		.instructions_modal__content
 			span#instructions_modal__close &times;
 			p.instructions_modal__text
-				| <span>Controls:</span> Use the keys A, W, S, and D to control the tank. Shoot with space bar <br/>
+				| <span>Controls:</span> Use the arrow keys or A, W, S, and D to control the tank. Shoot with space bar <br/>
 				| <span>VS COMPUTER mode:</span>  the objective is to destroy all 20 enemy tanks while protecting the eagle.<br/>
 				| <span>In MULTIPLAYER mode:</span> the objective is to destroy other tanks while remaining alive as long as possible.
 				| Notice on the right panel under your username there is the score and lives count. <br/>
