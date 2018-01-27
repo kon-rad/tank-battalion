@@ -49,7 +49,7 @@
 	border-radius: 5px;
 	content: "";
 }
-.mobile_controller__d_pad::after, .mobile_controller__d_pad_left, .mobile_controller__d_pad_right {
+.mobile_controller__d_pad::after {
 	-webkit-transform: rotate(90deg);
 	        transform: rotate(90deg);
 }
@@ -67,15 +67,50 @@
 .mobile_controller__d_pad_down::after, .mobile_controller__d_pad_left::after {
 	top: 6px;
 }
-.mobile_controller__d_pad div {
+.mobile_controller__d_pad_up {
 	position: absolute;
     top: 24px;
     left: 76px;
     width: 47px;
-    height: 149px;
+    height: 75px;
 	background-color: #222;
 	border-radius: 5px;
 	z-index: 10;
+}
+.mobile_controller__d_pad_down {
+	position: absolute;
+    top: 99px;
+    left: 76px;
+    width: 47px;
+    height: 75px;
+	background-color: #222;
+	border-radius: 5px;
+	z-index: 10;
+}
+.mobile_controller__d_pad_right {
+	position: absolute;
+    top: 60px;
+    left: 113px;
+    width: 47px;
+    height: 75px;
+	background-color: #222;
+	border-radius: 5px;
+    z-index: 10;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.mobile_controller__d_pad_left {
+	position: absolute;
+    top: 60px;
+    left: 37px;
+    top: 61px;
+    width: 47px;
+    height: 75px;
+	background-color: #222;
+	border-radius: 5px;
+    z-index: 10;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 .mobile_controller__center {
     position: absolute;
@@ -182,20 +217,20 @@
     width: 180px;
     height: 68px;
 }
-.mobile_controller__button {
+.mobile_controller__button_a, .mobile_controller__button_b {
     position: absolute;
     height: 78px;
     width: 78px;
     background-color: #bdbdbd;
     border-radius: 5px;
 }
-.mobile_controller__button:first-child {
+.mobile_controller__button_b {
 	left: 0;
 }
-.mobile_controller__button:last-child {
+.mobile_controller__button_a {
 	right: 0;
 }
-.mobile_controller__button::after {
+.mobile_controller__button_a::after, .mobile_controller__button_b::after {
     position: absolute;
     top: 8px;
     left: 8px;

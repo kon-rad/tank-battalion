@@ -1,6 +1,6 @@
 'use strict';
 
-// old onclick info button on right panel
+// old onclick info button on right 
 // const info_button = document.getElementsByClassName('controls__icon')[0];
 // const info_content = document.getElementsByClassName('controls__content')[0];
 
