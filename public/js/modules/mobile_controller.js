@@ -140,4 +140,14 @@ define(['game'], function (game) {
     up.addEventListener("mouseup", upKeyUp, false);
     buttonA.addEventListener("mousedown", buttonAKeyDown, false);
     buttonA.addEventListener("mouseup", buttonAKeyUp, false);
+    down.addEventListener("touchstart", downKeyDown, false);
+    right.addEventListener("touchstart", rightKeyDown, false);
+    left.addEventListener("touchstart", leftKeyDown, false);
+    up.addEventListener("touchstart", upKeyDown, false);
+    down.addEventListener("touchend", downKeyUp, false);
+    right.addEventListener("touchend", rightKeyUp, false);
+    left.addEventListener("touchend", leftKeyUp, false);
+    up.addEventListener("touchend", upKeyUp, false);
+    buttonA.addEventListener("touchstart", buttonAKeyDown, false);
+    buttonA.addEventListener("touchend", buttonAKeyUp, false);
 });
