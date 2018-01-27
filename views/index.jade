@@ -47,18 +47,26 @@ block content
 							.score__lives_tank
 					.score__round round
 						#score__round_num 1
-					.controls 
-						.controls__icon &#8505;
-						.controls__content(style="display:none;") Controls: <br />arrow keys or W, A, S, D, <br />Space Bar
 		#display_text
 		#resetGameButton &nbsp;
 	.mobile_controller
-		.mobile_controller__arrows
-			.mobile_controller__arrow_up
-			.mobile_controller__arrow_left
-			.mobile_controller__arrow_right
-			.mobile_controller__arrow_down
-			
+		.mobile_controller__inner 
+			.mobile_controller__left 
+				.mobile_controller__d_pad 
+					.mobile_controller__d_pad_up
+					.mobile_controller__d_pad_right
+					.mobile_controller__d_pad_down
+					.mobile_controller__d_pad_left
+			.mobile_controller__center
+				.mobile_controller__main_buttons
+					.mobile_controller__select
+					.mobile_controller__start
+			.mobile_controller__right
+				.mobile_controller__logo Nintendo
+					span.mobile_controller__logo_reg &reg;
+				.mobile_controller__buttons
+					.mobile_controller__button
+					.mobile_controller__button
 
 	script(type='text/javascript', src='socket.io.js')
 	script(type='text/javascript', data-main='js/main.js', src='js/require.js')

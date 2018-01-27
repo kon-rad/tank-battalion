@@ -1,17 +1,207 @@
 
 
 .mobile_controller {
-    width: 100%;
-    height: 300px;
-}
-.mobile_controller__arrows {
-    width: 50%;
-    padding: 10% 20%;
-    height:100%;
-}
-.mobile_controller__arrow_up {
-    width: 50px;
-    height:100px;
-    background-color: grey;
+    width: 680px;
+    height: 260px;
+    background-color: #bdbdbd;
+    border-radius: 5px;
     margin: 0 auto;
+}
+.mobile_controller__inner {
+	position: relative;
+	width: 654px;
+	height: 240;
+	left: 13px;
+	bottom: -10px;
+	background-color: #222;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.mobile_controller__left {
+	height: 204px;
+	left: 42px;
+	width: 268px;
+}
+.mobile_controller__left::after {
+	border-radius: 50%;
+	content: "";
+	height: 28px;
+	left: 61px;
+	position: absolute;
+	top: 67px;
+	width: 28px;
+	z-index: 10;
+}
+.mobile_controller__d_pad {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    left: 28px;
+    bottom: 14px;
+}
+.mobile_controller__d_pad::before, .mobile_controller__d_pad::after {
+	position: absolute;
+    left: 69px;
+    top: 18px;
+    width: 60px;
+    height: 160px;
+	background-color: #bdbdbd;
+	border-radius: 5px;
+	content: "";
+}
+.mobile_controller__d_pad::after, .mobile_controller__d_pad_left, .mobile_controller__d_pad_right {
+	-webkit-transform: rotate(90deg);
+	        transform: rotate(90deg);
+}
+.mobile_controller__d_pad_down::before, .mobile_controller__d_pad_down::after, .mobile_controller__d_pad_left::before, .mobile_controller__d_pad_left::after {
+	border-radius: 50%;
+	content: "";
+	height: 16px;
+	left: 6px;
+	position: absolute;
+	width: 16px;
+}
+.mobile_controller__d_pad_down::before, .mobile_controller__d_pad_left::before {
+	bottom: 6px;
+}
+.mobile_controller__d_pad_down::after, .mobile_controller__d_pad_left::after {
+	top: 6px;
+}
+.mobile_controller__d_pad div {
+	position: absolute;
+    top: 24px;
+    left: 76px;
+    width: 47px;
+    height: 149px;
+	background-color: #222;
+	border-radius: 5px;
+	z-index: 10;
+}
+.mobile_controller__center {
+    position: absolute;
+    width: 180px;
+    height: 100%;
+    left: 236px;
+    top: 0;
+}
+.mobile_controller__center::before, .mobile_controller__center::after {
+	position: absolute;
+	left: 0;
+	width: 100%;
+    height: 40px;
+	background-color: #777f82;
+	border-radius: 5px;
+	content: "";
+}
+.mobile_controller__center::before {
+	top: 0px;
+	border-radius: 0 0 5px 5px;
+}
+.mobile_controller__center::after {
+    top: 56px;
+}
+.mobile_controller__main_buttons {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    bottom: 40px;
+    border-radius: 5px;
+    background-color: #bdbdbd;
+}
+.mobile_controller__main_buttons::before, .mobile_controller__main_buttons::after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #777f82;
+    border-radius: 5px;
+    content: "";
+}
+.mobile_controller__main_buttons::before {
+    top: -50px;
+}
+.mobile_controller__main_buttons::after {
+    bottom: -52px;
+}
+.mobile_controller__select, .mobile_controller__start {
+    position: absolute;
+    top: 8px;
+    width: 55px;
+    height: 24px;
+    border-radius: 8px;
+    background-color: #222;
+    font-family: Nes Controller;
+    color: #c91515;
+    font-size: 14px;
+}
+.mobile_controller__select::before, .mobile_controller__select::after, .mobile_controller__start::before, .mobile_controller__start::after {
+    position: absolute;
+    left: 0;
+    top: -47px;
+}
+.mobile_controller__select {
+	left: 12px;
+}
+.mobile_controller__select::before {
+	content: "SELECT";
+    font-family: sans-serif;
+}
+.mobile_controller__start {
+	right: 12px;
+}
+.mobile_controller__start::after {
+	content: "START";
+    font-family: sans-serif;
+}
+.mobile_controller__right {
+    height: 100%;
+    width: 220px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.mobile_controller__logo {
+	color: #C91515;
+    font-size: 21px;
+    left: 26px;
+    position: absolute;
+    top: 45px;
+    width: 112px;
+    font-family: PixelEmulator;
+}
+.mobile_controller__logo_reg {
+    font-size: 10px;
+    position: absolute;
+    right: -24px;
+    top: 0;
+}
+.mobile_controller__buttons {
+    position: absolute;
+    right: 25px;
+    top: 138px;
+    width: 180px;
+    height: 68px;
+}
+.mobile_controller__button {
+    position: absolute;
+    height: 78px;
+    width: 78px;
+    background-color: #bdbdbd;
+    border-radius: 5px;
+}
+.mobile_controller__button:first-child {
+	left: 0;
+}
+.mobile_controller__button:last-child {
+	right: 0;
+}
+.mobile_controller__button::after {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background-color: #c91515;
+    content: "";
 }
