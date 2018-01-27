@@ -8,7 +8,7 @@ canvas {
 .content {
   margin: 20px auto 20px;
   display: flex;
-  width: 800px;
+  width: 860px;
 }
 body {
 	background-color: black;
@@ -16,7 +16,7 @@ body {
 .game {
 	width: 600px;
   padding: 40px 40px;
-  margin: 0px 20px;
+  margin: 0 20px 0 0;
   height: 600px;
   background-image:
     -moz-linear-gradient(45deg, #00ba00 40%, transparent 40%), 
@@ -44,7 +44,7 @@ body {
   height: auto;
 }
 .score {
-  width: 100%;
+  width: 160px;
   color: white;
   font-family: PixelEmulator;
   font-size:30px;
