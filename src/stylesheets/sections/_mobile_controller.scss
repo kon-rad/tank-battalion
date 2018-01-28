@@ -67,7 +67,7 @@
 }
 .mobile_controller__d_pad_up {
 	position: absolute;
-    top: 24px;
+    top: 14px;
     left: 93px;
     width: 66px;
     height: 150px;
@@ -193,24 +193,24 @@
     top: 0;
 }
 .mobile_controller__logo {
-	color: #C91515;
-    font-size: 21px;
-    left: 26px;
+    color: #c91515;
+    font-size: 28px;
+    left: -24px;
     position: absolute;
     top: 45px;
-    width: 112px;
+    width: auto;
     font-family: PixelEmulator;
 }
 .mobile_controller__logo_reg {
-    font-size: 10px;
+    font-size: 14px;
     position: absolute;
-    right: -24px;
+    right: -12px;
     top: 0;
 }
 .mobile_controller__buttons {
     position: absolute;
     right: 20px;
-    top: 159px;
+    top: 147px;
     width: 260px;
     height: 120px;
 }

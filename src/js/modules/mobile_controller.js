@@ -1,6 +1,6 @@
 'use strict';
 
-define(['game'], function(game) {
+define(['game', 'setup'], function(game, setup) {
     // KEYDOWN EVENT CREATION    
     const upKeyDown = (e) => {
         e.preventDefault(); 
@@ -124,11 +124,17 @@ define(['game'], function(game) {
         e.metaKey=false;
         document.dispatchEvent(e);
     }
+
+    // START BUTTON -- currently not implemented
+    // const startButtonClick = (e) => {
+    //     setup.control();
+    // }
     const up = document.getElementsByClassName('mobile_controller__d_pad_up')[0];
     const down = document.getElementsByClassName('mobile_controller__d_pad_down')[0];
     const right = document.getElementsByClassName('mobile_controller__d_pad_right')[0];
     const left = document.getElementsByClassName('mobile_controller__d_pad_left')[0];
     const buttonA = document.getElementsByClassName('mobile_controller__button_a')[0];
+    // const startButton = document.getElementsByClassName('mobile_controller__start')[0];
     
     down.addEventListener("mousedown", downKeyDown, false);
     right.addEventListener("mousedown", rightKeyDown, false);
@@ -150,4 +156,6 @@ define(['game'], function(game) {
     up.addEventListener("touchend", upKeyUp, false);
     buttonA.addEventListener("touchstart", buttonAKeyDown, false);
     buttonA.addEventListener("touchend", buttonAKeyUp, false);
+    // startButton.addEventListener("click", startButtonClick, false);
+    // startButton.addEventListener("touchstart", startButtonClick, false);
 });
