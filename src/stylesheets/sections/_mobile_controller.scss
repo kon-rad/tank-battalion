@@ -1,24 +1,24 @@
 .mobile_controller {
     width: 860px;
-    height: 260px;
+    height: 333px;
     background-color: #bdbdbd;
     border-radius: 5px;
     margin: 0 auto;
 }
 .mobile_controller__inner {
-	position: relative;
-	width: 654px;
-	height: 240;
-	left: 13px;
-	bottom: -10px;
-	background-color: #222;
-	border-radius: 5px;
-	overflow: hidden;
+    position: relative;
+    width: 828px;
+    height: 290;
+    left: 15px;
+    bottom: -28px;
+    background-color: #222;
+    border-radius: 5px;
+    overflow: hidden;
 }
 .mobile_controller__left {
-	height: 204px;
-	left: 42px;
-	width: 268px;
+    height: 294px;
+    left: 42px;
+    width: 298px;
 }
 .mobile_controller__left::after {
 	border-radius: 50%;
@@ -31,18 +31,18 @@
 	z-index: 10;
 }
 .mobile_controller__d_pad {
-    height: 200px;
-    width: 200px;
+    height: 260px;
+    width: 260px;
     position: absolute;
-    left: 28px;
+    left: 20px;
     bottom: 14px;
 }
 .mobile_controller__d_pad::before, .mobile_controller__d_pad::after {
 	position: absolute;
-    left: 69px;
-    top: 18px;
-    width: 60px;
-    height: 160px;
+    left: 86px;
+    top: 8px;
+    width: 80px;
+    height: 247px;
 	background-color: #bdbdbd;
 	border-radius: 5px;
 	content: "";
@@ -68,9 +68,9 @@
 .mobile_controller__d_pad_up {
 	position: absolute;
     top: 24px;
-    left: 76px;
-    width: 47px;
-    height: 75px;
+    left: 93px;
+    width: 66px;
+    height: 150px;
 	background-color: #222;
 	border-radius: 5px;
 	z-index: 10;
@@ -78,19 +78,19 @@
 .mobile_controller__d_pad_down {
 	position: absolute;
     top: 99px;
-    left: 76px;
-    width: 47px;
-    height: 75px;
+    left: 93px;
+    width: 66px;
+    height: 150px;
 	background-color: #222;
 	border-radius: 5px;
 	z-index: 10;
 }
 .mobile_controller__d_pad_right {
 	position: absolute;
-    top: 60px;
-    left: 113px;
-    width: 47px;
-    height: 75px;
+    top: 84px;
+    left: 164px;
+    width: 66px;
+    height: 94px;
 	background-color: #222;
 	border-radius: 5px;
     z-index: 10;
@@ -99,11 +99,11 @@
 }
 .mobile_controller__d_pad_left {
 	position: absolute;
-    top: 60px;
-    left: 37px;
-    top: 61px;
-    width: 47px;
-    height: 75px;
+    top: 84px;
+    left: 22px;
+    top: 84px;
+    width: 66px;
+    height: 94px;
 	background-color: #222;
 	border-radius: 5px;
     z-index: 10;
@@ -112,9 +112,9 @@
 }
 .mobile_controller__center {
     position: absolute;
-    width: 180px;
+    width: 230px;
     height: 100%;
-    left: 236px;
+    left: 296px;
     top: 0;
 }
 .mobile_controller__center::before, .mobile_controller__center::after {
@@ -136,8 +136,8 @@
 .mobile_controller__main_buttons {
     position: absolute;
     width: 100%;
-    height: 40px;
-    bottom: 40px;
+    height: 60px;
+    bottom: 72px;
     border-radius: 5px;
     background-color: #bdbdbd;
 }
@@ -158,19 +158,18 @@
 }
 .mobile_controller__select, .mobile_controller__start {
     position: absolute;
-    top: 8px;
-    width: 55px;
-    height: 24px;
+    top: 12px;
+    width: 76px;
+    height: 35px;
     border-radius: 8px;
     background-color: #222;
-    font-family: Nes Controller;
     color: #c91515;
-    font-size: 14px;
+    font-size: 20px;
 }
 .mobile_controller__select::before, .mobile_controller__select::after, .mobile_controller__start::before, .mobile_controller__start::after {
     position: absolute;
-    left: 0;
-    top: -47px;
+    left: 7px;
+    top: -53px;
 }
 .mobile_controller__select {
 	left: 12px;
@@ -210,15 +209,15 @@
 }
 .mobile_controller__buttons {
     position: absolute;
-    right: 25px;
-    top: 138px;
-    width: 180px;
-    height: 68px;
+    right: 20px;
+    top: 159px;
+    width: 260px;
+    height: 120px;
 }
 .mobile_controller__button_a, .mobile_controller__button_b {
     position: absolute;
-    height: 78px;
-    width: 78px;
+    height: 110px;
+    width: 110px;
     background-color: #bdbdbd;
     border-radius: 5px;
 }
@@ -232,9 +231,29 @@
     position: absolute;
     top: 8px;
     left: 8px;
-    width: 62px;
-    height: 62px;
+    width: 95px;
+    height: 95px;
     border-radius: 50%;
     background-color: #c91515;
     content: "";
+}
+.mobile_controller__button_b::before {
+    content: 'B';
+    display: block;
+    position: absolute;
+    top: 112px;
+    color: red;
+    right: 0;
+    font-size: 16px;
+    font-family: PixelEmulator;
+}
+.mobile_controller__button_a::before {
+    content: 'A';
+    display: block;
+    position: absolute;
+    top: 112px;
+    color: red;
+    right: 0;
+    font-size: 16px;
+    font-family: PixelEmulator;
 }
