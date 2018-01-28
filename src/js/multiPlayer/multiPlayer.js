@@ -1,6 +1,6 @@
 'use strict';
 
-define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'], 
+define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'], 
 	function ( game, events, audio, mWorld, tank, multiPlayer_draw) {
 
 	const init = () => {

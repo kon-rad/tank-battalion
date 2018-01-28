@@ -1,6 +1,5 @@
 'use strict';
 
-
 (function() { 
 	requirejs.config({
 		paths: {
@@ -24,7 +23,7 @@
 			'mobile_controller': 'modules/mobile_controller'
 		}
 	})
-	
+
 	requirejs(['util', 'draw', 'game', 'events', 'audio', 'setup', 'mobile_controller'],
 	   function(util, draw, game, events, audio, setup, mobile_controller) {
 	   	setup.control();

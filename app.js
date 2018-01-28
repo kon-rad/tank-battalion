@@ -62,14 +62,12 @@ const http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-
 var port = (process.env.PORT || '8000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-
 const server = http.createServer(app);
 const commonPort = app.listen(port, () => {
 	console.log('App running on localhost:8000');
@@ -80,7 +78,6 @@ const io = require('socket.io').listen(commonPort);
 /**
  * Socket.io Communication.
  */ 
-
 let render = 0;
 const renderFn = () => {
 	render = setInterval(() => {
@@ -101,7 +98,6 @@ io.on('connection', function(socket) {
 	/**
 	 *  User disconnected.
 	 */ 
-
 	socket.on('disconnect', () => {
 	    let player = playerSockets.find(function(player) {
 	      return player.socket == socket
@@ -118,7 +114,6 @@ io.on('connection', function(socket) {
 	/**
 	 *  User Created.
 	 */ 
-
 	socket.on('create-player', function(data){
 		let id = socket.id;
 		playerSockets.push({id: id, socket: socket});
@@ -133,7 +128,6 @@ io.on('connection', function(socket) {
 	/**
 	 *  Update Player and Game States.
 	 */ 
-
 	socket.on('game-state', function (newGameState) {
 		clearInterval(render);
 		gameState.updatePlayer(newGameState.player.id, newGameState.player);
