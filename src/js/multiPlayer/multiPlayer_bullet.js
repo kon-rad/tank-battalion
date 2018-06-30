@@ -23,7 +23,7 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
 				bullet.x-=speed;
 				break;
 		}
-		if(checkBulletCollision(bullet.x, bullet.y, bullet.dir)){
+		if (checkBulletCollision(bullet.x, bullet.y, bullet.dir)){
 			game.currentPlayer.bulletFired = false;
 			audio.explode.load();
 			audio.explode.play();
@@ -43,20 +43,21 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
 		game.context.closePath(); 
 	}
 
-	mpBullet.fire_bullet = function(x, y, tankDirection) {
-		if (tankDirection == 'up') y-=2;
-		else if(tankDirection =='down') y+=2;
-		else if(tankDirection =='right') x+=2;
-		else if(tankDirection =='left') x-=2;
-		var bullet = {
-			'x':x,
-			'y':y,
-			'dir':tankDirection
-		}
-		game.currentPlayer.bullet = bullet;
+	mpBullet.fireBullet = function() {
+		if (game.currentPlayer.tankDirection === 'up') game.currentPlayer.y-=2;
+		else if(game.currentPlayer.tankDirection ==='down') game.currentPlayer.y+=2;
+		else if(game.currentPlayer.tankDirection ==='right') game.currentPlayer.x+=2;
+		else if(game.currentPlayer.tankDirection ==='left') game.currentPlayer.x-=2;
 
-		game.socket.emit('game-state', {player:game.currentPlayer, world:game.mpWorld});
-	}
+		game.currentPlayer.bullet = {
+      'x': game.currentPlayer.x,
+      'y': game.currentPlayer.y,
+      'dir': game.currentPlayer.tankDirection
+    };
+    game.currentPlayer.bulletFired = true;
+
+		game.socket.emit('game-state', { player: game.currentPlayer, world: game.mpWorld });
+	};
 
 	const checkBulletCollision = (x, y, dir) => {
 		y = Math.floor(y/10);
@@ -71,10 +72,10 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
 		if (pos) {
 			game.currentPlayer.bullet = {};
 			row[x] = '0';
-			if(dir =='up' || dir == 'down') {
+			if(dir ==='up' || dir === 'down') {
 				row[x-1] = '0';
 				row[x+1] = '0';
-			} else if (dir == 'left' || dir == 'right') {
+			} else if (dir === 'left' || dir === 'right') {
 				eraseBlock(x, y-1);
 				eraseBlock(x, y+1);
 			}

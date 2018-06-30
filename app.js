@@ -81,7 +81,6 @@ const io = require('socket.io').listen(commonPort);
 let render = 0;
 const renderFn = () => {
 	render = setInterval(() => {
-		console.log('render');
 		gameState = gameUpdate(gameState);
 		io.emit('send-game-state', gameState);
 	}, 30);

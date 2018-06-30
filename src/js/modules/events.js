@@ -81,22 +81,22 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function(game, bullet
 				audio.move.play();
 				break;
 			case 32:
-				bullet_check();
+				handleFireBullet();
 				break;
 		}
-	}
+	};
 
-	const bullet_check = () => {
-		if(game.multiplayer) {
-			game.currentPlayer.bulletFired = true;
-			mpBullet.fire_bullet(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.tankDirection);
+	const handleFireBullet = () => {
+		if (game.multiplayer && !game.currentPlayer.bulletFired) {
+      // mpBullet.fireBullet(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.tankDirection);
+      mpBullet.fireBullet();
 			audio.shoot.play();
-		} else if(!game.multiplayer) {
-			bullets.fire_bullet(game.x, game.y, game.tankDirection);
+		} else if (!game.multiplayer) {
+			bullets.fireBullet(game.x, game.y, game.tankDirection);
 			game.bullets_fired = true;
 			audio.shoot.play();
-		} 
-	}
+		}
+	};
 
 	return events;
 });

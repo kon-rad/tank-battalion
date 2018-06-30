@@ -42,7 +42,8 @@ define(function() {
 			{x: 580, y: 200}
 		];
 		return positions[num];
-	}
+	};
+
 	game.display_bots = document.getElementsByClassName('score__enemy_tank');
 	game.numberOfBotsLoaded = 20;
 	game.bots_destroyed;

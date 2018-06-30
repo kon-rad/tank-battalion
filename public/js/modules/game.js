@@ -36,6 +36,7 @@ define(function () {
 		var positions = [{ x: 200, y: 20 }, { x: 400, y: 20 }, { x: 180, y: 200 }, { x: 20, y: 240 }, { x: 300, y: 70 }, { x: 580, y: 200 }];
 		return positions[num];
 	};
+
 	game.display_bots = document.getElementsByClassName('score__enemy_tank');
 	game.numberOfBotsLoaded = 20;
 	game.bots_destroyed;
