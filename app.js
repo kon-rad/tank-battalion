@@ -62,7 +62,8 @@ const http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-var port = (process.env.PORT || '8000');
+// var port = (process.env.PORT || '8000'); //heroku config
+var port = ('8081');
 app.set('port', port);
 
 /**
@@ -70,7 +71,7 @@ app.set('port', port);
  */
 const server = http.createServer(app);
 const commonPort = app.listen(port, () => {
-	console.log('App running on localhost:8000');
+	console.log('App running on localhost:8081');
 });
 
 const io = require('socket.io').listen(commonPort);
@@ -100,12 +101,12 @@ io.on('connection', function(socket) {
 	 */ 
 	socket.on('disconnect', () => {
 		let player = playerSockets.find(function(player) {
-			return player.socket == socket
+			return player.socket === socket
 		});
-		if(player == undefined)
+		if(player === undefined)
 			return new Error();
 		gameState.players = gameState.players.filter(function(p) {
-			return p.id != player.id
+			return p.id !== player.id
 		});
 		delete gameState.game.users[player.id];
 	    io.emit('player-disconnected', {id: socket.id })
