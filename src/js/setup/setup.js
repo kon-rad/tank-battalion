@@ -95,8 +95,8 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		plr.speed = 10;
 		plr.bulletFired = false;
 
-	   	game.socket = io();
-	   	game.socket.emit('create-player', plr);
+		game.socket = io();
+		game.socket.emit('create-player', plr);
 
 		audio.start.play();
 		game.canvas.setAttribute('tabindex','0');
@@ -112,7 +112,7 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		let displayScore = document.getElementById('singlePlayerScore');
 		displayScore.style.display = 'none';
 		multiPlayer.init();
-	   	document.getElementById('resetGameButton').addEventListener('click', reset);
+		document.getElementById('resetGameButton').addEventListener('click', reset);
 	}
 	const reset = () => {
 		game.socket.disconnect();

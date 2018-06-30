@@ -26,7 +26,7 @@ app.use(serveStatic(__dirname + '/public/favicon/browserconfig.xml'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -81,6 +81,7 @@ const io = require('socket.io').listen(commonPort);
 let render = 0;
 const renderFn = () => {
 	render = setInterval(() => {
+		console.log('render');
 		gameState = gameUpdate(gameState);
 		io.emit('send-game-state', gameState);
 	}, 30);
@@ -99,13 +100,13 @@ io.on('connection', function(socket) {
 	 *  User disconnected.
 	 */ 
 	socket.on('disconnect', () => {
-	    let player = playerSockets.find(function(player) {
-	      return player.socket == socket
-	    });
-	    if(player == undefined)
-	    	return new Error();
-	    gameState.players = gameState.players.filter(function(p) {
-	      return p.id != player.id
+		let player = playerSockets.find(function(player) {
+			return player.socket == socket
+		});
+		if(player == undefined)
+			return new Error();
+		gameState.players = gameState.players.filter(function(p) {
+			return p.id != player.id
 		});
 		delete gameState.game.users[player.id];
 	    io.emit('player-disconnected', {id: socket.id })
@@ -129,9 +130,9 @@ io.on('connection', function(socket) {
 	 *  Update Player and Game States.
 	 */ 
 	socket.on('game-state', function (newGameState) {
-		clearInterval(render);
+		// clearInterval(render);
 		gameState.updatePlayer(newGameState.player.id, newGameState.player);
-		renderFn();
+		// renderFn();
 	});
 });
 
