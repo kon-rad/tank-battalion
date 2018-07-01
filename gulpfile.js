@@ -44,16 +44,15 @@ gulp.task('imagemin', () => {
       .pipe(gulp.dest('./public/assets/images'))
 });
 
-gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'imagemin'], function () {
-
-gulp.task('moveJSVendor', () =>
-  gulp.src('src/js-vendor/require.js')
-    .pipe(gulp.dest('public/js'))
-  gulp.src('src/js-vendor/socket.io.js')
-    .pipe(gulp.dest('public/'))
+gulp.task('moveJSVendor', () => {
+    gulp.src('src/js-vendor/require.js')
+      .pipe(gulp.dest('public/js'));
+    gulp.src('src/js-vendor/socket.io.js')
+      .pipe(gulp.dest('public/'));
+  }
 );
 
-gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'moveJSVendor'], function () {
+gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'imagemin', 'moveJSVendor'], function () {
   gulp.watch('src/stylesheets/**/*.scss', ['workflow']);
   gulp.watch('./src/js/**/*.js', ['babel']);
 });
