@@ -1,0 +1,89 @@
+'use strict';
+
+define(function () {
+
+	var game = {};
+	game.canvas = document.getElementById('tank');
+	game.context = game.canvas.getContext('2d');
+	game.cw = game.canvas.width;
+	game.ch = game.canvas.height;
+	game.tankDirection = false;
+	game.moving = false;
+	game.bullets = [];
+	game.bool = true;
+	game.time = 0;
+	game.bullets_fired = false;
+	game.timer = setInterval(function () {
+		game.time += 100;
+	}, 100);
+	game.worldData;
+
+	/*
+  * Speed Settings
+  */
+
+	game.enemy_bullet_speed = 10;
+	game.enemy_speed = 8;
+	game.bullet_speed = 10;
+	game.playerOneSpeed = 8;
+
+	/*
+  * Singleplayer game state
+  */
+
+	game.randomBotPosition = function () {
+		var num = Math.floor(Math.random() * 6);
+		var positions = [{ x: 200, y: 20 }, { x: 400, y: 20 }, { x: 180, y: 200 }, { x: 20, y: 240 }, { x: 300, y: 70 }, { x: 580, y: 200 }];
+		return positions[num];
+	};
+
+	game.display_bots = document.getElementsByClassName('score__enemy_tank');
+	game.numberOfBotsLoaded = 20;
+	game.bots_destroyed;
+	game.bots_on_screen = -1;
+	game.playerOnePoints = 0;
+	game.playerOneLives = 0;
+	game.newGame = false;
+	game.bots;
+	game.eagle1_y = 57;
+	game.eagle1_x = 28;
+	game.newRound = false;
+	game.round = 1;
+	game.difficulty = 0;
+	game.bots_loaded = 0;
+	game.onePlayerBegin = false;
+	game.round_display = document.getElementById('score__round_num');
+	game.score_num = document.getElementById('score__current_num');
+	game.high_num = document.getElementById('score__high_num');
+	game.timeBetweenBotSpawn = 6000;
+
+	/*
+  * Set focus to canvas
+  */
+
+	game.canvas.setAttribute('tabindex', '0');
+	game.canvas.focus();
+
+	/*
+  * Multiplayer game state
+  */
+
+	game.multiplayer = false;
+	game.mpPlayers;
+	game.currentPlayer;
+	game.mpCurrentId;
+	game.mpWorld;
+	game.id = function () {
+		return '_' + Math.random().toString(36).substr(2, 9);
+	};
+	game.find_mpCurrentIndex = function () {
+		var len = game.mpPlayers.length;
+		for (var i = 0; i < len; i++) {
+			if (game.mpPlayers[i].id === game.mpCurrentId) {
+				return i;
+			}
+		}
+	};
+
+	return game;
+});
