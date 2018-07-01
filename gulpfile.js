@@ -66,5 +66,5 @@ gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'imagemin
 
 gulp.task('build', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'imagemin', 'moveJSVendor', 'moveAudio'], function () {
 
-  console.log('building application! God speed!')
+  console.log('Application ready! God speed!')
 });
