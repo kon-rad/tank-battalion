@@ -52,7 +52,13 @@ gulp.task('moveJSVendor', () => {
   }
 );
 
-gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'imagemin', 'moveJSVendor'], function () {
+gulp.task('moveAudio', () => {
+    gulp.src('src/assets/audio/*')
+      .pipe(gulp.dest('public/assets/audio'));
+  }
+);
+
+gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'imagemin', 'moveJSVendor', 'moveAudio'], function () {
   gulp.watch('src/stylesheets/**/*.scss', ['workflow']);
   gulp.watch('./src/js/**/*.js', ['babel']);
 });
