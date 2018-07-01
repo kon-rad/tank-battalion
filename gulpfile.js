@@ -5,6 +5,7 @@ var gulp            = require('gulp'),
     sass            = require('gulp-sass'),
     cssnano         = require('gulp-cssnano'),
     sourcemaps      = require('gulp-sourcemaps'),
+    imagemin        = require('gulp-imagemin'),
     autoprefixer    = require('gulp-autoprefixer');
  
 gulp.task('babel', () =>
@@ -36,7 +37,14 @@ gulp.task('moveFavicon', () =>
 gulp.src('src/favicon/**.*')
     .pipe(gulp.dest('public/favicon/'))
 );
-gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon'], function () {
+
+gulp.task('imagemin', () => {
+    gulp.src('./src/assets/images/*')
+      .pipe(imagemin())
+      .pipe(gulp.dest('./public/assets/images'))
+});
+
+gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'imagemin'], function () {
   gulp.watch('src/stylesheets/**/*.scss', ['workflow']);
   gulp.watch('./src/js/**/*.js', ['babel']);
 });
