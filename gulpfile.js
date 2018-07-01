@@ -62,3 +62,9 @@ gulp.task('default', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'imagemin
   gulp.watch('src/stylesheets/**/*.scss', ['workflow']);
   gulp.watch('./src/js/**/*.js', ['babel']);
 });
+
+
+gulp.task('build', ['workflow', 'babel', 'copyfonts', 'moveFavicon', 'imagemin', 'moveJSVendor', 'moveAudio'], function () {
+
+  console.log('building application! God speed!')
+});
