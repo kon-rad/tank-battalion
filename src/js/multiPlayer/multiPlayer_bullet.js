@@ -49,14 +49,15 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
 		else if(game.currentPlayer.tankDirection ==='right') game.currentPlayer.x+=2;
 		else if(game.currentPlayer.tankDirection ==='left') game.currentPlayer.x-=2;
 
-		game.currentPlayer.bullet = {
+		const bullet = {
       'x': game.currentPlayer.x,
       'y': game.currentPlayer.y,
-      'dir': game.currentPlayer.tankDirection
+      'dir': game.currentPlayer.tankDirection,
+			'playerId': game.currentPlayer.id
     };
     game.currentPlayer.bulletFired = true;
 
-		game.socket.emit('game-state', { player: game.currentPlayer, world: game.mpWorld });
+		game.socket.emit('game-state', { player: game.currentPlayer, world: game.mpWorld, bullet: bullet});
 	};
 
 	const checkBulletCollision = (x, y, dir) => {

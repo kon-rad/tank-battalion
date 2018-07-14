@@ -138,6 +138,9 @@ io.on('connection', function (socket) {
   socket.on('game-state', function (newGameState) {
     // clearInterval(render);
     gameState.updatePlayer(newGameState.player.id, newGameState.player);
+    if ('bullet' in newGameState) {
+      gameState.updateBullets(newGameState.bullet);
+    }
     // renderFn();
   });
 });
