@@ -31,7 +31,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
         if (game.currentPlayer.moving) {
           if (!mwObstacle.detect(game.currentPlayer.x, game.currentPlayer.y - 10, game.currentPlayer.tankDir, game.mpWorld)) {
             game.currentPlayer.y -= game.currentPlayer.speed;
-            game.socket.emit('game-state', {player: game.currentPlayer, world: game.mpWorld});
+            game.socket.emit('game-state', { player: game.currentPlayer });
           }
         }
         tank.moving_up(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.color);
@@ -39,7 +39,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
         if (game.currentPlayer.moving) {
           if (!mwObstacle.detect(game.currentPlayer.x, game.currentPlayer.y + 10, game.currentPlayer.tankDir, game.mpWorld)) {
             game.currentPlayer.y += game.currentPlayer.speed;
-            game.socket.emit('game-state', {player: game.currentPlayer, world: game.mpWorld});
+            game.socket.emit('game-state', { player: game.currentPlayer });
           }
         }
         tank.moving_down(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.color);
@@ -47,7 +47,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
         if (game.currentPlayer.moving) {
           if (!mwObstacle.detect(game.currentPlayer.x + 15, game.currentPlayer.y, game.currentPlayer.tankDir, game.mpWorld)) {
             game.currentPlayer.x += game.currentPlayer.speed;
-            game.socket.emit('game-state', {player: game.currentPlayer, world: game.mpWorld});
+            game.socket.emit('game-state', { player: game.currentPlayer });
           }
         }
         tank.moving_right(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.color);
@@ -55,7 +55,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
         if (game.currentPlayer.moving) {
           if (!mwObstacle.detect(game.currentPlayer.x - 15, game.currentPlayer.y, game.currentPlayer.tankDir, game.mpWorld)) {
             game.currentPlayer.x -= game.currentPlayer.speed;
-            game.socket.emit('game-state', {player: game.currentPlayer, world: game.mpWorld});
+            game.socket.emit('game-state', { player: game.currentPlayer });
           }
         }
         tank.moving_left(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.color);

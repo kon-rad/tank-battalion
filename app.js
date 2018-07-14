@@ -9,6 +9,7 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 
 const Player = require('./lib/Player');
+const User = require('./lib/User');
 const GameState = require('./lib/GameState');
 const gameUpdate = require('./lib/gameUpdate');
 
@@ -91,7 +92,7 @@ const renderFn = () => {
     gameState = gameUpdate(gameState);
     io.emit('send-game-state', gameState);
 
-  }, 30);
+  }, 100);
 };
 io.on('connection', function (socket) {
 
@@ -119,17 +120,11 @@ io.on('connection', function (socket) {
     playerSockets.push({id: id, socket: socket});
     xy = ((xy + 1 >= 4) ? 0 : xy + 1);
     let posX = spawnPosition[xy].x, posY = spawnPosition[xy].y;
-    let newPlayer = new Player(
-      id,
-      posX,
-      posY
-    );
-    gameState.addPlayer(newPlayer);
-    gameState.users[id]
-      = {id: id, name: data.name, color: data.color, points: 0, lives: 3, explosion: {exe:false}, bulletFired: false};
+    gameState.addPlayer(new Player(id, posX, posY));
+    gameState.addUser(new User(id, data.name, data.color));
     socket.emit('player-created', {
-      newPlayer: newPlayer,
-      gameState: gameState
+      gameState: gameState,
+      id: id
     });
   });
 

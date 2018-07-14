@@ -98,8 +98,8 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       game.canvas.focus();
       game.socket.on('player-created', function (data) {
 
-        game.currentPlayer = data.newPlayer;
-        game.mpCurrentId = data.newPlayer.id;
+        game.currentPlayer = data.gameState.players[data.id];
+        game.mpCurrentId = data.id;
         game.mpPlayers = data.gameState.players;
         game.mpWorld = data.gameState.world;
         game.users = data.gameState.users;
@@ -180,7 +180,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
     }
     const restoreDestroyedBots = () => {
       [...game.display_bots].forEach((bot) => {
-        if (bot.style.visibility == 'hidden') {
+        if (bot.style.visibility === 'hidden') {
           bot.style.visibility = 'visible';
         }
       })

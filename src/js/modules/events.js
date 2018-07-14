@@ -3,7 +3,7 @@
 define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bullets, audio, mpBullet) {
 
   window.addEventListener('keydown', function (e) {
-    if (e.keyCode == 32 || e.keyCode === 38 || e.keyCode === 37 || e.keyCode === 40 || e.keyCode === 39) {
+    if (e.keyCode === 32 || e.keyCode === 38 || e.keyCode === 37 || e.keyCode === 40 || e.keyCode === 39) {
       e.preventDefault();
     }
   });
@@ -17,7 +17,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
     ) {
       if (game.multiplayer) {
         game.currentPlayer.moving = false;
-        game.socket.emit('game-state', {player: game.currentPlayer, world: game.mpWorld});
+        game.socket.emit('game-state', { player: game.currentPlayer });
       } else {
         game.moving = false;
       }
@@ -32,7 +32,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
         if (game.multiplayer) {
           game.currentPlayer.moving = true;
           game.currentPlayer.tankDirection = 'up';
-          game.socket.emit('game-state', {player: game.currentPlayer, world: game.mpWorld});
+          game.socket.emit('game-state', { player: game.currentPlayer });
         } else {
           game.moving = true;
           game.tankDirection = 'up';
@@ -44,7 +44,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
         if (game.multiplayer) {
           game.currentPlayer.moving = true;
           game.currentPlayer.tankDirection = 'left';
-          game.socket.emit('game-state', {player: game.currentPlayer, world: game.mpWorld});
+          game.socket.emit('game-state', { player: game.currentPlayer });
         } else {
           game.moving = true;
           game.tankDirection = 'left';
@@ -56,7 +56,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
         if (game.multiplayer) {
           game.currentPlayer.moving = true;
           game.currentPlayer.tankDirection = 'down';
-          game.socket.emit('game-state', {player: game.currentPlayer, world: game.mpWorld});
+          game.socket.emit('game-state', { player: game.currentPlayer });
         } else {
           game.moving = true;
           game.tankDirection = 'down';
@@ -68,7 +68,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
         if (game.multiplayer) {
           game.currentPlayer.moving = true;
           game.currentPlayer.tankDirection = 'right';
-          game.socket.emit('game-state', {player: game.currentPlayer, world: game.mpWorld});
+          game.socket.emit('game-state', { player: game.currentPlayer });
         } else {
           game.moving = true;
           game.tankDirection = 'right';
