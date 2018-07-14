@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * This file renders the game for multi player mode, the function go runs every 100 ms
+ */
+
 define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_bullet'], 
 	function(game, tank, mWorld, mwObstacle, images, audio, mpBullet) {
 
@@ -28,7 +32,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 				setup.reset();
 			})
 		}
-		if(game.currentPlayer.tankDirection == 'up') {
+		if(game.currentPlayer.tankDirection === 'up') {
 			if(game.currentPlayer.moving) {
 				if(!mwObstacle.detect(game.currentPlayer.x, game.currentPlayer.y-10, game.currentPlayer.tankDir, game.mpWorld)){
 					game.currentPlayer.y -= game.currentPlayer.speed; 
@@ -36,7 +40,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 				}
 			}
 			tank.moving_up(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.color);
-		} else if(game.currentPlayer.tankDirection == 'down') {
+		} else if(game.currentPlayer.tankDirection === 'down') {
 			if(game.currentPlayer.moving) {
 				if(!mwObstacle.detect(game.currentPlayer.x, game.currentPlayer.y+10, game.currentPlayer.tankDir, game.mpWorld)) {
 					game.currentPlayer.y += game.currentPlayer.speed;
@@ -44,7 +48,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 				}  
 			}
 			tank.moving_down(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.color);
-		} else if(game.currentPlayer.tankDirection == 'right') {
+		} else if(game.currentPlayer.tankDirection === 'right') {
 			if(game.currentPlayer.moving) {
 				if (!mwObstacle.detect(game.currentPlayer.x+15, game.currentPlayer.y, game.currentPlayer.tankDir, game.mpWorld)) {
 					game.currentPlayer.x += game.currentPlayer.speed; 
@@ -52,7 +56,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 				}
 			} 
 			tank.moving_right(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.color);
-		} else if(game.currentPlayer.tankDirection == 'left') {
+		} else if(game.currentPlayer.tankDirection === 'left') {
 			if(game.currentPlayer.moving) {
 				if (!mwObstacle.detect(game.currentPlayer.x-15, game.currentPlayer.y, game.currentPlayer.tankDir, game.mpWorld)) {
 					game.currentPlayer.x -= game.currentPlayer.speed;
@@ -79,13 +83,13 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 				continue;
 
 			game.context.fillStyle = game.mpPlayers[i].color;
-			if(game.mpPlayers[i].tankDirection == 'up') {
+			if(game.mpPlayers[i].tankDirection === 'up') {
 				tank.moving_up(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
-			} else if(game.mpPlayers[i].tankDirection == 'down') {
+			} else if(game.mpPlayers[i].tankDirection === 'down') {
 				tank.moving_down(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
-			} else if(game.mpPlayers[i].tankDirection == 'right') {
+			} else if(game.mpPlayers[i].tankDirection === 'right') {
 				tank.moving_right(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
-			} else if(game.mpPlayers[i].tankDirection == 'left') {
+			} else if(game.mpPlayers[i].tankDirection === 'left') {
 				tank.moving_left(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
 			}
 		}
