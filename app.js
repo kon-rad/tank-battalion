@@ -79,6 +79,12 @@ const io = require('socket.io').listen(commonPort);
 /**
  * Socket.io Communication.
  */
+
+let playerSockets = [];
+let gameState = new GameState();
+const spawnPosition = [{x: 100, y: 580}, {x: 580, y: 300}, {x: 20, y: 350}, {x: 300, y: 20}];
+let xy = Math.floor(Math.random() * 4);
+
 let render = 0;
 const renderFn = () => {
   render = setInterval(() => {
@@ -87,12 +93,6 @@ const renderFn = () => {
 
   }, 30);
 };
-
-let playerSockets = [];
-let gameState = new GameState();
-const spawnPosition = [{x: 100, y: 580}, {x: 580, y: 300}, {x: 20, y: 350}, {x: 300, y: 20}];
-let xy = Math.floor(Math.random() * 4);
-
 io.on('connection', function (socket) {
 
   io.emit('msg', 'user connected');
@@ -121,8 +121,18 @@ io.on('connection', function (socket) {
     playerSockets.push({id: id, socket: socket});
     xy = ((xy + 1 >= 4) ? 0 : xy + 1);
     let posX = spawnPosition[xy].x, posY = spawnPosition[xy].y;
-    let newPlayer = new Player(id, posX, posY, data.tankDirection, data.speed, data.moving, data.color, data.bullet, data.bulletFired, data.name);
-    gameState.players.push(newPlayer);
+    let newPlayer = new Player(
+      id,
+      posX,
+      posY,
+      data.tankDirection,
+      data.speed,
+      data.moving,
+      data.color,
+      data.bulletFired,
+      data.name
+    );
+    gameState.addPlayer(newPlayer);
     gameState.game.users[id] = {id: id, name: data.name, color: data.color, points: 0, lives: 3, explosion: false};
     socket.emit('player-created', {
       newPlayer: newPlayer,
@@ -136,12 +146,10 @@ io.on('connection', function (socket) {
    *  Update Player and Game States.
    */
   socket.on('game-state', function (newGameState) {
-    // clearInterval(render);
     gameState.updatePlayer(newGameState.player.id, newGameState.player);
     if ('bullet' in newGameState) {
       gameState.updateBullets(newGameState.bullet);
     }
-    // renderFn();
   });
 });
 

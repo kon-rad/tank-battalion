@@ -12,6 +12,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
       game.socket.on('send-game-state', (gameState) => {
         game.mpPlayers = gameState.players;
         game.mpWorld = gameState.world;
+        game.mpBullets = gameState.bullets;
       })
     };
 
@@ -25,7 +26,6 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
        * Render Current Player
        */
 
-      // game.context.fillStyle = game.currentPlayer.color;
       if (game.mpGame.users[game.mpCurrentId].lives < 0) {
         game.currentPlayer.moving = false;
         require(['setup'], function (setup) {
@@ -71,14 +71,13 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
        * render all other player bullets and tanks
        */
 
-      let len = game.mpPlayers.length;
+      // draw bullets
+      for (let i = 0; i < game.mpBullets.length; i++) {
+        mpBullet.render_mpBullet(game.mpBullets[i]);
+      }
 
-      for (let i = 0; i < len; i++) {
-
-        // draw bullets
-        if (game.mpPlayers[i].bulletFired) {
-          mpBullet.render_mpBullet(game.mpPlayers[i].bullet);
-        }
+      // draw explosions and other tanks
+      for (let i = 0; i < game.mpPlayers.length; i++) {
         if (game.mpPlayers[i].explosion && game.mpPlayers[i].explosion.exe) {
           audio.explode.load();
           audio.explode.play();
@@ -89,7 +88,6 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
         if (game.mpPlayers[i].id === game.mpCurrentId)
           continue;
 
-        // draw other tanks
         game.context.fillStyle = game.mpPlayers[i].color;
         if (game.mpPlayers[i].tankDirection === 'up') {
           tank.moving_up(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
@@ -101,15 +99,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
           tank.moving_left(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
         }
       }
-
-      /*
-       * Send multiplayer data
-       */
-
-
-      // game.socket.emit('player data', game.mpPlayers);
     };
-
 
     return {
       start: start,

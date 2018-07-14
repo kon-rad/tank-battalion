@@ -14,10 +14,10 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
         game.mpPlayers = gameState.players;
         game.mpWorld = gameState.world;
         game.mpGame = gameState.game;
+        game.mpBullets = gameState.bullets;
         for (let i = 0; i < game.mpPlayers.length; i++) {
-          if (game.mpPlayers[i].id == game.mpCurrentId) {
+          if (game.mpPlayers[i].id === game.mpCurrentId) {
             game.currentPlayer.bulletFired = game.mpPlayers[i].bulletFired;
-            game.currentPlayer.bullet = game.mpPlayers[i].bullet;
             game.currentPlayer.lives = game.mpPlayers[i].lives;
             game.currentPlayer.points = game.mpPlayers[i].points;
             break;
@@ -26,7 +26,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
         displayMultiplayer();
         game.multiplayer = true;
       })
-    }
+    };
 
     const displayMultiplayer = () => {
       const mpDisplay = document.getElementById('mpS');
@@ -37,10 +37,10 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
         let userIdLives = 'mpS_' + obj[user].id + '_lives';
         let userDisplay = '';
         if (document.getElementById(userId)) {
-          if (parseInt(document.getElementById(userIdScore).innerHTML) != obj[user].points) {
+          if (parseInt(document.getElementById(userIdScore).innerHTML) !== obj[user].points) {
             document.getElementById(userIdScore).innerHTML = obj[user].points;
           }
-          if (parseInt(document.getElementById(userIdLives).innerHTML) != obj[user].lives) {
+          if (parseInt(document.getElementById(userIdLives).innerHTML) !== obj[user].lives) {
             if (obj[user].lives < 0) {
               mpDisplay.innerHTML = '';
             } else {
@@ -58,13 +58,13 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
           mpDisplay.innerHTML += userDisplay;
         }
       }
-    }
+    };
 
     const draw = {
       start: () => {
         console.log('draw start executed');
       }
-    }
+    };
 
     return {
       init: init,

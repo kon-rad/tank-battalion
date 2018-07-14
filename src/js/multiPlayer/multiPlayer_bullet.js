@@ -33,7 +33,7 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
 		game.context.arc(bullet.x, bullet.y, 4, 0, Math.PI*2);
 		game.context.fill();
 		game.context.closePath(); 
-	}
+	};
 
 	mpBullet.render_mpBullet = function(bullet) {
 		game.context.beginPath();
@@ -41,7 +41,7 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
 		game.context.arc(bullet.x, bullet.y, 4, 0, Math.PI*2);
 		game.context.fill();
 		game.context.closePath(); 
-	}
+	};
 
 	mpBullet.fireBullet = function() {
 		if (game.currentPlayer.tankDirection === 'up') game.currentPlayer.y-=2;
@@ -53,7 +53,7 @@ define(['game', 'audio', 'images'], function(game, audio, images) {
       'x': game.currentPlayer.x,
       'y': game.currentPlayer.y,
       'dir': game.currentPlayer.tankDirection,
-			'playerId': game.currentPlayer.id
+			'id': game.currentPlayer.id
     };
     game.currentPlayer.bulletFired = true;
 

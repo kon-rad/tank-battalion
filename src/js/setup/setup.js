@@ -88,7 +88,6 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 
 		let plr = {};
 		plr.moving = false;
-		plr.bullet = {};
 		plr.color = color;
 		plr.name = name;
 		plr.tankDirection = 'up';
@@ -102,11 +101,13 @@ define([ 'game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'm
 		game.canvas.setAttribute('tabindex','0');
 		game.canvas.focus();
 		game.socket.on('player-created', function(data) {
+
 			game.currentPlayer = data.newPlayer;
 			game.mpCurrentId = data.newPlayer.id;
 			game.mpPlayers = data.players;
 			game.mpWorld = data.world;
 			game.mpGame = data.gameState.game;
+      game.mpBullets = data.gameState.bullets;
 			mWorld.draw(game.mpWorld);
 		});
 		let displayScore = document.getElementById('singlePlayerScore');

@@ -76,6 +76,7 @@ define(function() {
 	 */
 
 	game.multiplayer = false;
+  game.mpBullets = [];
 	game.mpPlayers;
 	game.currentPlayer;
 	game.mpCurrentId;
