@@ -11,8 +11,6 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
   const events = {};
 
   events.handleKeyUp = (e) => {
-    // if(e.target.id !== 'tank')
-    // 	return;
     if (
       e.keyCode === 87 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 68
       || e.keyCode === 38 || e.keyCode === 37 || e.keyCode === 40 || e.keyCode === 39
@@ -25,12 +23,9 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
       }
       audio.move.pause();
     }
-  }
-
+  };
 
   events.handleKeydown = (e) => {
-    // if(e.target.id !== 'tank')
-    // 	return;
     switch (e.keyCode) {
       case 38:
       case 87:
@@ -88,7 +83,6 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
 
   const handleFireBullet = () => {
     if (game.multiplayer && !game.currentPlayer.bulletFired) {
-      // mpBullet.fireBullet(game.currentPlayer.x, game.currentPlayer.y, game.currentPlayer.tankDirection);
       mpBullet.fireBullet();
       audio.shoot.play();
     } else if (!game.multiplayer) {
