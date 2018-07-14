@@ -9,11 +9,6 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 
     const start = () => {
       game.multiPlayerGame = setInterval(go, 100);
-      game.socket.on('send-game-state', (gameState) => {
-        game.mpPlayers = gameState.players;
-        game.mpWorld = gameState.world;
-        game.mpBullets = gameState.bullets;
-      })
     };
 
     const go = () => {
@@ -26,7 +21,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
        * Render Current Player
        */
 
-      if (game.mpGame.users[game.mpCurrentId].lives < 0) {
+      if (game.users[game.mpCurrentId].lives < 0) {
         game.currentPlayer.moving = false;
         require(['setup'], function (setup) {
           setup.reset();
@@ -72,31 +67,41 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
        */
 
       // draw bullets
-      for (let i = 0; i < game.mpBullets.length; i++) {
-        mpBullet.render_mpBullet(game.mpBullets[i]);
+      for (let bulKey in game.mpBullets) {
+        mpBullet.render_mpBullet(game.mpBullets[bulKey]);
       }
 
       // draw explosions and other tanks
-      for (let i = 0; i < game.mpPlayers.length; i++) {
-        if (game.mpPlayers[i].explosion && game.mpPlayers[i].explosion.exe) {
+      for (let key in game.users) {
+        let user = game.users[key];
+        if ('explosion' in user && user.explosion.exe) {
           audio.explode.load();
           audio.explode.play();
-          game.context.drawImage(images.explosion, game.mpPlayers[i].explosion.x - 10, game.mpPlayers[i].explosion.y - 10);
-          game.mpPlayers[i].explosion = null;
-          game.socket.emit('game-state', {player: game.mpPlayers[i], world: game.mpWorld});
+          game.context.drawImage(images.explosion, user.explosion.x - 10, user.explosion.y - 10);
+          let newExplosionState = {
+            id: key,
+            explosion: { exe: false, x: -100, y: -100 }
+          };
+
+          game.socket.emit('explosion-update', newExplosionState);
         }
-        if (game.mpPlayers[i].id === game.mpCurrentId)
+
+      }
+
+      for (let key in game.mpPlayers) {
+        let player = game.mpPlayers[key];
+        if (key === game.mpCurrentId)
           continue;
 
-        game.context.fillStyle = game.mpPlayers[i].color;
-        if (game.mpPlayers[i].tankDirection === 'up') {
-          tank.moving_up(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
-        } else if (game.mpPlayers[i].tankDirection === 'down') {
-          tank.moving_down(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
-        } else if (game.mpPlayers[i].tankDirection === 'right') {
-          tank.moving_right(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
-        } else if (game.mpPlayers[i].tankDirection === 'left') {
-          tank.moving_left(game.mpPlayers[i].x, game.mpPlayers[i].y, game.mpPlayers[i].color);
+        game.context.fillStyle = player.color;
+        if (player.tankDirection === 'up') {
+          tank.moving_up(player.x, player.y, player.color);
+        } else if (player.tankDirection === 'down') {
+          tank.moving_down(player.x, player.y, player.color);
+        } else if (player.tankDirection === 'right') {
+          tank.moving_right(player.x, player.y, player.color);
+        } else if (player.tankDirection === 'left') {
+          tank.moving_left(player.x, player.y, player.color);
         }
       }
     };

@@ -4,7 +4,6 @@ define(['game', 'tank', 'bullets'], function(game, tank, bullets) {
  
 	const mWorld = {};
 
-
 	mWorld.parent = [
 		 '000000000000000000000000000000000000000000000000000000000000',
 		 '000000000000000000000000000000000000000000000000000000000000',
@@ -87,8 +86,7 @@ define(['game', 'tank', 'bullets'], function(game, tank, bullets) {
 				}
 			})
 		});
-	}
-
+	};
 
 	return mWorld;
 

@@ -106,10 +106,8 @@ io.on('connection', function (socket) {
     });
     if (player === undefined)
       return new Error();
-    gameState.players = gameState.players.filter(function (p) {
-      return p.id !== player.id
-    });
-    delete gameState.game.users[player.id];
+    delete gameState.players[player.id];
+    delete gameState.users[player.id];
     io.emit('player-disconnected', {id: socket.id})
   });
 
@@ -124,20 +122,13 @@ io.on('connection', function (socket) {
     let newPlayer = new Player(
       id,
       posX,
-      posY,
-      data.tankDirection,
-      data.speed,
-      data.moving,
-      data.color,
-      data.bulletFired,
-      data.name
+      posY
     );
     gameState.addPlayer(newPlayer);
-    gameState.game.users[id] = {id: id, name: data.name, color: data.color, points: 0, lives: 3, explosion: false};
+    gameState.users[id]
+      = {id: id, name: data.name, color: data.color, points: 0, lives: 3, explosion: {exe:false}, bulletFired: false};
     socket.emit('player-created', {
       newPlayer: newPlayer,
-      players: gameState.players,
-      world: gameState.world,
       gameState: gameState
     });
   });
@@ -146,10 +137,21 @@ io.on('connection', function (socket) {
    *  Update Player and Game States.
    */
   socket.on('game-state', function (newGameState) {
-    gameState.updatePlayer(newGameState.player.id, newGameState.player);
-    if ('bullet' in newGameState) {
-      gameState.updateBullets(newGameState.bullet);
-    }
+    gameState.updatePlayerPosition(newGameState.player);
+  });
+
+  /**
+   *  Update Bullet State.
+   */
+  socket.on('bullet-fired', function (newBullet) {
+    gameState.updateBullets(newBullet);
+  });
+
+  /**
+   *  Update Player and Game States.
+   */
+  socket.on('explosion-update', function (newExplosionState) {
+    gameState.updateExplosion(newExplosionState);
   });
 });
 
