@@ -85,7 +85,6 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 
           game.socket.emit('explosion-update', newExplosionState);
         }
-
       }
 
       for (let key in game.mpPlayers) {

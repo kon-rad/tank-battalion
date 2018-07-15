@@ -15,7 +15,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
         game.mpWorld = gameState.world;
         game.users = gameState.users;
         game.mpBullets = gameState.bullets;
-        game.currentPlayer = gameState.players[game.mpCurrentId];
+        // game.currentPlayer = gameState.players[game.mpCurrentId];
         game.currentUser = gameState.users[game.mpCurrentId];
         displayMultiplayer();
       });
