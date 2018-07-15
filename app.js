@@ -33,9 +33,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// use requireJS
-let requirejs = require('requirejs');
-
 app.use('/', index);
 app.use('/users', users);
 
