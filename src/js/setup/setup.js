@@ -14,7 +14,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       inst_modal_close.addEventListener('click', hideInstructions);
 
       display.innerHTML = '<div class="display_text__1player">'
-        + 'VS COMPUTER</div></br></br>'
+        + 'SINGLE PLAYER</div></br></br>'
         + '<div class="display_text__2player">MULTIPLAYER</div>';
       const onePlayer = document.getElementsByClassName('display_text__1player')[0];
       const multiPlayer = document.getElementsByClassName('display_text__2player')[0];
@@ -26,19 +26,19 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
     const showInstructions = () => {
       const instructions_modal = document.getElementById('instructions_modal');
       instructions_modal.style.display = 'block';
-    }
+    };
 
     const hideInstructions = () => {
       const instructions_modal = document.getElementById('instructions_modal');
       instructions_modal.style.display = 'none';
-    }
+    };
 
     const startScreen = () => {
       game.context.fillStyle = '#000';
       game.context.fillRect(0, 0, game.cw, game.ch);
       game.worldData = mWorld.parent.slice();
       mWorld.draw(game.worldData);
-    }
+    };
 
     const loading = () => {
       game.context.fillStyle = '#000';
@@ -51,7 +51,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
         game.bool = true;
 
       }
-    }
+    };
 
     const startOnePlayer = () => {
       game.playerOneLives = 3;
@@ -70,7 +70,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       restoreOnScreenBots();
       restoreDestroyedBots();
       loadOnePlayer();
-    }
+    };
 
     const startMultiPlayer = () => {
       game.difficulty = 0;
@@ -82,7 +82,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 
       document.addEventListener("keydown", events.handleKeydown, false);
       document.addEventListener("keyup", events.handleKeyUp, false);
-    }
+    };
 
     const loadMultiplayer = (name, color) => {
 
@@ -166,10 +166,10 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
         game.canvas.setAttribute('tabindex', '0');
         game.canvas.focus();
         tank.moving_up(game.x, game.y);
-        game.tankDirection = 'up'
+        game.tankDirection = 'up';
         draw.start();
       }
-    }
+    };
 
     const restoreOnScreenBots = () => {
       [...game.display_bots].forEach((bot) => {
@@ -177,14 +177,14 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
           bot.classList.remove('on_screen');
         }
       })
-    }
+    };
     const restoreDestroyedBots = () => {
       [...game.display_bots].forEach((bot) => {
         if (bot.style.visibility === 'hidden') {
           bot.style.visibility = 'visible';
         }
       })
-    }
+    };
 
     const restorePlayerOneLives = () => {
       [...display_lives].forEach((life) => {
@@ -197,7 +197,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
         + 'You Won the Game!</div>';
       const win = document.getElementById('win');
       win.addEventListener('click', control);
-    }
+    };
 
     const gameOver = () => {
       display.innerHTML = '<div id="win" class="display_text__1player_win">'
@@ -212,7 +212,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       restorePlayerOneLives();
       restoreOnScreenBots();
       restoreDestroyedBots();
-    }
+    };
 
     const gameOverMultiplayer = () => {
       display.innerHTML = '<div id="win" class="display_text__1player_win">'
@@ -227,7 +227,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       restorePlayerOneLives();
       restoreOnScreenBots();
       restoreDestroyedBots();
-    }
+    };
     const loadMultiplayerMenu = () => {
       display.innerHTML = '<div class="display_text__multiplayerMenu"><input id="mpName"'
         + ' type="text" placeholder="Username"><select id="mpColor" name="mpColor">'
@@ -239,14 +239,14 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       let mpForm = document.getElementById('mpSubmit');
       let color = document.getElementById('mpColor').value;
       mpForm.addEventListener('click', mpFormSubmit);
-    }
+    };
 
     const mpFormSubmit = () => {
       let name = document.getElementById('mpName').value;
       let color = document.getElementById('mpColor').value;
       display.innerHTML = '';
       loadMultiplayer(name, color);
-    }
+    };
 
     return {
       control: control,

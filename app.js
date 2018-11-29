@@ -5,13 +5,13 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const index = require('./routes/index');
-const users = require('./routes/users');
+const index = require('./server/routes/index');
+const users = require('./server/routes/users');
 
-const Player = require('./lib/Player');
-const User = require('./lib/User');
-const GameState = require('./lib/GameState');
-const gameUpdate = require('./lib/gameUpdate');
+const Player = require('./server/lib/Player');
+const User = require('./server/lib/User');
+const GameState = require('./server/lib/GameState');
+const gameUpdate = require('./server/lib/gameUpdate');
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(serveStatic(__dirname + '/public/favicon/safari-pinned-tab.svg'));
 app.use(serveStatic(__dirname + '/public/favicon/browserconfig.xml'));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/server/views'));
 app.set('view engine', 'jade');
 // app.use(logger('dev'));
 app.use(bodyParser.json());

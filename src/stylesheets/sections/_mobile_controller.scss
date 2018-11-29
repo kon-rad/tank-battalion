@@ -4,6 +4,11 @@
     background-color: #bdbdbd;
     border-radius: 5px;
     margin: 0 auto;
+    display: none;
+
+  @media (max-width: 768px) {
+      display: block;
+    }
 
 }
 .mobile_controller__inner {

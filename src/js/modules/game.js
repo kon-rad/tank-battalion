@@ -21,16 +21,14 @@ define(function() {
 	/*
 	 * Speed Settings
 	 */
-
 	game.enemy_bullet_speed = 10;
 	game.enemy_speed = 8;
-	game.bullet_speed = 10;
-	game.playerOneSpeed = 8;
+	game.bullet_speed = 15;
+	game.playerOneSpeed = 14;
 
 	/*
 	 * Singleplayer game state
 	 */
-
 	game.randomBotPosition = () => {
 		let num = (Math.floor(Math.random() * 6));
 		const positions = [
@@ -62,7 +60,7 @@ define(function() {
 	game.round_display = document.getElementById('score__round_num');
 	game.score_num = document.getElementById('score__current_num');
 	game.high_num = document.getElementById('score__high_num');
-	game.timeBetweenBotSpawn = 6000;
+	game.timeBetweenBotSpawn = 1000;
 
 	/*
 	 * Set focus to canvas
