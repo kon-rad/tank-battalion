@@ -84,3 +84,9 @@ body {
   background: linear-gradient(       rgba(0, 0, 0, 0.45),        rgba(0, 0, 0, 0.45)     ), url(../assets/images/blue_tank.png) 50%;
   background-size: contain;
 }
+.mute_button {
+  margin: 20px auto 0;
+  display: block;
+  align-items: center;
+  text-align: center;
+}

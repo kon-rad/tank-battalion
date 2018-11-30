@@ -23,6 +23,8 @@
 		}
 	});
 
+  document.app = {};
+
 	requirejs(['draw', 'game', 'events', 'audio', 'setup'],
 	   function(draw, game, events, audio, setup) {
 	   	setup.control();

@@ -84,11 +84,11 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
   const handleFireBullet = () => {
     if (game.multiplayer && !game.currentUser.bulletFired) {
       mpBullet.fireBullet();
-      audio.shoot.play();
+      document.app.shoot.play();
     } else if (!game.multiplayer) {
       bullets.fireBullet(game.x, game.y, game.tankDirection);
       game.bullets_fired = true;
-      audio.shoot.play();
+      document.app.shoot.play();
     }
   };
 

@@ -1,84 +1,87 @@
 extends layout
 
 block content
-	.game_title
-		img(src="assets/images/tank_battalion.png", alt="tank battalion")
-		#instructions_button.game_title__instructions Instructions
-	.content
-		.game
-			canvas#tank(width='600', height='600')
-		.score
-			#mpS
-			#singlePlayerScore
-				.score__high high-<br>score
-					#score__high_num 0
-				.score__current score<br>
-					#score__current_num 0
-				.score__enemy_tanks 
-					.score__enemy_row
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-					.score__enemy_row
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-					.score__enemy_row
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-					.score__enemy_row
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-					.score__enemy_row
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-						.score__enemy_tank
-					.score__lives
-						.score__lives_row
-							.score__lives_tank
-							.score__lives_tank
-							.score__lives_tank
-					.score__round round
-						#score__round_num 1
-		#display_text
-		#resetGameButton &nbsp;
-	.mobile_controller
-		.mobile_controller__inner 
-			.mobile_controller__left 
-				.mobile_controller__d_pad 
-					.mobile_controller__d_pad_up
-					.mobile_controller__d_pad_right
-					.mobile_controller__d_pad_down
-					.mobile_controller__d_pad_left
-			.mobile_controller__center
-				.mobile_controller__main_buttons
-					.mobile_controller__select
-					.mobile_controller__start
-			.mobile_controller__right
-				.mobile_controller__logo Nintendo
-					span.mobile_controller__logo_reg &reg;
-				.mobile_controller__buttons
-					.mobile_controller__button_a
-					.mobile_controller__button_b
+    .game_title
+        img(src="assets/images/tank_battalion.png", alt="tank battalion")
+        #instructions_button.game_title__instructions Instructions
+        .mute_button
+            button(onclick='toggleAudio()') 🔊
+    .content
+        .game
+            canvas#tank(width='600', height='600')
+        .score
+            #mpS
+            #singlePlayerScore
+                .score__high high-<br>score
+                    #score__high_num 0
+                .score__current score<br>
+                    #score__current_num 0
+                .score__enemy_tanks
+                    .score__enemy_row
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                    .score__enemy_row
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                    .score__enemy_row
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                    .score__enemy_row
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                    .score__enemy_row
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                        .score__enemy_tank
+                    .score__lives
+                        .score__lives_row
+                            .score__lives_tank
+                            .score__lives_tank
+                            .score__lives_tank
+                    .score__round round
+                        #score__round_num 1
+        #display_text
+        #resetGameButton &nbsp;
+    .mobile_controller
+        .mobile_controller__inner
+            .mobile_controller__left
+                .mobile_controller__d_pad
+                    .mobile_controller__d_pad_up
+                    .mobile_controller__d_pad_right
+                    .mobile_controller__d_pad_down
+                    .mobile_controller__d_pad_left
+            .mobile_controller__center
+                .mobile_controller__main_buttons
+                    .mobile_controller__select
+                    .mobile_controller__start
+            .mobile_controller__right
+                .mobile_controller__logo Nintendo
+                    span.mobile_controller__logo_reg &reg;
+                .mobile_controller__buttons
+                    .mobile_controller__button_a
+                    .mobile_controller__button_b
 
-	script(type='text/javascript', src='socket.io.js')
-	script(type='text/javascript', data-main='js/main.js', src='js/require.js')
-	img#brick(src='assets/images/brick.png', style='display:none;')
-	img#border(src='assets/images/border.png', style='display:none;')
-	#instructions_modal(style='display:none;')
-		.instructions_modal__content
-			span#instructions_modal__close &times;
-			p.instructions_modal__text
-				| <span>Controls:</span> Use the arrow keys or A, W, S, and D to control the tank. Shoot with space bar. On mobile device use the NES controller arrows and A button. <br/>
-				| <span>SINGLE PLAYER mode:</span>  The objective is to destroy all 20 enemy tanks while protecting the eagle.<br/>
-				| <span>In MULTIPLAYER mode:</span> The objective is to destroy other tanks while remaining alive as long as possible.
-				| Notice on the right panel under your username there is the score and lives count. <br/>
+    script(type='text/javascript', src='socket.io.js')
+    script(type='text/javascript', data-main='js/main.js', src='js/require.js')
+    script(type='text/javascript', src='js/script.js')
+    img#brick(src='assets/images/brick.png', style='display:none;')
+    img#border(src='assets/images/border.png', style='display:none;')
+    #instructions_modal(style='display:none;')
+        .instructions_modal__content
+            span#instructions_modal__close &times;
+            p.instructions_modal__text
+                | <span>Controls:</span> Use the arrow keys or A, W, S, and D to control the tank. Shoot with space bar. On mobile device use the NES controller arrows and A button. <br/>
+                | <span>SINGLE PLAYER mode:</span>  The objective is to destroy all 20 enemy tanks while protecting the eagle.<br/>
+                | <span>In MULTIPLAYER mode:</span> The objective is to destroy other tanks while remaining alive as long as possible.
+                | Notice on the right panel under your username there is the score and lives count. <br/>
 
   
