@@ -56,8 +56,8 @@ define(['game', 'tank', 'bullets', 'mWorld', 'images', 'audio', 'singlePlayer'],
 		}
 		if (checkBulletCollision(bullet.x, bullet.y, bullet_index, bullet.dir, bot_index)) {
 			singlePlayer.ai.bots[bot_index].bullets.splice(bullet_index, 1);
-			audio.explode.load();
-			audio.explode.play();
+			document.app.audio.explode.load();
+			document.app.audio.explode.play();
 		}
 		game.context.beginPath();
 		game.context.fillStyle = 'orange';
@@ -71,8 +71,8 @@ define(['game', 'tank', 'bullets', 'mWorld', 'images', 'audio', 'singlePlayer'],
 		x = Math.floor(x / 10);
 		if (x <= 0 || x >= 60 || y <= 0 || y >= 60) {
 			singlePlayer.ai.bots[bot_index].bullets.splice(bullet_index, 1);
-			audio.dud.load();
-			audio.dud.play();
+			// document.app.audio.dud.load();
+			// document.app.audio.dud.play();
 			return false;
 		}
 		let row = game.worldData[y];

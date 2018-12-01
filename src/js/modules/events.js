@@ -21,7 +21,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
       } else {
         game.moving = false;
       }
-      audio.move.pause();
+      document.app.audio.move.pause();
     }
   };
 
@@ -37,7 +37,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
           game.moving = true;
           game.tankDirection = 'up';
         }
-        audio.move.play();
+        document.app.audio.move.play();
         break;
       case 37:
       case 65:
@@ -49,7 +49,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
           game.moving = true;
           game.tankDirection = 'left';
         }
-        audio.move.play();
+        document.app.audio.move.play();
         break;
       case 40:
       case 83:
@@ -61,7 +61,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
           game.moving = true;
           game.tankDirection = 'down';
         }
-        audio.move.play();
+        document.app.audio.move.play();
         break;
       case 39:
       case 68:
@@ -73,7 +73,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
           game.moving = true;
           game.tankDirection = 'right';
         }
-        audio.move.play();
+        document.app.audio.move.play();
         break;
       case 32:
         handleFireBullet();
@@ -84,11 +84,11 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
   const handleFireBullet = () => {
     if (game.multiplayer && !game.currentUser.bulletFired) {
       mpBullet.fireBullet();
-      document.app.shoot.play();
+      document.app.audio.shoot.play();
     } else if (!game.multiplayer) {
       bullets.fireBullet(game.x, game.y, game.tankDirection);
       game.bullets_fired = true;
-      document.app.shoot.play();
+      document.app.audio.shoot.play();
     }
   };
 

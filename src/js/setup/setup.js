@@ -93,7 +93,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       game.socket = io();
       game.socket.emit('create-player', plr);
 
-      audio.start.play();
+      document.app.audio.start.play();
       game.canvas.setAttribute('tabindex', '0');
       game.canvas.focus();
       game.socket.on('player-created', function (data) {
@@ -162,7 +162,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
         document.addEventListener("keyup", events.handleKeyUp, false);
         singlePlayer.ai.bots = [];
         singlePlayer.init();
-        audio.start.play();
+        document.app.audio.start.play();
         game.canvas.setAttribute('tabindex', '0');
         game.canvas.focus();
         tank.moving_up(game.x, game.y);

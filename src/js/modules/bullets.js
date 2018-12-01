@@ -28,8 +28,8 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
 
     if (checkBulletCollision(bullet.x, bullet.y, b_i, bullet.dir)) {
       game.bullets_fired = false;
-      audio.explode.load();
-      audio.explode.play();
+      document.app.audio.explode.load();
+      document.app.audio.explode.play();
     }
 
     game.context.beginPath();

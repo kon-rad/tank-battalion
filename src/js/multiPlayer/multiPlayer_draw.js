@@ -75,8 +75,8 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
       for (let key in game.users) {
         let user = game.users[key];
         if ('explosion' in user && user.explosion.exe) {
-          audio.explode.load();
-          audio.explode.play();
+          document.app.audio.explode.load();
+          document.app.audio.explode.play();
           game.context.drawImage(images.explosion, user.explosion.x - 10, user.explosion.y - 10);
           let newExplosionState = {
             id: key,
