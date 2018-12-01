@@ -1,6 +1,5 @@
 'use strict';
 
-
 const toggleAudio = () => {
   if (document.app.audio.muted) {
     document.app.audio.muted = false;

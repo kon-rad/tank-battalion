@@ -1,7 +1,7 @@
 'use strict';
 
-define(['game', 'tank', 'bullets', 'mWorld', 'images', 'audio', 'singlePlayer'],
-	function (game, tank, bullets, mWorld, images, audio, singlePlayer) {
+define(['game', 'tank', 'bullets', 'mWorld', 'images', 'singlePlayer'],
+	function (game, tank, bullets, mWorld, images, singlePlayer) {
 
 	const bot = {};
 

@@ -25,8 +25,8 @@
 
   document.app = {};
 
-	requirejs(['draw', 'game', 'events', 'audio', 'setup'],
-	   function(draw, game, events, audio, setup) {
+	requirejs(['draw', 'game', 'events', 'setup'],
+	   function(draw, game, events, setup) {
 	   	setup.control();
 	});
 })();
