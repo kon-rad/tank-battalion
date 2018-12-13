@@ -34,35 +34,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		}
 
 		game.context.fillStyle = 'green';
-		if(game.tankDirection == 'up') {
-			if(game.moving) {
-				if(!mwObstacle.detect(game.x, game.y-15, game.tankDirection, game.worldData)){
-					game.y -= speed; 
-				}
-			}
-			tank.moving_up(game.x, game.y);
-		} else if(game.tankDirection == 'down') {
-			if(game.moving) {
-				if(!mwObstacle.detect(game.x, game.y+15, game.tankDirection, game.worldData)) {
-					game.y += speed;
-				}  
-			}
-			tank.moving_down(game.x, game.y);
-		} else if(game.tankDirection == 'right') {
-			if(game.moving) {
-				if (!mwObstacle.detect(game.x+15, game.y, game.tankDirection, game.worldData)) {
-					game.x += speed; 
-				}
-			} 
-			tank.moving_right(game.x, game.y);
-		} else if(game.tankDirection == 'left') {
-			if(game.moving) {
-				if (!mwObstacle.detect(game.x-15, game.y, game.tankDirection, game.worldData)) {
-					game.x -= speed;
-				}
-			}
-			tank.moving_left(game.x, game.y);
-		}
+    moveTank();
 
 		game.bullets.forEach(function(item, index) {
 			bullets.render_bullet(item, index);
@@ -77,7 +49,41 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 				renderBot.render_bullet(bullet, bullet_index, bot_index);
 			});
 		})
-	}
+	};
+
+    /**
+		 * Move tank by one 'speed' increment if no obstacle is detected
+     */
+	const moveTank = () => {
+
+		if (!game.moving) {
+
+			return;
+		}
+
+		switch (game.tankDirection) {
+			case 'up':
+        if(!mwObstacle.detect(game.x, game.y-15, game.tankDirection, game.worldData)){
+          game.y -= speed;
+        }
+        break;
+      case 'down':
+        if(!mwObstacle.detect(game.x, game.y+15, game.tankDirection, game.worldData)) {
+          game.y += speed;
+        }
+        break;
+      case 'right':
+        if (!mwObstacle.detect(game.x+15, game.y, game.tankDirection, game.worldData)) {
+          game.x += speed;
+        }
+        break;
+      case 'left':
+        if (!mwObstacle.detect(game.x-15, game.y, game.tankDirection, game.worldData)) {
+          game.x -= speed;
+        }
+        break;
+		}
+	};
 
 
 	return {
