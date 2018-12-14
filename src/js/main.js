@@ -25,7 +25,7 @@
 
   document.app = {};
 
-	requirejs(['draw', 'game', 'events', 'setup'],
+	requirejs(['draw', 'game', 'events', 'setup', 'mobile_controller'],
 	   function(draw, game, events, setup) {
 	   	setup.control();
 	});

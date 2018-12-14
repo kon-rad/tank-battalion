@@ -80,6 +80,7 @@
 	background-color: #222;
 	border-radius: 5px;
 	z-index: 10;
+    cursor: pointer;
 }
 .mobile_controller__d_pad_down {
 	position: absolute;
@@ -90,6 +91,7 @@
 	background-color: #222;
 	border-radius: 5px;
 	z-index: 10;
+    cursor: pointer;
 }
 .mobile_controller__d_pad_right {
 	position: absolute;
@@ -100,6 +102,7 @@
 	background-color: #222;
 	border-radius: 5px;
     z-index: 10;
+    cursor: pointer;
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
 }
@@ -113,6 +116,7 @@
 	background-color: #222;
 	border-radius: 5px;
     z-index: 10;
+    cursor: pointer;
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
 }
@@ -146,6 +150,7 @@
     bottom: 72px;
     border-radius: 5px;
     background-color: #bdbdbd;
+  cursor: pointer;
 }
 .mobile_controller__main_buttons::before, .mobile_controller__main_buttons::after {
     position: absolute;
@@ -171,6 +176,7 @@
     background-color: #222;
     color: #c91515;
     font-size: 20px;
+    cursor: pointer;
 }
 .mobile_controller__select::before, .mobile_controller__select::after, .mobile_controller__start::before, .mobile_controller__start::after {
     position: absolute;
@@ -226,6 +232,7 @@
     width: 110px;
     background-color: #bdbdbd;
     border-radius: 5px;
+    cursor: pointer;
 }
 .mobile_controller__button_b {
 	left: 0;
