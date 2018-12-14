@@ -1,7 +1,11 @@
 'use strict';
 
+/**
+ * This module contains various game settings and commonly used functions
+ */
 define(function() {
 
+  // General game settings
 	const game = {};
 	game.canvas = document.getElementById('tank');
 	game.context = game.canvas.getContext('2d');
@@ -16,19 +20,14 @@ define(function() {
 	game.timer = setInterval(function(){
 		game.time += 100;
 	}, 100);
-	game.worldData;
 
-	/*
-	 * Speed Settings
-	 */
+	// Speed Settings
 	game.enemy_bullet_speed = 10;
 	game.enemy_speed = 8;
 	game.bullet_speed = 15;
 	game.playerOneSpeed = 14;
 
-	/*
-	 * Singleplayer game state
-	 */
+	// Single player game state
 	game.randomBotPosition = () => {
 		let num = (Math.floor(Math.random() * 6));
 		const positions = [
@@ -41,15 +40,12 @@ define(function() {
 		];
 		return positions[num];
 	};
-
 	game.display_bots = document.getElementsByClassName('score__enemy_tank');
 	game.numberOfBotsLoaded = 20;
-	game.bots_destroyed;
 	game.bots_on_screen = -1;
 	game.playerOnePoints = 0;
 	game.playerOneLives = 0;
 	game.newGame = false;
-	game.bots;
 	game.eagle1_y = 57;
 	game.eagle1_x = 28;
 	game.newRound = false;
@@ -62,23 +58,13 @@ define(function() {
 	game.high_num = document.getElementById('score__high_num');
 	game.timeBetweenBotSpawn = 1000;
 
-	/*
-	 * Set focus to canvas
-	 */
-
+	// Set focus to canvas
 	game.canvas.setAttribute('tabindex','0');
 	game.canvas.focus();
 
-	/*
-	 * Multiplayer game state
-	 */
-
+	// Multiplayer game state
 	game.multiplayer = false;
   game.mpBullets = [];
-	game.mpPlayers;
-	game.currentPlayer;
-	game.mpCurrentId;
-	game.mpWorld;
 	game.id = () => {
 	  return '_' + Math.random().toString(36).substr(2, 9);
 	};
@@ -89,9 +75,8 @@ define(function() {
 				return i;
 			}
 		}
-	}
+	};
 
 	return game;
-
-})
+});
 

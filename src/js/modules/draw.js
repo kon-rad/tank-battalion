@@ -5,7 +5,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 
 	const start = () => {
 		game.onePlayerGame = setInterval(go, 100);
-	}
+	};
 
 	const go = () => {
 		// Handles game ending, starts new game
@@ -15,17 +15,21 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 				game.context.drawImage(images.explosion, (game.x)-10, (game.y)-10);
 				game.explosion = false;
 			}
+
+			// clear repeating interval functions; reset game
 			game.newGame = false;
 			clearInterval(game.onePlayerGame);
 			clearInterval(game.bots);
 			clearInterval(game.loadBots);
+
 			require(['setup'], function(setup) {
 				setup.loadOnePlayer();
-
 			})
 		}
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
+
+		// renders map in current state
 		mWorld.draw(game.worldData);
 
 		game.context.drawImage(images.eagle, 274, 566);
@@ -35,6 +39,8 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		}
 
 		game.context.fillStyle = 'green';
+
+		// renders tank and moves if game.moving is true
     moveTank();
 
 		game.bullets.forEach(function(item, index) {
@@ -46,6 +52,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			if(bot.moving) {
 				renderBot.render(bot);
 			}
+
 			bot.bullets.forEach((bullet, bullet_index) => {
 				renderBot.render_bullet(bullet, bullet_index, bot_index);
 			});

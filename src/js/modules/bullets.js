@@ -2,12 +2,9 @@
 
 define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mWorld, audio, images, singlePlayer) {
 
-  const display_bots = document.getElementsByClassName('score__enemy_tank');
   const bullets = {};
   game.bullets_fired = false;
   bullets.renderExplosion = false;
-  bullets.renderExplosion_x;
-  bullets.renderExplosion_y;
 
   bullets.render_bullet = function (bullet, b_i) {
     let speed = game.bullet_speed;

@@ -1,15 +1,26 @@
 'use strict';
 
+/**
+ * Images used in game play are stored here
+ */
 define(function() {
 
+  const EAGLE_FILE_PATH = 'assets/images/eagle.png';
+  const EXPLOSION_FILE_PATH = 'assets/images/explosion.png';
+  const RED_EXPLOSION_FILE_PATH = 'assets/images/big_red_explosion.png';
+  const WHITE_EXPLOSION_FILE_PATH = 'assets/images/big_white_explosion.png';
+
 	const eagle = new Image();
-	eagle.src = 'assets/images/eagle.png';
+	eagle.src = EAGLE_FILE_PATH;
+
 	const explosion = new Image();
-	explosion.src = 'assets/images/explosion.png';
+	explosion.src = EXPLOSION_FILE_PATH;
+
 	const bigRedExplosion = new Image();
-	bigRedExplosion.src = 'assets/images/big_red_explosion.png';
+	bigRedExplosion.src = RED_EXPLOSION_FILE_PATH;
+
 	const bigWhiteExplosion = new Image();
-	bigWhiteExplosion.src = 'assets/images/big_white_explosion.png';
+	bigWhiteExplosion.src = WHITE_EXPLOSION_FILE_PATH;
 
 	return {
 		eagle: eagle,
