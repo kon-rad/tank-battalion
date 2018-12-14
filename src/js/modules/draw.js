@@ -8,7 +8,9 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 	}
 
 	const go = () => {
+		// Handles game ending, starts new game
 		if(game.newGame) {
+			// game.explosion decides if to render an explosion
 			if(game.explosion) {
 				game.context.drawImage(images.explosion, (game.x)-10, (game.y)-10);
 				game.explosion = false;
@@ -24,7 +26,6 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		}
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
-		let speed = game.playerOneSpeed;
 		mWorld.draw(game.worldData);
 
 		game.context.drawImage(images.eagle, 274, 566);
@@ -51,36 +52,36 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		})
 	};
 
-    /**
-		 * Move tank by one 'speed' increment if no obstacle is detected
-     */
+	/**
+	 * Move tank by one 'speed' increment if no obstacle is detected
+	 */
 	const moveTank = () => {
-
-		if (!game.moving) {
-
-			return;
-		}
+		let speed = game.playerOneSpeed;
 
 		switch (game.tankDirection) {
 			case 'up':
-        if(!mwObstacle.detect(game.x, game.y-15, game.tankDirection, game.worldData)){
+        if (game.moving && !mwObstacle.detect(game.x, game.y-15, game.tankDirection, game.worldData)){
           game.y -= speed;
         }
+        tank.moving_up(game.x, game.y);
         break;
       case 'down':
-        if(!mwObstacle.detect(game.x, game.y+15, game.tankDirection, game.worldData)) {
+        if (game.moving && !mwObstacle.detect(game.x, game.y+15, game.tankDirection, game.worldData)) {
           game.y += speed;
         }
+        tank.moving_down(game.x, game.y);
         break;
       case 'right':
-        if (!mwObstacle.detect(game.x+15, game.y, game.tankDirection, game.worldData)) {
+        if (game.moving && !mwObstacle.detect(game.x+15, game.y, game.tankDirection, game.worldData)) {
           game.x += speed;
         }
+        tank.moving_right(game.x, game.y);
         break;
       case 'left':
-        if (!mwObstacle.detect(game.x-15, game.y, game.tankDirection, game.worldData)) {
+        if (game.moving && !mwObstacle.detect(game.x-15, game.y, game.tankDirection, game.worldData)) {
           game.x -= speed;
         }
+        tank.moving_left(game.x, game.y);
         break;
 		}
 	};
