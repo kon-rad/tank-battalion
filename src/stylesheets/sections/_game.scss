@@ -84,15 +84,41 @@ body {
   background: linear-gradient(       rgba(0, 0, 0, 0.45),        rgba(0, 0, 0, 0.45)     ), url(../assets/images/blue_tank.png) 50%;
   background-size: contain;
 }
-.mute_button {
-  margin: 20px auto 0;
-  display: block;
-  align-items: center;
+.control_panel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+%control_button {
   text-align: center;
+  color: #fff;
+  font-family: PixelEmulator;
+  font-size: 12px;
+  margin-right: 30px;
+  &:hover {
+    color:rgb(249,251,68);
+    cursor: pointer;
+  }
 }
 .mute {
   background-color: #000000;
 }
-.mute:hover {
-  cursor: pointer;
+.mute_button {
+  @extend %control_button;
+  display: block;
+  align-items: center;
+  text-align: center;
+  margin-right: 30px;
+}
+.pause_button {
+  @extend %control_button;
+  width: 40px;
+}
+.exit_button {
+  @extend %control_button;
+  width: 40px;
+}
+.game_title__instructions {
+  @extend %control_button;
+  width: 120px;
 }

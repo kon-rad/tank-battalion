@@ -3,9 +3,12 @@ extends layout
 block content
     .game_title
         img(src="assets/images/tank_battalion.png", alt="tank battalion")
-        #instructions_button.game_title__instructions Instructions
-        .mute_button
-            .mute(onclick='toggleAudio()') 🔇
+        .control_panel
+            #instructions_button.game_title__instructions Instructions
+            .mute_button
+                .mute(onclick='toggleAudio()') 🔇
+            .pause_button pause
+            .exit_button exit
     .content
         .game
             canvas#tank(width='600', height='600')
