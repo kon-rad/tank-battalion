@@ -164,11 +164,13 @@ define(['game', 'bullets', 'mwObstacle', 'audio'],
 					|| ((game.eagle1_x === x || game.eagle1_x-1 === x || game.eagle1_x+1 === x || game.eagle1_x+2 === x || game.eagle1_x-2 === x)
 					&& (game.eagle1_y === y || game.eagle1_y-1 === y || game.eagle1_y+1 === y || game.eagle1_y+2 === y || game.eagle1_y-2 === y))
 				) {
+
+				// Player is hit, life deducted and game restarts
 				document.app.audio.explode.load();
 				document.app.audio.explode.play();
-				// game.context.drawImage(images.bigRedExplosion, (x*10)-10, (y*10)-10);
 				game.explosion=true;
 				game.newGame = true;
+
 				return true;
 			}
 		};

@@ -1,5 +1,6 @@
 'use strict';
 
+// Mute Button
 const toggleAudio = () => {
   if (document.app.audio.muted) {
     document.app.audio.muted = false;
@@ -21,3 +22,10 @@ const toggleAudio = () => {
     document.getElementsByClassName('mute')[0].innerText =' 🔊';
   }
 };
+
+// Pause Button
+const pauseButton = document.getElementByClassName('pause_button')[0];
+
+function pauseGame() {
+
+}
