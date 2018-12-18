@@ -71,8 +71,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'images', 'singlePlayer'],
 		x = Math.floor(x / 10);
 		if (x <= 0 || x >= 60 || y <= 0 || y >= 60) {
 			singlePlayer.ai.bots[bot_index].bullets.splice(bullet_index, 1);
-			// document.app.audio.dud.load();
-			// document.app.audio.dud.play();
+
 			return false;
 		}
 		let row = game.worldData[y];

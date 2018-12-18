@@ -1,15 +1,16 @@
 'use strict';
 
-
-define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
-  function (game, events, audio, mWorld, tank, multiPlayer_draw) {
+define(['game', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
+  function (game, audio, mWorld, tank, multiPlayer_draw) {
 
     const init = () => {
       multiPlayer_draw.start();
+
       game.socket.on('player-disconnected', () => {
         const mpDisplay = document.getElementById('mpS');
         mpDisplay.innerHTML = '';
       });
+
       game.socket.on('send-game-state', (gameState) => {
         game.mpPlayers = gameState.players;
         game.mpWorld = gameState.world;
@@ -18,11 +19,13 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
         game.currentUser = gameState.users[game.mpCurrentId];
         displayMultiplayer();
       });
+
       game.multiplayer = true;
     };
 
     const displayMultiplayer = () => {
       const mpDisplay = document.getElementById('mpS');
+
       for (let key in game.users) {
         let user = game.users[key];
         let userId = 'mpS_' + user.id;
@@ -33,6 +36,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
           if (parseInt(document.getElementById(userIdScore).innerHTML) !== user.points) {
             document.getElementById(userIdScore).innerHTML = user.points;
           }
+
           if (parseInt(document.getElementById(userIdLives).innerHTML) !== user.lives) {
             if (user.lives < 0) {
               mpDisplay.innerHTML = '';
@@ -44,6 +48,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
           if (user.lives < 0) {
             mpDisplay.innerHTML = '';
           }
+
         } else {
           userDisplay = '<div id="' + userId + '"class="mpS__user"><span>user:</span>'
             + user.name + '<div class="mpS__display"><div class="mpS__score"><span>score</span><span id="' + userIdScore + '"> ' + user.points + '</span></div>'
@@ -55,6 +60,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
 
     const draw = {
       start: () => {
+
         console.log('draw start executed');
       }
     };
