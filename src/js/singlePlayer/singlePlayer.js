@@ -1,7 +1,6 @@
 'use strict';
 
-define(['game', 'bullets', 'mwObstacle', 'audio'],
-	function(game, bullets, mwObstacle, audio) {
+define(['game', 'bullets', 'mwObstacle'], (game, bullets, mwObstacle) => {
 
 		const ai = {};
 		ai.bots = [];
@@ -31,7 +30,6 @@ define(['game', 'bullets', 'mwObstacle', 'audio'],
 		};
 
 		const init = () => {
-
 			const speed = (game.difficulty + 1)*game.enemy_speed;
 			const detect_dist = (1)*16;
 
@@ -117,7 +115,7 @@ define(['game', 'bullets', 'mwObstacle', 'audio'],
 			let len = ai.bots.length;
 			x = Math.floor(x/10);
 			y = Math.floor(y/10);
-			for(var k = 0; k < len; k++) {
+			for(let k = 0; k < len; k++) {
 				let b = ai.bots[k];
 				let b_x = Math.floor(b.x/10);
 				let b_y = Math.floor(b.y/10);
@@ -126,15 +124,17 @@ define(['game', 'bullets', 'mwObstacle', 'audio'],
 					break;
 				}
 			}
-			if (collision) 
-				return true;
+
+			if (collision) {
+        return true;
+			}
 
 			return false;
 
 		};
 
 		const shootBool = () => {
-			var random = Math.floor(Math.random() * (30*(1-game.difficulty)));
+			const random = Math.floor(Math.random() * (30*(1-game.difficulty)));
 			return (random === 7);
 		};
 
@@ -179,5 +179,4 @@ define(['game', 'bullets', 'mwObstacle', 'audio'],
 			init: init,
 			ai: ai
 		}
-
 });

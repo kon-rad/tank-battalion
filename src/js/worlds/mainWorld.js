@@ -1,6 +1,6 @@
 'use strict';
 
-define(['game', 'tank', 'bullets'], function(game, tank, bullets) {
+define(['game'], (game) => {
  
 	const mWorld = {};
 
@@ -72,10 +72,10 @@ define(['game', 'tank', 'bullets'], function(game, tank, bullets) {
 		img2 = document.getElementById('border'),
 		border = game.context.createPattern(img2,"repeat");
 
-	const createWallSegment = (x, y, w, h, ptrn) => {
-		game.context.fillStyle = ptrn;
+	const createWallSegment = (x, y, w, h, pattern) => {
+		game.context.fillStyle = pattern;
 		game.context.fillRect(x, y, w, h);
-	}
+	};
 
 	mWorld.draw = (worldData) => {
 		worldData.forEach((i, index) => {
@@ -89,5 +89,4 @@ define(['game', 'tank', 'bullets'], function(game, tank, bullets) {
 	};
 
 	return mWorld;
-
 });

@@ -5,13 +5,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const index = require('./server/routes/index');
-const users = require('./server/routes/users');
-
-const Player = require('./server/lib/Player');
-const User = require('./server/lib/User');
-const GameState = require('./server/lib/GameState');
-const gameUpdate = require('./server/lib/gameUpdate');
+const index = require('./server/routes/indexRoutes');
+const users = require('./server/routes/usersRoutes');
 
 const app = express();
 
@@ -60,8 +55,7 @@ const http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-// var port = (process.env.PORT || '8000'); //heroku config
-var port = ('8081');
+const port = (process.env.PORT || '8081'); //heroku config
 app.set('port', port);
 
 /**
@@ -72,79 +66,8 @@ const commonPort = app.listen(port, () => {
   console.log('App running on localhost:8081');
 });
 
-const io = require('socket.io').listen(commonPort);
-
 /**
  * Socket.io Communication.
  */
-
-let playerSockets = [];
-let gameState = new GameState();
-const spawnPosition = [{x: 100, y: 580}, {x: 580, y: 300}, {x: 20, y: 350}, {x: 300, y: 20}];
-let xy = Math.floor(Math.random() * 4);
-
-let render = 0;
-const renderFn = () => {
-  render = setInterval(() => {
-    gameState = gameUpdate(gameState);
-    io.emit('send-game-state', gameState);
-
-  }, 100);
-};
-io.on('connection', function (socket) {
-
-  io.emit('msg', 'user connected');
-
-  /**
-   *  User disconnected.
-   */
-  socket.on('disconnect', () => {
-    let player = playerSockets.find(function (player) {
-      return player.socket === socket
-    });
-    if (player === undefined)
-      return new Error();
-    delete gameState.players[player.id];
-    delete gameState.users[player.id];
-    io.emit('player-disconnected', {id: socket.id})
-  });
-
-  /**
-   *  User Created.
-   */
-  socket.on('create-player', function (data) {
-    let id = socket.id;
-    playerSockets.push({id: id, socket: socket});
-    xy = ((xy + 1 >= 4) ? 0 : xy + 1);
-    let posX = spawnPosition[xy].x, posY = spawnPosition[xy].y;
-    gameState.addPlayer(new Player(id, posX, posY));
-    gameState.addUser(new User(id, data.name, data.color));
-    socket.emit('player-created', {
-      gameState: gameState,
-      id: id
-    });
-  });
-
-  /**
-   *  Update Player and Game States.
-   */
-  socket.on('game-state', function (newGameState) {
-    gameState.updatePlayerPosition(newGameState.player);
-  });
-
-  /**
-   *  Update Bullet State.
-   */
-  socket.on('bullet-fired', function (newBullet) {
-    gameState.updateBullets(newBullet);
-  });
-
-  /**
-   *  Update Player and Game States.
-   */
-  socket.on('explosion-update', function (newExplosionState) {
-    gameState.updateExplosion(newExplosionState);
-  });
-});
-
-renderFn();
+const io = require('socket.io').listen(commonPort);
+require('./server/routes/socketIoRoutes')(io);

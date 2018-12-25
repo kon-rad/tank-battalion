@@ -1,6 +1,6 @@
 'use strict';
 
-define(['game', 'tank', 'mWorld'], function (game, tank, mWorld) {
+define([], () => {
 
   const detect = (x, y, dir, world) => {
     y = Math.floor(y / 10);
@@ -8,11 +8,8 @@ define(['game', 'tank', 'mWorld'], function (game, tank, mWorld) {
     if (x <= 0 || x >= 60 || y <= 0 || y >= 60) {
       return true;
     }
-    let row = world[y];
-    row = row.split('');
-    let pos = Number(row[x]);
-    var pos2,
-      pos3;
+    let row = world[y].split('');
+    let pos = Number(row[x]), pos2, pos3;
     if (dir === 'up' || dir === 'down') {
       pos2 = Number(row[x - 1]);
       pos3 = Number(row[x + 1]);
@@ -24,12 +21,13 @@ define(['game', 'tank', 'mWorld'], function (game, tank, mWorld) {
       pos2 = Number(row2[x]);
       pos3 = Number(row3[x]);
     }
+
     if (pos || pos2 || pos3) {
       return true;
-    } else {
-      return false;
     }
-  }
+
+    return false;
+  };
 
   return {
     detect: detect

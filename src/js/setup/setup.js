@@ -153,7 +153,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       game.bullets = [];
       game.bullets_fired = false;
       display.innerHTML = '';
-      var startGame = setInterval(loading, 100);
+      const startGame = setInterval(loading, 100);
       setTimeout(clearLoading, 1400);
 
       function clearLoading() {
@@ -190,7 +190,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       [...display_lives].forEach((life) => {
         life.style.display = 'block';
       });
-    }
+    };
 
     const youWin = () => {
       display.innerHTML = '<div id="win" class="display_text__1player_win">'
@@ -228,6 +228,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       restoreOnScreenBots();
       restoreDestroyedBots();
     };
+
     const loadMultiplayerMenu = () => {
       display.innerHTML = '<div class="display_text__multiplayerMenu"><input id="mpName"'
         + ' type="text" placeholder="Username"><select id="mpColor" name="mpColor">'

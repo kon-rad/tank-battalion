@@ -20,7 +20,6 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
       /**
        * Render Current Player
        */
-
       if (game.users[game.mpCurrentId].lives < 0) {
         game.currentPlayer.moving = false;
         require(['setup'], function (setup) {
