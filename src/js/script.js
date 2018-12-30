@@ -24,9 +24,9 @@ const toggleAudio = () => {
 };
 
 // Pause Button
-const pauseButton = document.getElementByClassName('pause_button')[0];
+const pauseButton = document.getElementsByClassName('pause_button')[0];
 pauseButton.addEventListener('click', pauseGame, false);
 
 function pauseGame() {
-  document.game.pause = document.game.pause ? false : true;
+  document.game.pause = !document.game.pause;
 }
