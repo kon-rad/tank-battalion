@@ -17,6 +17,8 @@ define(function() {
 	game.bool = true;
 	game.time = 0;
 	game.bullets_fired = false;
+	game.paused = false;
+	game.exit = false;
 	game.timer = setInterval(function(){
 		game.time += 100;
 	}, 100);
@@ -76,6 +78,8 @@ define(function() {
 			}
 		}
 	};
+
+	document.game = game;
 
 	return game;
 });

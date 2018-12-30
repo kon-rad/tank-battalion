@@ -147,7 +147,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       game.playerOneLives--;
       display_lives[game.playerOneLives].style.display = 'none';
       restoreOnScreenBots();
-      let posX = [100, 200, 440, 560]
+      let posX = [100, 200, 440, 560];
       game.x = posX[Math.floor(Math.random() * 4)];
       game.y = 580;
       game.bullets = [];

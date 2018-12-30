@@ -26,6 +26,9 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 				setup.loadOnePlayer();
 			})
 		}
+		if (game.pause) {
+
+		}
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
 
