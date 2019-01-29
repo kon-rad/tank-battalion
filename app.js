@@ -10,7 +10,7 @@ const users = require('./server/routes/usersRoutes');
 
 const app = express();
 
-// favicon
+// static files
 app.use(serveStatic(__dirname + '/public'));
 
 // view engine setup
