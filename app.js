@@ -11,13 +11,7 @@ const users = require('./server/routes/usersRoutes');
 const app = express();
 
 // favicon
-app.use(serveStatic(__dirname + '/public/favicon/apple-touch-icon.png'));
-app.use(serveStatic(__dirname + '/public/favicon/favicon-32x32.png'));
-app.use(serveStatic(__dirname + '/public/favicon/favicon-16x16.png'));
-app.use(serveStatic(__dirname + '/public/favicon/favicon.ico'));
-app.use(serveStatic(__dirname + '/public/favicon/manifest.json'));
-app.use(serveStatic(__dirname + '/public/favicon/safari-pinned-tab.svg'));
-app.use(serveStatic(__dirname + '/public/favicon/browserconfig.xml'));
+app.use(serveStatic(__dirname + '/public'));
 
 // view engine setup
 app.set('views', path.join(__dirname, '/server/views'));
