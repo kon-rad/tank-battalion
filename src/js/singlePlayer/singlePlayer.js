@@ -10,11 +10,11 @@ define(['game', 'bullets', 'mwObstacle'], (game, bullets, mwObstacle) => {
 
 		const loadBot = () => {
 
-			let dir = (game.time % 2 === 0)?'right':'left';
+			let dir = (game.time % 2 === 0) ? 'right' : 'left';
 			let loc = game.randomBotPosition();
 
 			let bot = {
-				id: game.time+'',
+				id: game.time + '',
 				index: ai.bots.length,
 				dir: dir,
 				moving: true,
@@ -30,8 +30,8 @@ define(['game', 'bullets', 'mwObstacle'], (game, bullets, mwObstacle) => {
 		};
 
 		const init = () => {
-			const speed = (game.difficulty + 1)*game.enemy_speed;
-			const detect_dist = (1)*16;
+			const speed = (game.difficulty + 1) * game.enemy_speed;
+			const detect_dist = (1) * 16;
 
 			setTimeout(loadBot, 500);
 
@@ -41,6 +41,7 @@ define(['game', 'bullets', 'mwObstacle'], (game, bullets, mwObstacle) => {
 					clearInterval(game.loadBots);
 				}
 			}, game.timeBetweenBotSpawn);
+
 			game.bots = setInterval(function() {
 				ai.bots.forEach(function(bot) {
 					if (bot.moving) {

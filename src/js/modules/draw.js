@@ -27,6 +27,14 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			})
 		}
 		if (game.pause) {
+			clearInterval(game.onePlayerGame);
+			clearInterval(game.bots);
+			clearInterval(game.loadBots);
+			game.checkGameUnpaused = setInterval(() => {
+				if (game.pause) return;
+				singlePlayer.init();
+				start();
+			}, 1000);
 
 		}
 		game.context.fillStyle = '#000';

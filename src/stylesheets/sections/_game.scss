@@ -113,12 +113,12 @@ body {
 .pause_button {
   @extend %control_button;
   width: 40px;
-  display: none;
+  //display: none;
 }
 .exit_button {
   @extend %control_button;
   width: 40px;
-  display: none;
+  //display: none;
 }
 .game_title__instructions {
   @extend %control_button;
