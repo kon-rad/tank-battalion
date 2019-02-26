@@ -44,7 +44,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		mWorld.draw(game.worldData);
 
 		game.context.drawImage(images.eagle, 274, 566);
-		if(bullets.renderExplosion){
+		if(bullets.renderExplosion) {
 			game.context.drawImage(images.explosion, bullets.renderExplosion_x-10, bullets.renderExplosion_y-10);
 			bullets.renderExplosion = false;
 		}
@@ -59,7 +59,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		});
 
 		let bots = singlePlayer.ai.bots;
-		bots.forEach(function(bot, bot_index){
+		bots.forEach(function(bot, bot_index) {
 			if(bot.moving) {
 				renderBot.render(bot);
 			}
@@ -78,7 +78,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 
 		switch (game.tankDirection) {
 			case 'up':
-        if (game.moving && !mwObstacle.detect(game.x, game.y-15, game.tankDirection, game.worldData)){
+        if (game.moving && !mwObstacle.detect(game.x, game.y-15, game.tankDirection, game.worldData)) {
           game.y -= speed;
         }
         tank.moving_up(game.x, game.y);
