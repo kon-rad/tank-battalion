@@ -81,6 +81,16 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
     }
   };
 
+  events.initListeners = () => {
+    document.addEventListener("keydown", events.handleKeydown, false);
+    document.addEventListener("keyup", events.handleKeyUp, false);
+  };
+
+  events.clearListeners = () => {
+    document.removeEventListener("keydown", events.handleKeydown, false);
+    document.removeEventListener("keyup", events.handleKeyUp, false);
+  };
+
   const handleFireBullet = () => {
     if (game.multiplayer && !game.currentUser.bulletFired) {
       mpBullet.fireBullet();

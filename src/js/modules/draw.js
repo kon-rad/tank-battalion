@@ -1,7 +1,7 @@
 'use strict';
 
-define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 'singlePlayer', 'renderBot'], 
-	function(game, tank, bullets, mWorld, mwObstacle, images, audio, singlePlayer, renderBot) {
+define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 'singlePlayer', 'renderBot', 'events'],
+	function(game, tank, bullets, mWorld, mwObstacle, images, audio, singlePlayer, renderBot, events) {
 
 	const start = () => {
 		game.onePlayerGame = setInterval(go, 100);
@@ -30,10 +30,12 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			clearInterval(game.onePlayerGame);
 			clearInterval(game.bots);
 			clearInterval(game.loadBots);
+			events.clearListeners();
 			game.checkGameUnpaused = setInterval(() => {
 				if (game.pause) return;
 				singlePlayer.init();
 				start();
+				events.initListeners();
 				clearInterval(game.checkGameUnpaused);
 			}, 1000);
 

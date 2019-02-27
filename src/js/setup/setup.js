@@ -49,7 +49,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
         tank.moving_up(game.x, game.y);
       } else {
         game.bool = true;
-
       }
     };
 
@@ -79,9 +78,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       if (parseInt(game.high_num.innerHTML) <= game.playerOnePoints * 10) {
         game.high_num.innerHTML = game.playerOnePoints * 10;
       }
-
-      document.addEventListener("keydown", events.handleKeydown, false);
-      document.addEventListener("keyup", events.handleKeyUp, false);
+      events.initListeners();
     };
 
     const loadMultiplayer = (name, color) => {
@@ -158,8 +155,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
 
       function clearLoading() {
         clearInterval(startGame);
-        document.addEventListener("keydown", events.handleKeydown, false);
-        document.addEventListener("keyup", events.handleKeyUp, false);
+        events.initListeners();
         singlePlayer.ai.bots = [];
         singlePlayer.init();
         document.app.audio.start.play();
