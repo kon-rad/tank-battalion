@@ -34,6 +34,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 				if (game.pause) return;
 				singlePlayer.init();
 				start();
+				clearInterval(game.checkGameUnpaused);
 			}, 1000);
 
 		}
