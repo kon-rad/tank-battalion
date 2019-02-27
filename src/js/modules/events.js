@@ -11,17 +11,22 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
   const events = {};
 
   events.handleKeyUp = (e) => {
-    if (
-      e.keyCode === 87 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 68
-      || e.keyCode === 38 || e.keyCode === 37 || e.keyCode === 40 || e.keyCode === 39
-    ) {
-      if (game.multiplayer) {
-        game.currentPlayer.moving = false;
-        game.socket.emit('game-state', { player: game.currentPlayer });
-      } else {
-        game.moving = false;
-      }
-      document.app.audio.move.pause();
+    switch(e.keyCode) {
+      case 87:
+      case 65:
+      case 83:
+      case 68:
+      case 38:
+      case 37:
+      case 40:
+      case 39:
+        if (game.multiplayer) {
+          game.currentPlayer.moving = false;
+          game.socket.emit('game-state', { player: game.currentPlayer });
+        } else {
+          game.moving = false;
+        }
+        document.app.audio.move.pause();
     }
   };
 
