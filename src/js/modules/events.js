@@ -26,59 +26,11 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
   };
 
   events.handleKeydown = (e) => {
-    switch (e.keyCode) {
-      case 38:
-      case 87:
-        if (game.multiplayer) {
-          game.currentPlayer.moving = true;
-          game.currentPlayer.tankDirection = 'up';
-          game.socket.emit('game-state', { player: game.currentPlayer });
-        } else {
-          game.moving = true;
-          game.tankDirection = 'up';
-        }
-        document.app.audio.move.play();
-        break;
-      case 37:
-      case 65:
-        if (game.multiplayer) {
-          game.currentPlayer.moving = true;
-          game.currentPlayer.tankDirection = 'left';
-          game.socket.emit('game-state', { player: game.currentPlayer });
-        } else {
-          game.moving = true;
-          game.tankDirection = 'left';
-        }
-        document.app.audio.move.play();
-        break;
-      case 40:
-      case 83:
-        if (game.multiplayer) {
-          game.currentPlayer.moving = true;
-          game.currentPlayer.tankDirection = 'down';
-          game.socket.emit('game-state', { player: game.currentPlayer });
-        } else {
-          game.moving = true;
-          game.tankDirection = 'down';
-        }
-        document.app.audio.move.play();
-        break;
-      case 39:
-      case 68:
-        if (game.multiplayer) {
-          game.currentPlayer.moving = true;
-          game.currentPlayer.tankDirection = 'right';
-          game.socket.emit('game-state', { player: game.currentPlayer });
-        } else {
-          game.moving = true;
-          game.tankDirection = 'right';
-        }
-        document.app.audio.move.play();
-        break;
-      case 32:
-        handleFireBullet();
-        break;
+    if (game.multiplayer) {
+      handleKeydownMultiplayer(e);
+      return;
     }
+    handleKeydownSingle(e);
   };
 
   events.initListeners = () => {
@@ -101,6 +53,76 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
       document.app.audio.shoot.play();
     }
   };
+
+
+
+  function handleKeydownMultiplayer(e) {
+    switch (e.keyCode) {
+      case 38:
+      case 87:
+        game.currentPlayer.moving = true;
+        game.currentPlayer.tankDirection = 'up';
+        game.socket.emit('game-state', { player: game.currentPlayer });
+        document.app.audio.move.play();
+        break;
+      case 37:
+      case 65:
+        game.currentPlayer.moving = true;
+        game.currentPlayer.tankDirection = 'left';
+        game.socket.emit('game-state', { player: game.currentPlayer });
+        document.app.audio.move.play();
+        break;
+      case 40:
+      case 83:
+        game.currentPlayer.moving = true;
+        game.currentPlayer.tankDirection = 'down';
+        game.socket.emit('game-state', { player: game.currentPlayer });
+        document.app.audio.move.play();
+        break;
+      case 39:
+      case 68:
+        game.currentPlayer.moving = true;
+        game.currentPlayer.tankDirection = 'right';
+        game.socket.emit('game-state', { player: game.currentPlayer });
+        document.app.audio.move.play();
+        break;
+      case 32:
+        handleFireBullet();
+        break;
+    }
+  }
+
+  function handleKeydownSingle(e) {
+    switch (e.keyCode) {
+      case 38:
+      case 87:
+        game.moving = true;
+        game.tankDirection = 'up';
+        document.app.audio.move.play();
+        break;
+      case 37:
+      case 65:
+        game.moving = true;
+        game.tankDirection = 'left';
+        document.app.audio.move.play();
+        break;
+      case 40:
+      case 83:
+        game.moving = true;
+        game.tankDirection = 'down';
+        document.app.audio.move.play();
+        break;
+      case 39:
+      case 68:
+        game.moving = true;
+        game.tankDirection = 'right';
+        document.app.audio.move.play();
+        break;
+      case 32:
+        handleFireBullet();
+        break;
+    }
+  }
 
   return events;
 });

@@ -107,7 +107,6 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		}
 	};
 
-
 	return {
 		start: start,
 		go: go
