@@ -17,6 +17,15 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
       game.context.fillRect(0, 0, game.cw, game.ch);
       mWorld.draw(game.mpWorld);
 
+      if (game.exit) {
+        game.exit = false;
+        clearInterval(game.multiPlayerGame);
+        events.clearListeners();
+        require(['setup'], function(setup) {
+          setup.restoreGame();
+        })
+      }
+
       /**
        * Render Current Player
        */

@@ -9,9 +9,9 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 
 	const go = () => {
 		// Handles game ending, starts new game
-		if(game.newGame) {
+		if (game.newGame) {
 			// game.explosion decides if to render an explosion
-			if(game.explosion) {
+			if (game.explosion) {
 				game.context.drawImage(images.explosion, (game.x)-10, (game.y)-10);
 				game.explosion = false;
 			}
@@ -38,7 +38,16 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 				events.initListeners();
 				clearInterval(game.checkGameUnpaused);
 			}, 1000);
-
+		}
+		if (game.exit) {
+			game.exit = false;
+			clearInterval(game.onePlayerGame);
+			clearInterval(game.bots);
+			clearInterval(game.loadBots);
+			events.clearListeners();
+			require(['setup'], function(setup) {
+				setup.restoreGame();
+			})
 		}
 		game.context.fillStyle = '#000';
 		game.context.fillRect(0, 0, game.cw, game.ch);
@@ -47,7 +56,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 		mWorld.draw(game.worldData);
 
 		game.context.drawImage(images.eagle, 274, 566);
-		if(bullets.renderExplosion) {
+		if (bullets.renderExplosion) {
 			game.context.drawImage(images.explosion, bullets.renderExplosion_x-10, bullets.renderExplosion_y-10);
 			bullets.renderExplosion = false;
 		}
@@ -63,7 +72,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 
 		let bots = singlePlayer.ai.bots;
 		bots.forEach(function(bot, bot_index) {
-			if(bot.moving) {
+			if (bot.moving) {
 				renderBot.render(bot);
 			}
 

@@ -78,11 +78,9 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       if (parseInt(game.high_num.innerHTML) <= game.playerOnePoints * 10) {
         game.high_num.innerHTML = game.playerOnePoints * 10;
       }
-      events.initListeners();
     };
 
     const loadMultiplayer = (name, color) => {
-
       let plr = {};
       plr.color = color;
       plr.name = name;
@@ -106,6 +104,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       let displayScore = document.getElementById('singlePlayerScore');
       displayScore.style.display = 'none';
       multiPlayer.init();
+      // secret hidden reset button
       document.getElementById('resetGameButton').addEventListener('click', reset);
     };
 
@@ -210,22 +209,24 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       restoreDestroyedBots();
     };
 
-    const gameOverMultiplayer = () => {
-      display.innerHTML = '<div id="win" class="display_text__1player_win">'
-        + 'Game Over!<br/>Play again?</div>';
-      const win = document.getElementById('win');
-      win.addEventListener('click', control);
-      game.bullets = [];
-      game.bots_destroyed = 0;
-      game.bots_on_screen = 0;
-      game.playerOnePoints = 0;
-      game.score_num.innerHTML = game.playerOnePoints * 10;
+    const restoreGame = () => {
+      if (game.socket) {
+        game.socket.disconnect();
+      }
       restorePlayerOneLives();
       restoreOnScreenBots();
       restoreDestroyedBots();
+      control();
+    };
+
+    const gameOverMultiplayer = () => {
+      //Todo: create this
     };
 
     const loadMultiplayerMenu = () => {
+      //Todo: remove this and activate exit button
+      document.getElementsByClassName('pause_button')[0].style.display = 'none';
+      document.getElementsByClassName('exit_button')[0].style.display = 'none';
       display.innerHTML = '<div class="display_text__multiplayerMenu"><input id="mpName"'
         + ' type="text" placeholder="Username"><select id="mpColor" name="mpColor">'
         + '<option value="#76ff03">neon green</option>'
@@ -243,11 +244,13 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
       let color = document.getElementById('mpColor').value;
       display.innerHTML = '';
       loadMultiplayer(name, color);
+      events.initListeners();
     };
 
     return {
       control: control,
       loadOnePlayer: loadOnePlayer,
-      reset: reset
+      reset: reset,
+      restoreGame: restoreGame
     };
   });

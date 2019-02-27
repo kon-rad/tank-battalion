@@ -60,7 +60,6 @@ const eraseBlock = (x, y, gameState) => {
 };
 
 const gameUpdate = (gameState) => {
-
   // update bullet speed and check for collisions
   for (let key in gameState.bullets) {
     let bullet = gameState.bullets[key];
