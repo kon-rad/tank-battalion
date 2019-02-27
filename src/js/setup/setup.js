@@ -235,7 +235,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
         + '<option value="#e91e63">pink</option>'
         + '</select><button id="mpSubmit">Enter</button></div>';
       let mpForm = document.getElementById('mpSubmit');
-      let color = document.getElementById('mpColor').value;
       mpForm.addEventListener('click', mpFormSubmit);
     };
 

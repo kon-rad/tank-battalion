@@ -27,6 +27,7 @@
     "gulp-cssnano": "^2.1.2",
     "gulp-imagemin": "^4.1.0",
     "gulp-sass": "^3.2.1",
-    "gulp-sourcemaps": "^2.6.1"
+    "gulp-sourcemaps": "^2.6.1",
+    "node-sass": "^4.11.0"
   }
 }
