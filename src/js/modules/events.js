@@ -3,7 +3,12 @@
 define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bullets, audio, mpBullet) {
 
   window.addEventListener('keydown', function (e) {
-    if (e.keyCode === 32 || e.keyCode === 38 || e.keyCode === 37 || e.keyCode === 40 || e.keyCode === 39) {
+    switch (e.keyCode) {
+      case 32:
+      case 38:
+      case 37:
+      case 40:
+      case 39:
       e.preventDefault();
     }
   });
@@ -46,6 +51,7 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
   events.clearListeners = () => {
     document.removeEventListener("keydown", events.handleKeydown, false);
     document.removeEventListener("keyup", events.handleKeyUp, false);
+    events.handleKeyUp({ keyCode: 87 });
   };
 
   const handleFireBullet = () => {
@@ -58,8 +64,6 @@ define(['game', 'bullets', 'audio', 'multiPlayer_bullet'], function (game, bulle
       document.app.audio.shoot.play();
     }
   };
-
-
 
   function handleKeydownMultiplayer(e) {
     switch (e.keyCode) {

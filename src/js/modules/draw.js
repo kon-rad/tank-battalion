@@ -21,6 +21,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			clearInterval(game.onePlayerGame);
 			clearInterval(game.bots);
 			clearInterval(game.loadBots);
+			events.clearListeners();
 
 			require(['setup'], function(setup) {
 				setup.loadOnePlayer();
@@ -70,7 +71,7 @@ define(['game', 'tank', 'bullets', 'mWorld', 'mwObstacle', 'images', 'audio', 's
 			bullets.render_bullet(item, index);
 		});
 
-		let bots = singlePlayer.ai.bots;
+		const bots = singlePlayer.ai.bots;
 		bots.forEach(function(bot, bot_index) {
 			if (bot.moving) {
 				renderBot.render(bot);

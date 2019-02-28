@@ -130,6 +130,7 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
         restorePlayerOneLives();
         restoreOnScreenBots();
         restoreDestroyedBots();
+        events.initListeners();
         game.worldData = mWorld.parent.slice();
         mWorld.draw(game.worldData);
         game.bots_loaded = 0;

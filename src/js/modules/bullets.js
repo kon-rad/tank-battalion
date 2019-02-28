@@ -59,8 +59,7 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
       game.bullets.splice(b_i, 1);
       return true;
     }
-    let row = (game.worldData[y]);
-    row = row.split('');
+    let row = game.worldData[y].split('');
     let pos = Number(row[x]);
 
     if (pos) {
@@ -82,9 +81,7 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
       return true;
     }
 
-    let len = singlePlayer.ai.bots.length;
-
-    for (let k = 0; k < len; k++) {
+    for (let k = 0; k < singlePlayer.ai.bots.length; k++) {
       let b = singlePlayer.ai.bots[k];
       let b_x = Math.floor(b.x / 10);
       let b_y = Math.floor(b.y / 10);
@@ -111,8 +108,7 @@ define(['game', 'mWorld', 'audio', 'images', 'singlePlayer'], function (game, mW
   };
 
   const eraseBlock = (x, y) => {
-    let row = game.worldData[y];
-    row = row.split('');
+    let row = game.worldData[y].split('');
     row[x] = '0';
     row = row.join('');
     game.worldData[y] = row;
