@@ -17,19 +17,10 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
       game.context.fillRect(0, 0, game.cw, game.ch);
       mWorld.draw(game.mpWorld);
 
-      if (game.exit) {
-        game.exit = false;
-        clearInterval(game.multiPlayerGame);
-        events.clearListeners();
-        require(['setup'], function(setup) {
-          setup.restoreGame();
-        })
-      }
-
       /**
        * Render Current Player
        */
-      if (game.users[game.mpCurrentId].lives < 0) {
+      if (game.users[game.mpCurrentId].lives < 0 || game.exit) {
         game.currentPlayer.moving = false;
         require(['setup'], function (setup) {
           setup.reset();
@@ -102,6 +93,7 @@ define(['game', 'tank', 'mWorld', 'mwObstacle', 'images', 'audio', 'multiPlayer_
 
         game.context.fillStyle = player.color;
         if (player.tankDirection === 'up') {
+          console.log('player.color', player.color);
           tank.moving_up(player.x, player.y, player.color);
         } else if (player.tankDirection === 'down') {
           tank.moving_down(player.x, player.y, player.color);

@@ -45,7 +45,7 @@ module.exports = io => {
       playerSockets.push({id: id, socket: socket});
       xy = ((xy + 1 >= 4) ? 0 : xy + 1);
       let posX = spawnPosition[xy].x, posY = spawnPosition[xy].y;
-      gameState.addPlayer(new Player(id, posX, posY));
+      gameState.addPlayer(new Player(id, posX, posY, data.color));
       gameState.addUser(new User(id, data.name, data.color));
       socket.emit('player-created', {
         gameState: gameState,

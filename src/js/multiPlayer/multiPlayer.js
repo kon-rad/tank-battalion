@@ -60,8 +60,7 @@ define(['game', 'audio', 'mWorld', 'tank', 'multiPlayer_draw'],
 
     const draw = {
       start: () => {
-
-        console.log('draw start executed');
+        console.log('draw start fired');
       }
     };
 

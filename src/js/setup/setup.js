@@ -227,7 +227,6 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
     const loadMultiplayerMenu = () => {
       //Todo: remove this and activate exit button
       document.getElementsByClassName('pause_button')[0].style.display = 'none';
-      document.getElementsByClassName('exit_button')[0].style.display = 'none';
       display.innerHTML = '<div class="display_text__multiplayerMenu"><input id="mpName"'
         + ' type="text" placeholder="Username"><select id="mpColor" name="mpColor">'
         + '<option value="#76ff03">neon green</option>'
@@ -240,11 +239,12 @@ define(['game', 'events', 'audio', 'mWorld', 'tank', 'draw', 'singlePlayer', 'mu
     };
 
     const mpFormSubmit = () => {
-      let name = document.getElementById('mpName').value;
-      let color = document.getElementById('mpColor').value;
-      display.innerHTML = '';
-      loadMultiplayer(name, color);
+      loadMultiplayer(
+        document.getElementById('mpName').value,
+        document.getElementById('mpColor').value
+      );
       events.initListeners();
+      display.innerHTML = '';
     };
 
     return {
