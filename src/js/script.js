@@ -1,27 +1,24 @@
 'use strict';
 
 // Mute Button
-const toggleAudio = () => {
-  if (document.app.audio.muted) {
-    document.app.audio.muted = false;
-    document.app.audio.shoot.muted = false;
-    document.app.audio.move.muted = false;
-    document.app.audio.explode.muted = false;
-    document.app.audio.start.muted = false;
-    document.app.audio.point.muted = false;
-    document.app.audio.dud.muted = false;
-    document.getElementsByClassName('mute')[0].innerText =' 🔇';
-  } else {
-    document.app.audio.muted = true;
-    document.app.audio.shoot.muted = true;
-    document.app.audio.move.muted = true;
-    document.app.audio.explode.muted = true;
-    document.app.audio.start.muted = true;
-    document.app.audio.point.muted = true;
-    document.app.audio.start.muted = true;
-    document.getElementsByClassName('mute')[0].innerText =' 🔊';
-  }
-};
+const toggleAudio = () => muteAudio(document.app.audio.muted);
+
+/**
+ * Audio control, mute/unmute and set button logo
+ * @param {boolean} b 
+ */
+function muteAudio(b) {
+  b = b ? false : true;
+  const ad = document.app.audio;
+  ad.muted = b;
+  ad.shoot.muted = b;
+  ad.move.muted = b;
+  ad.explode.muted = b;
+  ad.start.muted = b;
+  ad.point.muted = b;
+  ad.start.muted = b;
+  document.getElementsByClassName('mute')[0].innerText = b ? ' 🔊' : ' 🔇';
+}
 
 // Pause Button
 const pauseButton = document.getElementsByClassName('pause_button')[0];

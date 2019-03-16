@@ -4,14 +4,9 @@
     background-color: #bdbdbd;
     border-radius: 5px;
     margin: 0 auto;
-    display: none;
-
-}
-@media (max-width: 768px) {
-  .mobile_controller {
     display: block;
-  }
 }
+
 .mobile_controller__inner {
     position: relative;
     width: 828px;
