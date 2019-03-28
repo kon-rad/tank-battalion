@@ -1,6 +1,6 @@
 'use strict';
 
-// Mute Button
+// Mute Button - called from html
 const toggleAudio = () => muteAudio(document.app.audio.muted);
 
 /**
@@ -8,7 +8,7 @@ const toggleAudio = () => muteAudio(document.app.audio.muted);
  * @param {boolean} b 
  */
 function muteAudio(b) {
-  b = b ? false : true;
+  b = !b;
   const ad = document.app.audio;
   ad.muted = b;
   ad.shoot.muted = b;

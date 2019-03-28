@@ -66,13 +66,12 @@ define(function() {
 
 	// Multiplayer game state
 	game.multiplayer = false;
-  game.mpBullets = [];
+  	game.mpBullets = [];
 	game.id = () => {
 	  return '_' + Math.random().toString(36).substr(2, 9);
 	};
 	game.find_mpCurrentIndex = () => {
-		let len = game.mpPlayers.length;
-		for(let i = 0; i < len; i++) {
+		for(let i = 0, len = game.mpPlayers.length; i < len; i++) {
 			if(game.mpPlayers[i].id === game.mpCurrentId) {
 				return i;
 			}
