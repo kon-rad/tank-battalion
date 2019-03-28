@@ -1,33 +1,34 @@
 const worldData = require('./worldData');
 
 class GameState {
-  constructor() {
-    this.players = {};
-    this.bullets = {};
-    this.world = worldData.slice();
-    this.users = {};
-  }
+    constructor() {
+        this.players = {};
+        this.bullets = {};
+        this.world = worldData.slice();
+        this.users = {};
+    }
 
-  addPlayer(player) {
-    this.players[player.id] = player;
-  }
+    addPlayer(player) {
+        this.players[player.id] = player;
+    }
 
-  addUser(user) {
-    this.users[user.id] = user;
-  }
+    addUser(user) {
+        this.users[user.id] = user;
+    }
 
-  updatePlayerPosition(playerState) {
-    this.players[playerState.id] = playerState;
-  }
+    updatePlayerPosition(playerState) {
+        this.players[playerState.id] = playerState;
+    }
 
-  updateBullets(bullet) {
-    this.bullets[bullet.id] = bullet;
-    this.users[bullet.id].bulletFired = true;
-  }
+    updateBullets(bullet) {
+        this.bullets[bullet.id] = bullet;
+        this.users[bullet.id].bulletFired = true;
+    }
 
-  updateExplosion(newExplosionState) {
-    this.users[newExplosionState.id].explosion = newExplosionState.explosion;
-  }
+    updateExplosion(newExplosionState) {
+        this.users[newExplosionState.id].explosion =
+            newExplosionState.explosion;
+    }
 }
 
 module.exports = GameState;
