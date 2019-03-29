@@ -132,10 +132,6 @@ define([
         let displayScore = document.getElementById('singlePlayerScore');
         displayScore.style.display = 'none';
         multiPlayer.init();
-        // secret hidden reset button
-        document
-            .getElementById('resetGameButton')
-            .addEventListener('click', reset);
     };
 
     const reset = () => {
