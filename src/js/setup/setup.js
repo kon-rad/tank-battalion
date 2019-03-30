@@ -37,6 +37,7 @@ define([
             '<div class="display_text__1player">' +
             'SINGLE PLAYER</div></br></br>' +
             '<div class="display_text__2player">MULTIPLAYER</div>';
+
         const onePlayer = document.getElementsByClassName(
             'display_text__1player'
         )[0];
