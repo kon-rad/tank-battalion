@@ -82,6 +82,8 @@ define([
     };
 
     const startOnePlayer = () => {
+        document.game.pause = false;
+        document.game.exit = false;
         game.playerOneLives = 3;
         game.bullets = [];
         game.bots_destroyed = 0;
