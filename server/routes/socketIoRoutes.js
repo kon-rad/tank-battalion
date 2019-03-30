@@ -26,7 +26,7 @@ module.exports = io => {
         io.emit('msg', 'user connected');
 
         /**
-         *  User disconnected.
+         * User disconnected.
          */
         socket.on('disconnect', () => {
             let player = playerSockets.find(function(player) {

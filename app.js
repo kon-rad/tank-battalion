@@ -49,7 +49,7 @@ const http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-const port = process.env.PORT || '8081'; //heroku config
+const port = '8081';
 app.set('port', port);
 
 /**
