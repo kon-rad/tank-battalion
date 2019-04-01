@@ -1,11 +1,12 @@
 'use strict';
 
 define(['game'], function(game) {
-    var tank = {};
+    const tank = {};
+    const GREEN = 'green';
 
     tank.moving_up = function(x, y, color) {
         if (color === undefined) {
-            color = 'green';
+            color = GREEN;
         }
         game.context.fillStyle = color;
         game.context.fillRect(x - 8, y - 8, 14, 14);
@@ -16,7 +17,7 @@ define(['game'], function(game) {
     };
     tank.moving_down = function(x, y, color) {
         if (color === undefined) {
-            color = 'green';
+            color = GREEN;
         }
         game.context.fillStyle = color;
         game.context.fillRect(x - 8, y - 7, 14, 14);
@@ -27,7 +28,7 @@ define(['game'], function(game) {
     };
     tank.moving_right = function(x, y, color) {
         if (color === undefined) {
-            color = 'green';
+            color = GREEN;
         }
         game.context.fillStyle = color;
         game.context.fillRect(x - 7, y - 6, 14, 14);
@@ -38,7 +39,7 @@ define(['game'], function(game) {
     };
     tank.moving_left = function(x, y, color) {
         if (color === undefined) {
-            color = 'green';
+            color = GREEN;
         }
         game.context.fillStyle = color;
         game.context.fillRect(x - 8, y - 6, 14, 14);

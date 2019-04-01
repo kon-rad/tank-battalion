@@ -3,7 +3,6 @@
 /**
  * This file renders the game for multi player mode, the function go runs every 100 ms
  */
-
 define([
     'game',
     'tank',
