@@ -68,9 +68,7 @@ define(['game'], (game) => {
 	];
 
 	let img = document.getElementById('brick'),
-		brick = game.context.createPattern(img,"repeat"),
-		img2 = document.getElementById('border'),
-		border = game.context.createPattern(img2,"repeat");
+		brick = game.context.createPattern(img,"repeat");
 
 	const createWallSegment = (x, y, w, h, pattern) => {
 		game.context.fillStyle = pattern;
