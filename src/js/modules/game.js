@@ -75,11 +75,7 @@ define(function() {
         );
     };
     game.find_mpCurrentIndex = () => {
-        for (let i = 0, len = game.mpPlayers.length; i < len; i++) {
-            if (game.mpPlayers[i].id === game.mpCurrentId) {
-                return i;
-            }
-        }
+        return game.mpPlayers.find(player => player.id === game.mpCurrentId);
     };
 
     document.game = game;
