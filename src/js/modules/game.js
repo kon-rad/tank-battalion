@@ -66,17 +66,6 @@ define(function() {
     // Multiplayer game state
     game.multiplayer = false;
     game.mpBullets = [];
-    game.id = () => {
-        return (
-            '_' +
-            Math.random()
-                .toString(36)
-                .substr(2, 9)
-        );
-    };
-    game.find_mpCurrentIndex = () => {
-        return game.mpPlayers.find(player => player.id === game.mpCurrentId);
-    };
 
     document.game = game;
 
