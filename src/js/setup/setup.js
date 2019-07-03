@@ -180,20 +180,21 @@ define([
         display.innerHTML = '';
         const startGame = setInterval(loading, 100);
         setTimeout(clearLoading, 1400);
-
-        function clearLoading() {
-            clearInterval(startGame);
-            events.initListeners();
-            singlePlayer.ai.bots = [];
-            singlePlayer.init();
-            document.app.audio.start.play();
-            game.canvas.setAttribute('tabindex', '0');
-            game.canvas.focus();
-            tank.moving_up(game.x, game.y);
-            game.tankDirection = 'up';
-            draw.start();
-        }
     };
+
+
+    const clearLoading = () => {
+        clearInterval(startGame);
+        events.initListeners();
+        singlePlayer.ai.bots = [];
+        singlePlayer.init();
+        document.app.audio.start.play();
+        game.canvas.setAttribute('tabindex', '0');
+        game.canvas.focus();
+        tank.moving_up(game.x, game.y);
+        game.tankDirection = 'up';
+        draw.start();
+    }
 
     const restoreOnScreenBots = () => {
         [...game.display_bots].forEach(bot => {
