@@ -1,7 +1,6 @@
 'use strict';
 
 define(['game'], (game) => {
- 
 	const mWorld = {};
 
 	mWorld.parent = [
@@ -67,8 +66,8 @@ define(['game'], (game) => {
 		 '000000000000000000000011100000000111000000000000000000000000',
 	];
 
-	let img = document.getElementById('brick'),
-		brick = game.context.createPattern(img,"repeat");
+	const BRICK_IMAGE = document.getElementById('brick');
+	const BRICK = game.context.createPattern(BRICK_IMAGE,"repeat");
 
 	const createWallSegment = (x, y, w, h, pattern) => {
 		game.context.fillStyle = pattern;
@@ -80,7 +79,7 @@ define(['game'], (game) => {
 			i = i.split('');
 			i.map((cell, cell_i) => {
 				if(Number(cell)){
-					createWallSegment((cell_i*10), (index*10), 10, 10, brick);
+					createWallSegment((cell_i*10), (index*10), 10, 10, BRICK);
 				}
 			})
 		});
