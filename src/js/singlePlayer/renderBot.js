@@ -10,7 +10,7 @@ define([
 ], function(game, tank, bullets, mWorld, images, singlePlayer) {
     const bot = {};
 
-    bot.moving_up = function(x, y) {
+    bot.moving_up = (x, y) => {
         game.context.fillStyle = 'blue';
         game.context.fillRect(x - 8, y - 8, 14, 14);
         game.context.fillRect(x - 2, y - 18, 4, 12);
@@ -18,7 +18,7 @@ define([
         game.context.fillRect(x - 12, y - 12, 6, 24);
         game.context.fillRect(x + 6, y - 12, 6, 24);
     };
-    bot.moving_down = function(x, y) {
+    bot.moving_down = (x, y) => {
         game.context.fillStyle = 'blue';
         game.context.fillRect(x - 8, y - 7, 14, 14);
         game.context.fillRect(x - 2, y + 6, 4, 12);
@@ -26,7 +26,7 @@ define([
         game.context.fillRect(x - 12, y - 12, 6, 24);
         game.context.fillRect(x + 6, y - 12, 6, 24);
     };
-    bot.moving_right = function(x, y) {
+    bot.moving_right = (x, y) => {
         game.context.fillStyle = 'blue';
         game.context.fillRect(x - 7, y - 6, 14, 14);
         game.context.fillRect(x + 7, y - 2, 13, 4);
@@ -34,7 +34,7 @@ define([
         game.context.fillRect(x - 12, y - 12, 24, 6);
         game.context.fillRect(x - 12, y + 8, 24, 6);
     };
-    bot.moving_left = function(x, y) {
+    bot.moving_left = (x, y) => {
         game.context.fillStyle = 'blue';
         game.context.fillRect(x - 8, y - 6, 14, 14);
         game.context.fillRect(x - 20, y - 2, 12, 4);
@@ -43,11 +43,11 @@ define([
         game.context.fillRect(x - 12, y + 8, 24, 6);
     };
 
-    const render_bullet = function render_bullet(
+    const render_bullet = (
         bullet,
         bullet_index,
         bot_index
-    ) {
+    ) => {
         const speed = (game.difficulty + 1) * game.enemy_bullet_speed;
         switch (bullet.dir) {
             case 'up':
@@ -83,13 +83,13 @@ define([
         game.context.closePath();
     };
 
-    const checkBulletCollision = function checkBulletCollision(
+    const checkBulletCollision = (
         x,
         y,
         bullet_index,
         dir,
         bot_index
-    ) {
+    ) => {
         y = Math.floor(y / 10);
         x = Math.floor(x / 10);
         if (x <= 0 || x >= 60 || y <= 0 || y >= 60) {
