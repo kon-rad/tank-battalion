@@ -12,14 +12,20 @@ define(['game'], function(game) {
     };
 
     mpBullet.fireBullet = function() {
-        if (game.currentPlayer.tankDirection === 'up')
-            game.currentPlayer.y -= 2;
-        else if (game.currentPlayer.tankDirection === 'down')
-            game.currentPlayer.y += 2;
-        else if (game.currentPlayer.tankDirection === 'right')
-            game.currentPlayer.x += 2;
-        else if (game.currentPlayer.tankDirection === 'left')
-            game.currentPlayer.x -= 2;
+        switch (game.currentPlayer.tankDirection) {
+            case('up'):
+                game.currentPlayer.y -= 2;
+                break;
+            case('down'):
+                game.currentPlayer.y += 2;
+                break;
+            case('right'):
+                game.currentPlayer.x += 2;
+                break;
+            case('left'):
+                game.currentPlayer.x -= 2;
+                break;
+        }
 
         const bullet = {
             x: game.currentPlayer.x,
