@@ -3,7 +3,7 @@
 define(['game'], function(game) {
     const mpBullet = {};
 
-    mpBullet.render_mpBullet = function(bullet) {
+    mpBullet.render_mpBullet = bullet => {
         game.context.beginPath();
         game.context.fillStyle = 'red';
         game.context.arc(bullet.x, bullet.y, 4, 0, Math.PI * 2);
@@ -11,7 +11,7 @@ define(['game'], function(game) {
         game.context.closePath();
     };
 
-    mpBullet.fireBullet = function() {
+    mpBullet.fireBullet = () => {
         switch (game.currentPlayer.tankDirection) {
             case('up'):
                 game.currentPlayer.y -= 2;
