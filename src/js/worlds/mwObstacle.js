@@ -8,7 +8,8 @@ define([], () => {
             return true;
         }
         const row = world[y].split('');
-        let pos = Number(row[x]), pos2, pos3;
+        const pos = Number(row[x]);
+        let pos2, pos3;
 
         switch (dir) {
             case 'up':
