@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "dev": "webpack --watch & nodemon app.js",
+    "dev": "webpack --watch",
+    "devFullstack": "webpack --watch & nodemon app.js",
     "build": "webpack"
   },
   "dependencies": {

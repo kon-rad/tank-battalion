@@ -1,7 +1,7 @@
 'use strict';
 
 import game from 'modules/game';
-import multiPlayerDraw from 'multiPlayerDraw';
+import multiPlayerDraw from './multiPlayerDraw';
 
 const MULTIPLAYER_DISPLAY = document.getElementById('mpS');
 
