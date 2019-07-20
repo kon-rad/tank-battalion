@@ -6,7 +6,7 @@ define([
     'bullets',
     'mWorld',
     'images',
-    'singlePlayer'
+    'src/js/singlePlayer'
 ], function(game, tank, bullets, mWorld, images, singlePlayer) {
     const bot = {};
 

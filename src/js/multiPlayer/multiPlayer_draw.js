@@ -10,7 +10,7 @@ define([
     'mwObstacle',
     'images',
     'audio',
-    'multiPlayer_bullet'
+    'src/js/multiPlayer/multiPlayerBullet'
 ], function(game, tank, mWorld, mwObstacle, images, audio, mpBullet) {
     const start = () => {
         game.multiPlayerGame = setInterval(go, 100);
