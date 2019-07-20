@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "dev": "gulp dev & nodemon app.js",
-    "build": "gulp build"
+    "dev": "webpack --watch & nodemon app.js",
+    "build": "webpack"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
@@ -16,13 +17,15 @@
     "jade": "~1.11.0",
     "morgan": "^1.9.1",
     "natives": "^1.1.6",
-    "requirejs": "^2.3.5",
     "serve-static": "^1.13.1",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.1.0",
+    "file-loader": "^4.1.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^8.0.0",
@@ -30,6 +33,10 @@
     "gulp-imagemin": "^4.1.0",
     "gulp-sass": "^3.2.1",
     "gulp-sourcemaps": "^2.6.1",
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6"
   }
 }

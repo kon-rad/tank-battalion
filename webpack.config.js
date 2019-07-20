@@ -5,8 +5,8 @@ module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: './dist/',
+    path: path.resolve(__dirname, 'public'),
+    publicPath: './public/',
   },
   resolve: {
     modules: [ path.resolve(__dirname, 'src/js'), 'node_modules']
@@ -23,7 +23,6 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'resolve-url-loader',
           'sass-loader'
         ]
       },

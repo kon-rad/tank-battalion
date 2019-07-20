@@ -51,7 +51,6 @@ gulp.task('imagemin', () => {
 });
 
 gulp.task('moveJSVendor', () => {
-    gulp.src('src/js-vendor/require.js').pipe(gulp.dest('public/js'));
     gulp.src('src/js-vendor/socket.io.js').pipe(gulp.dest('public/'));
 });
 

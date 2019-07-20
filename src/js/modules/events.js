@@ -1,8 +1,8 @@
 'use strict';
 
-import game from 'game';
-import bullets from 'bullets';
-import multiPlayerBullet from 'multiPlayerBullet';
+import game from './game';
+import bullets from './bullets';
+import multiPlayerBullet from 'multiPlayer/multiPlayerBullet';
 
 window.addEventListener('keydown', function(e) {
     switch (e.keyCode) {

@@ -1,10 +1,10 @@
-const worldData = require('./worldData');
+const mapData = require('./mapData');
 
 class GameState {
     constructor() {
         this.players = {};
         this.bullets = {};
-        this.world = worldData.slice();
+        this.map = mapData.slice();
         this.users = {};
     }
 

@@ -11,7 +11,7 @@ const checkBulletCollision = (x, y, dir, gameState, key) => {
         delete gameState.bullets[key];
         return true;
     }
-    let row = gameState.world[y];
+    let row = gameState.map[y];
     row = row.split('');
     let pos = Number(row[x]);
 
@@ -26,7 +26,7 @@ const checkBulletCollision = (x, y, dir, gameState, key) => {
             eraseBlock(x, y + 1, gameState);
         }
         row = row.join('');
-        gameState.world[y] = row;
+        gameState.map[y] = row;
         delete gameState.bullets[key];
         return true;
     }
@@ -55,11 +55,11 @@ const checkBulletCollision = (x, y, dir, gameState, key) => {
 };
 
 const eraseBlock = (x, y, gameState) => {
-    let row = gameState.world[y];
+    let row = gameState.map[y];
     row = row.split('');
     row[x] = '0';
     row = row.join('');
-    gameState.world[y] = row;
+    gameState.map[y] = row;
 };
 
 const gameUpdate = gameState => {

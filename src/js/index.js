@@ -1,6 +1,9 @@
 'use strict';
 
 import setup from './setup';
+import 'modules/mobile_controller';
+import 'modules/audio';
+import '../stylesheets/main.scss';
 
 document.app = {};
 
@@ -14,8 +17,8 @@ setup.control();
 // draw: 'modules/draw',
 // audio: 'modules/audio',
 // images: 'modules/images',
-// mWorld: 'worlds/mainWorld',
-// mwObstacle: 'worlds/mwObstacle',
+// map: 'maps/map',
+// mapBoundary: 'maps/mapBoundary',
 // setup: 'setup/setup',
 // singlePlayer: 'singlePlayer/singlePlayer',
 // renderBot: 'singlePlayer/renderBot',

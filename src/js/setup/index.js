@@ -2,7 +2,7 @@
 
 import game from 'modules/game';
 import events from 'modules/events';
-import mWorld from 'worlds/mWorld';
+import map from 'maps/map';
 import tank from 'modules/tank';
 import draw from 'modules/draw';
 import singlePlayer from 'singlePlayer';
@@ -55,14 +55,14 @@ const hideInstructions = () => {
 const startScreen = () => {
     game.context.fillStyle = '#000';
     game.context.fillRect(0, 0, game.cw, game.ch);
-    game.worldData = mWorld.parent.slice();
-    mWorld.draw(game.worldData);
+    game.mapData = map.parent.slice();
+    map.draw(game.mapData);
 };
 
 const loading = () => {
     game.context.fillStyle = '#000';
     game.context.fillRect(0, 0, game.cw, game.ch);
-    mWorld.draw(game.worldData);
+    map.draw(game.mapData);
     if (game.bool) {
         game.bool = false;
         tank.moving_up(game.x, game.y);
@@ -116,10 +116,10 @@ const loadMultiplayer = (name, color) => {
         game.currentPlayer = data.gameState.players[data.id];
         game.mpCurrentId = data.id;
         game.mpPlayers = data.gameState.players;
-        game.mpWorld = data.gameState.world;
+        game.mpmap = data.gameState.map;
         game.users = data.gameState.users;
         game.mpBullets = data.gameState.bullets;
-        mWorld.draw(game.mpWorld);
+        map.draw(game.mpmap);
     });
     let displayScore = document.getElementById('singlePlayerScore');
     displayScore.style.display = 'none';
@@ -148,8 +148,8 @@ const loadOnePlayer = () => {
         restoreOnScreenBots();
         restoreDestroyedBots();
         events.initListeners();
-        game.worldData = mWorld.parent.slice();
-        mWorld.draw(game.worldData);
+        game.mapData = map.parent.slice();
+        map.draw(game.mapData);
         game.bots_loaded = 0;
 
         if (game.round >= 5) {
