@@ -38,14 +38,7 @@ module.exports = {
       },
       {
           test: /\.ttf$/,
-          use: [
-            {
-              loader: 'ttf-loader',
-              options: {
-                name: './[hash].[ext]',
-              },
-            },
-          ]
+          use: ['ttf-loader']
       }
     ]
   },
