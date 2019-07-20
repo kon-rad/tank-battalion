@@ -31,10 +31,21 @@ module.exports = {
         use: 'file-loader',
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        test: /\.(woff|woff2|eot|otf)$/,
         use: [
           'file-loader'
         ]
+      },
+      {
+          test: /\.ttf$/,
+          use: [
+            {
+              loader: 'ttf-loader',
+              options: {
+                name: './[hash].[ext]',
+              },
+            },
+          ]
       }
     ]
   },
