@@ -109,7 +109,7 @@ const loadMultiplayer = (name, color) => {
     game.socket = io();
     game.socket.emit('create-player', plr);
 
-    document.app.audio.start.play();
+    window.app.audio.start.play();
     game.canvas.setAttribute('tabindex', '0');
     game.canvas.focus();
     game.socket.on('player-created', function(data) {
@@ -177,7 +177,7 @@ const clearLoading = () => {
     events.initListeners();
     singlePlayer.ai.bots = [];
     singlePlayer.init();
-    document.app.audio.start.play();
+    window.app.audio.start.play();
     game.canvas.setAttribute('tabindex', '0');
     game.canvas.focus();
     tank.moving_up(game.x, game.y);

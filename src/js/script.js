@@ -1,7 +1,7 @@
 'use strict';
 
 // Mute Button - called from html
-const toggleAudio = () => muteAudio(document.app.audio.muted);
+const toggleAudio = () => muteAudio(window.app.audio.muted);
 
 /**
  * Audio control, mute/unmute and set button logo
@@ -9,7 +9,7 @@ const toggleAudio = () => muteAudio(document.app.audio.muted);
  */
 function muteAudio(b) {
     b = !b;
-    const ad = document.app.audio;
+    const ad = window.app.audio;
     ad.muted = b;
     ad.shoot.muted = b;
     ad.move.muted = b;

@@ -26,8 +26,8 @@ bullets.render_bullet = function(bullet, b_i) {
 
     if (checkBulletCollision(bullet.x, bullet.y, b_i, bullet.dir)) {
         game.bullets_fired = false;
-        document.app.audio.explode.load();
-        document.app.audio.explode.play();
+        window.app.audio.explode.load();
+        window.app.audio.explode.play();
     }
 
     game.context.beginPath();

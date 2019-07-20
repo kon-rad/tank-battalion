@@ -35,7 +35,7 @@ events.handleKeyUp = e => {
             } else {
                 game.moving = false;
             }
-            document.app.audio.move.pause();
+            window.app.audio.move.pause();
     }
 };
 
@@ -61,11 +61,11 @@ events.clearListeners = () => {
 const handleFireBullet = () => {
     if (game.multiplayer && !game.currentUser.bulletFired) {
         multiPlayerBullet.fireBullet();
-        document.app.audio.shoot.play();
+        window.app.audio.shoot.play();
     } else if (!game.multiplayer) {
         bullets.fireBullet(game.x, game.y, game.tankDirection);
         game.bullets_fired = true;
-        document.app.audio.shoot.play();
+        window.app.audio.shoot.play();
     }
 };
 
@@ -76,28 +76,28 @@ function handleKeydownMultiplayer(e) {
             game.currentPlayer.moving = true;
             game.currentPlayer.tankDirection = 'up';
             game.socket.emit('game-state', { player: game.currentPlayer });
-            document.app.audio.move.play();
+            window.app.audio.move.play();
             break;
         case 37:
         case 65:
             game.currentPlayer.moving = true;
             game.currentPlayer.tankDirection = 'left';
             game.socket.emit('game-state', { player: game.currentPlayer });
-            document.app.audio.move.play();
+            window.app.audio.move.play();
             break;
         case 40:
         case 83:
             game.currentPlayer.moving = true;
             game.currentPlayer.tankDirection = 'down';
             game.socket.emit('game-state', { player: game.currentPlayer });
-            document.app.audio.move.play();
+            window.app.audio.move.play();
             break;
         case 39:
         case 68:
             game.currentPlayer.moving = true;
             game.currentPlayer.tankDirection = 'right';
             game.socket.emit('game-state', { player: game.currentPlayer });
-            document.app.audio.move.play();
+            window.app.audio.move.play();
             break;
         case 32:
             handleFireBullet();
@@ -111,25 +111,25 @@ function handleKeydownSingle(e) {
         case 87:
             game.moving = true;
             game.tankDirection = 'up';
-            document.app.audio.move.play();
+            window.app.audio.move.play();
             break;
         case 37:
         case 65:
             game.moving = true;
             game.tankDirection = 'left';
-            document.app.audio.move.play();
+            window.app.audio.move.play();
             break;
         case 40:
         case 83:
             game.moving = true;
             game.tankDirection = 'down';
-            document.app.audio.move.play();
+            window.app.audio.move.play();
             break;
         case 39:
         case 68:
             game.moving = true;
             game.tankDirection = 'right';
-            document.app.audio.move.play();
+            window.app.audio.move.play();
             break;
         case 32:
             handleFireBullet();

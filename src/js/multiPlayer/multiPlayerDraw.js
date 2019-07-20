@@ -120,8 +120,8 @@ const go = () => {
     for (let key in game.users) {
         let user = game.users[key];
         if ('explosion' in user && user.explosion.exe) {
-            document.app.audio.explode.load();
-            document.app.audio.explode.play();
+            window.app.audio.explode.load();
+            window.app.audio.explode.play();
             game.context.drawImage(
                 images.explosion,
                 user.explosion.x - 10,
