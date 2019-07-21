@@ -4,6 +4,7 @@
 
 // General game settings
 const game = {};
+document.game = game;
 game.canvas = document.getElementById('tank');
 game.context = game.canvas.getContext('2d');
 game.cw = game.canvas.width;
@@ -64,7 +65,5 @@ game.canvas.focus();
 // Multiplayer game state
 game.multiplayer = false;
 game.mpBullets = [];
-
-document.game = game;
 
 export default game;
