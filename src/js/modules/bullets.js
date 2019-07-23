@@ -83,9 +83,9 @@ const checkBulletCollision = (x, y, b_i, dir) => {
     }
 
     for (let k = 0, len = singlePlayer.ai.bots.length; k < len; k++) {
-        let b = singlePlayer.ai.bots[k];
-        let b_x = Math.floor(b.x / 10);
-        let b_y = Math.floor(b.y / 10);
+        const b = singlePlayer.ai.bots[k];
+        const b_x = Math.floor(b.x / 10);
+        const b_y = Math.floor(b.y / 10);
         if (
             b.moving &&
             (x === b_x || x === b_x + 1 || x === b_x - 1) &&
