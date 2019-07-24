@@ -2,7 +2,6 @@
 
 window.app = {};
 const AUDIO_ROOT = '/assets/audio';
-console.log('audio', document, window);
 
 window.app.audio = {};
 window.app.audio.muted = false;

@@ -10,6 +10,7 @@ import multiPlayer from 'multiPlayer';
 
 const display = document.getElementById('display_text');
 const display_lives = document.getElementsByClassName('score__lives_tank');
+let startGame;
 
 const control = () => {
     // instructions modal open/close listeners
@@ -167,7 +168,7 @@ const loadOnePlayer = () => {
     game.bullets = [];
     game.bullets_fired = false;
     display.innerHTML = '';
-    const startGame = setInterval(loading, 100);
+    startGame = setInterval(loading, 100);
     setTimeout(clearLoading, 1400);
 };
 
@@ -270,10 +271,10 @@ const mpFormSubmit = () => {
 };
 
 const setup = {
-    control: control,
-    loadOnePlayer: loadOnePlayer,
-    reset: reset,
-    restoreGame: restoreGame
+    control,
+    loadOnePlayer,
+    reset,
+    restoreGame,
 };
 
 export default setup;

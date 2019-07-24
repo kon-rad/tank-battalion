@@ -142,7 +142,6 @@ const go = () => {
 
         game.context.fillStyle = player.color;
         if (player.tankDirection === 'up') {
-            console.log('player.color', player.color);
             tank.moving_up(player.x, player.y, player.color);
         } else if (player.tankDirection === 'down') {
             tank.moving_down(player.x, player.y, player.color);

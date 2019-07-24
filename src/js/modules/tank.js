@@ -1,5 +1,7 @@
 'use strict';
 
+import game from 'modules/game';
+
 const tank = {};
 const GREEN = 'green';
 

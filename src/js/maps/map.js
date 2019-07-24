@@ -68,7 +68,6 @@ map.parent = [
 ];
 
 const BRICK_IMAGE = document.getElementById('brick');
-console.log('BRICK', BRICK_IMAGE);
 const BRICK = game.context.createPattern(BRICK_IMAGE, 'repeat');
 
 const createWallSegment = (x, y, w, h, pattern) => {

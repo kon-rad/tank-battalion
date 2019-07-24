@@ -9,7 +9,7 @@ import images from 'modules/images';
 import events from 'modules/events';
 import singlePlayer from 'singlePlayer';
 import renderBot from 'singlePlayer/renderBot';
-
+import setup from 'setup';
 
 const start = () => {
     game.onePlayerGame = setInterval(go, 100);
@@ -35,9 +35,7 @@ const go = () => {
         clearInterval(game.loadBots);
         events.clearListeners();
 
-        require(['setup'], function(setup) {
-            setup.loadOnePlayer();
-        });
+        setup.loadOnePlayer();
     }
     if (game.pause) {
         clearInterval(game.onePlayerGame);
@@ -79,7 +77,6 @@ const go = () => {
     }
 
     game.context.fillStyle = 'green';
-
     // renders tank and moves if game.moving is true
     moveTank();
 
@@ -118,6 +115,7 @@ const moveTank = () => {
             ) {
                 game.y -= speed;
             }
+
             tank.moving_up(game.x, game.y);
             break;
         case 'down':

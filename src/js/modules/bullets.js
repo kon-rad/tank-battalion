@@ -2,6 +2,7 @@
 
 import game from 'modules/game';
 import images from 'modules/images';
+import singlePlayer from 'singlePlayer';
 
 const bullets = {};
 game.bullets_fired = false;
