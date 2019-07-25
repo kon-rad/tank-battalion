@@ -23,12 +23,14 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'sass-loader'
+          'sass-loader?sourceMap'
         ]
       },
       {
         test: /\.(jpg|jpeg|webp|png|JPG)$/,
-        use: 'file-loader',
+        use:[
+          'file-loader'
+        ],
       },
       {
         test: /\.(woff|woff2|eot|otf)$/,
