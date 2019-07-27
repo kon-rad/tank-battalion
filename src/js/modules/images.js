@@ -21,10 +21,10 @@ const bigWhiteExplosion = new Image();
 bigWhiteExplosion.src = WHITE_EXPLOSION_FILE_PATH;
 
 const images = {
-    eagle: eagle,
-    explosion: explosion,
-    bigRedExplosion: bigRedExplosion,
-    bigWhiteExplosion: bigWhiteExplosion
+    eagle,
+    explosion,
+    bigRedExplosion,
+    bigWhiteExplosion,
 };
 
 export default images;
