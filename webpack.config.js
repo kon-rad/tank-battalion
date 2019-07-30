@@ -23,7 +23,14 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'sass-loader?sourceMap'
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader?sourceMap',
+            options: {
+              sourceMap: true,
+              sourceMapContents: false
+            }
+          }
         ]
       },
       {

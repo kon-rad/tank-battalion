@@ -61,7 +61,7 @@ body {
   display: flex;
 }
 .score__enemy_tank {
-  background: url('../assets/images/blue_tank.png') center center;
+  background: url('../../assets/images/blue_tank.png') center center;
   background-size: contain;
   width: 24px;
   height: 28px;
@@ -70,7 +70,7 @@ body {
   margin-top: 50px;
 }
 .score__lives_tank {
-  background: url('../assets/images/green_tank.png') center center;
+  background: url('../../assets/images/green_tank.png') center center;
   background-size: cover;
   width: 40px;
   height: 60px;
@@ -81,7 +81,7 @@ body {
   height: 80px;
 }
 .on_screen {
-  background: linear-gradient(       rgba(0, 0, 0, 0.45),        rgba(0, 0, 0, 0.45)     ), url(../assets/images/blue_tank.png) 50%;
+  background: linear-gradient(       rgba(0, 0, 0, 0.45),        rgba(0, 0, 0, 0.45)     ), url(../../assets/images/blue_tank.png) 50%;
   background-size: contain;
 }
 .control_panel {

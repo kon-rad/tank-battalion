@@ -33,6 +33,7 @@
     "gulp-sourcemaps": "^2.6.1",
     "image-webpack-loader": "^5.0.0",
     "node-sass": "^4.11.0",
+    "resolve-url-loader": "^3.1.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ttf-loader": "^1.0.2",
