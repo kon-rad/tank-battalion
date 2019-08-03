@@ -5,13 +5,18 @@ const AUDIO_ROOT = '/assets/audio';
 
 window.app.audio = {};
 window.app.audio.muted = false;
+const AUDIO_FILES = [
+  { name: 'move', file: '/move.wav' },
+  { name: 'shoot', file: '/shoot2.wav' },
+  { name: 'explode', file: '/explosion.wav' },
+  { name: 'start', file: '/up.wav' },
+  { name: 'point', file: '/point.wav' },
+  { name: 'dud', file: '/dud.wav' },
+];
 
-window.app.audio.move = new Audio(AUDIO_ROOT + '/move.wav');
-window.app.audio.shoot = new Audio(AUDIO_ROOT + '/shoot2.wav');
-window.app.audio.explode = new Audio(AUDIO_ROOT + '/explosion.wav');
-window.app.audio.start = new Audio(AUDIO_ROOT + '/up.wav');
-window.app.audio.point = new Audio(AUDIO_ROOT + '/point.wav');
-window.app.audio.dud = new Audio(AUDIO_ROOT + '/dud.wav');
+AUDIO_FILES.forEach((name, file) => {
+  window.app.audio[name] = new Audio(AUDIO_ROOT + file);
+});
 
 window.app.audio.move.volume = 0.3;
 window.app.audio.shoot.volume = 0.3;
