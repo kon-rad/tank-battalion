@@ -14,7 +14,7 @@ const AUDIO_FILES = [
   { name: 'dud', file: '/dud.wav' },
 ];
 
-AUDIO_FILES.forEach((name, file) => {
+AUDIO_FILES.forEach(({ name, file }) => {
   window.app.audio[name] = new Audio(AUDIO_ROOT + file);
 });
 
