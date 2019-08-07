@@ -6,7 +6,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public'),
-    publicPath: './public/',
+    publicPath: './',
   },
   resolve: {
     modules: [ path.resolve(__dirname, 'src/js'), 'node_modules']
@@ -40,15 +40,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.(woff|woff2|eot|otf)$/,
+        test: /\.(woff|woff2|eot|otf|ttf)$/,
         use: [
           'file-loader'
         ]
       },
-      {
-          test: /\.ttf$/,
-          use: ['ttf-loader']
-      }
     ]
   },
 };
