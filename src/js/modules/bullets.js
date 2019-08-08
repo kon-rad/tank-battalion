@@ -27,6 +27,7 @@ bullets.render_bullet = function(bullet, b_i) {
 
     if (checkBulletCollision(bullet.x, bullet.y, b_i, bullet.dir)) {
         game.bullets_fired = false;
+        // todo: make sure that these solve the errors in the console
         try {
             window.app.audio.explode.load();
             window.app.audio.explode.play();
