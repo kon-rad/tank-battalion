@@ -208,8 +208,12 @@ const detectCollision = (x, y) => {
                 game.eagle1_y - 2 === y))
     ) {
         // Player is hit, life deducted and game restarts
-        window.app.audio.explode.load();
-        window.app.audio.explode.play();
+        try {
+            window.app.audio.explode.load();
+            window.app.audio.explode.play();
+        } catch (e) {
+            console.log('error: ', e);
+        }
         game.explosion = true;
         game.newGame = true;
 

@@ -70,8 +70,13 @@ const render_bullet = (
         )
     ) {
         singlePlayer.ai.bots[bot_index].bullets.splice(bullet_index, 1);
-        window.app.audio.explode.load();
-        window.app.audio.explode.play();
+
+        try {
+            window.app.audio.explode.load();
+            window.app.audio.explode.play();
+        } catch (e) {
+            console.log('error: ', e);
+        }
     }
     game.context.beginPath();
     game.context.fillStyle = 'orange';
