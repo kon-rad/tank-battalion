@@ -8,7 +8,7 @@ const bullets = {};
 game.bullets_fired = false;
 bullets.renderExplosion = false;
 
-bullets.render_bullet = function(bullet, b_i) {
+bullets.render_bullet = (bullet, b_i) => {
     let speed = game.bullet_speed;
     switch (bullet.dir) {
         case 'up':
