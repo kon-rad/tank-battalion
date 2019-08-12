@@ -181,31 +181,13 @@ const shootBullet = (b_x, b_y, i, b_dir) => {
 };
 
 const detectCollision = (x, y) => {
-    let g_x = Math.floor(game.x / 10);
-    let g_y = Math.floor(game.y / 10);
+    const g_x = Math.floor(game.x / 10);
+    const g_y = Math.floor(game.y / 10);
     x = Math.floor(x / 10);
     y = Math.floor(y / 10);
     if (
-        ((g_x === x ||
-            g_x - 1 === x ||
-            g_x + 1 === x ||
-            g_x + 2 === x ||
-            g_x - 2 === x) &&
-            (g_y === y ||
-                g_y - 1 === y ||
-                g_y + 1 === y ||
-                g_y + 2 === y ||
-                g_y - 2 === y)) ||
-        ((game.eagle1_x === x ||
-            game.eagle1_x - 1 === x ||
-            game.eagle1_x + 1 === x ||
-            game.eagle1_x + 2 === x ||
-            game.eagle1_x - 2 === x) &&
-            (game.eagle1_y === y ||
-                game.eagle1_y - 1 === y ||
-                game.eagle1_y + 1 === y ||
-                game.eagle1_y + 2 === y ||
-                game.eagle1_y - 2 === y))
+        detectXandYCollision(g_x, g_y, x, y)
+        || detectEagleCollision(game, x, y)
     ) {
         // Player is hit, life deducted and game restarts
         try {
@@ -219,6 +201,35 @@ const detectCollision = (x, y) => {
 
         return true;
     }
+};
+
+const detectXandYCollision = (g_x, g_y, x, y) => {
+    return (
+        g_x === x ||
+        g_x - 1 === x ||
+        g_x + 1 === x ||
+        g_x + 2 === x ||
+        g_x - 2 === x)
+        &&
+        (g_y === y ||
+        g_y - 1 === y ||
+        g_y + 1 === y ||
+        g_y + 2 === y ||
+        g_y - 2 === y);
+};
+
+const detectEagleCollision = (game, x, y) => {
+    return (
+        game.eagle1_x === x ||
+        game.eagle1_x - 1 === x ||
+        game.eagle1_x + 1 === x ||
+        game.eagle1_x + 2 === x ||
+        game.eagle1_x - 2 === x)
+        && (game.eagle1_y === y ||
+        game.eagle1_y - 1 === y ||
+        game.eagle1_y + 1 === y ||
+        game.eagle1_y + 2 === y ||
+        game.eagle1_y - 2 === y);
 };
 
 const singlePlayer = {
