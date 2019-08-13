@@ -1,5 +1,3 @@
-'use strict';
-
 const KEY_DOWN = 'keydown';
 const KEY_UP = 'keyup';
 const keys = {

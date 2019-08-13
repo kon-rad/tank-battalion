@@ -1,11 +1,9 @@
-'use strict';
-
 import game from 'modules/game';
 
 const tank = {};
 const GREEN = 'green';
 
-tank.moving_up = function(x, y, color) {
+tank.moving_up = (x, y, color) => {
     if (color === undefined) {
         color = GREEN;
     }
@@ -16,7 +14,8 @@ tank.moving_up = function(x, y, color) {
     game.context.fillRect(x - 12, y - 12, 6, 24);
     game.context.fillRect(x + 6, y - 12, 6, 24);
 };
-tank.moving_down = function(x, y, color) {
+
+tank.moving_down = (x, y, color) => {
     if (color === undefined) {
         color = GREEN;
     }
@@ -27,7 +26,8 @@ tank.moving_down = function(x, y, color) {
     game.context.fillRect(x - 12, y - 12, 6, 24);
     game.context.fillRect(x + 6, y - 12, 6, 24);
 };
-tank.moving_right = function(x, y, color) {
+
+tank.moving_right = (x, y, color) => {
     if (color === undefined) {
         color = GREEN;
     }
@@ -38,7 +38,8 @@ tank.moving_right = function(x, y, color) {
     game.context.fillRect(x - 12, y - 12, 24, 6);
     game.context.fillRect(x - 12, y + 8, 24, 6);
 };
-tank.moving_left = function(x, y, color) {
+
+tank.moving_left = (x, y, color) => {
     if (color === undefined) {
         color = GREEN;
     }

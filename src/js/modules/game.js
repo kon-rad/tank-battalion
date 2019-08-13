@@ -1,5 +1,3 @@
-'use strict';
-
 // This module contains various game settings and commonly used functions
 
 // General game settings

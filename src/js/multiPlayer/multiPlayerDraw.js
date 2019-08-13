@@ -1,5 +1,3 @@
-'use strict';
-
 import game from 'modules/game';
 import tank from 'modules/tank';
 import map from 'maps/map';

@@ -1,5 +1,3 @@
-'use strict';
-
 window.app = {};
 const AUDIO_ROOT = '/assets/audio';
 

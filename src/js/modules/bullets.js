@@ -1,5 +1,3 @@
-'use strict';
-
 import game from 'modules/game';
 import images from 'modules/images';
 import singlePlayer from 'singlePlayer';
@@ -92,10 +90,9 @@ const checkBulletCollision = (x, y, b_i, dir) => {
         const b = singlePlayer.ai.bots[k];
         const b_x = Math.floor(b.x / 10);
         const b_y = Math.floor(b.y / 10);
-        if (
-            b.moving &&
-            (x === b_x || x === b_x + 1 || x === b_x - 1) &&
-            (y === b_y || y === b_y + 1 || y === b_y - 1)
+        if (b.moving
+            && (x === b_x || x === b_x + 1 || x === b_x - 1)
+            && (y === b_y || y === b_y + 1 || y === b_y - 1)
         ) {
             game.bullets.splice(b_i, 1);
             game.context.drawImage(

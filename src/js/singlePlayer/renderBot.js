@@ -1,5 +1,3 @@
-'use strict';
-
 import game from 'modules/game';
 import bullets from 'modules/bullets';
 import images from 'modules/images';
@@ -15,6 +13,7 @@ bot.moving_up = (x, y) => {
     game.context.fillRect(x - 12, y - 12, 6, 24);
     game.context.fillRect(x + 6, y - 12, 6, 24);
 };
+
 bot.moving_down = (x, y) => {
     game.context.fillStyle = 'blue';
     game.context.fillRect(x - 8, y - 7, 14, 14);
@@ -23,6 +22,7 @@ bot.moving_down = (x, y) => {
     game.context.fillRect(x - 12, y - 12, 6, 24);
     game.context.fillRect(x + 6, y - 12, 6, 24);
 };
+
 bot.moving_right = (x, y) => {
     game.context.fillStyle = 'blue';
     game.context.fillRect(x - 7, y - 6, 14, 14);
@@ -31,6 +31,7 @@ bot.moving_right = (x, y) => {
     game.context.fillRect(x - 12, y - 12, 24, 6);
     game.context.fillRect(x - 12, y + 8, 24, 6);
 };
+
 bot.moving_left = (x, y) => {
     game.context.fillStyle = 'blue';
     game.context.fillRect(x - 8, y - 6, 14, 14);
@@ -39,6 +40,7 @@ bot.moving_left = (x, y) => {
     game.context.fillRect(x - 12, y - 12, 24, 6);
     game.context.fillRect(x - 12, y + 8, 24, 6);
 };
+
 
 const render_bullet = (
     bullet,
@@ -160,14 +162,19 @@ const eraseBlock = function eraseBlock(x, y) {
 };
 
 const render = function render(bot_i) {
-    if (bot_i.dir === 'up') {
-        return bot.moving_up(bot_i.x, bot_i.y);
-    } else if (bot_i.dir === 'down') {
-        return bot.moving_down(bot_i.x, bot_i.y);
-    } else if (bot_i.dir === 'right') {
-        return bot.moving_right(bot_i.x, bot_i.y);
-    } else if (bot_i.dir === 'left') {
-        return bot.moving_left(bot_i.x, bot_i.y);
+    switch (bot_i.dir) {
+        case 'up':
+            bot.moving_down(bot_i.x, bot_i.y);
+            break;
+        case 'down':
+            bot.moving_down(bot_i.x, bot_i.y);
+            break;
+        case 'right':
+            bot.moving_right(bot_i.x, bot_i.y);
+            break;
+        case 'left':
+                ot.moving_left(bot_i.x, bot_i.y);
+            break;
     }
 };
 

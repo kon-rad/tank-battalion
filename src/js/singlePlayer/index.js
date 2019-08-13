@@ -1,5 +1,3 @@
-'use strict';
-
 import game from 'modules/game';
 import mapBoundary from 'maps/mapBoundary';
 

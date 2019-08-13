@@ -1,5 +1,3 @@
-'use strict';
-
 import game from './game';
 import bullets from './bullets';
 import multiPlayerBullet from 'multiPlayer/multiPlayerBullet';

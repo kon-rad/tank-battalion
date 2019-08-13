@@ -1,5 +1,3 @@
-'use strict';
-
 import game from 'modules/game';
 import tank from 'modules/tank';
 import bullets from 'modules/bullets';
@@ -104,9 +102,8 @@ const moveTank = () => {
 
     switch (game.tankDirection) {
         case 'up':
-            if (
-                game.moving &&
-                !mapBoundary.detect(
+            if (game.moving
+                && !mapBoundary.detect(
                     game.x,
                     game.y - 15,
                     game.tankDirection,
@@ -119,9 +116,8 @@ const moveTank = () => {
             tank.moving_up(game.x, game.y);
             break;
         case 'down':
-            if (
-                game.moving &&
-                !mapBoundary.detect(
+            if (game.moving
+                && !mapBoundary.detect(
                     game.x,
                     game.y + 15,
                     game.tankDirection,
@@ -133,9 +129,8 @@ const moveTank = () => {
             tank.moving_down(game.x, game.y);
             break;
         case 'right':
-            if (
-                game.moving &&
-                !mapBoundary.detect(
+            if (game.moving
+                && !mapBoundary.detect(
                     game.x + 15,
                     game.y,
                     game.tankDirection,
@@ -147,9 +142,8 @@ const moveTank = () => {
             tank.moving_right(game.x, game.y);
             break;
         case 'left':
-            if (
-                game.moving &&
-                !mapBoundary.detect(
+            if (game.moving
+                && !mapBoundary.detect(
                     game.x - 15,
                     game.y,
                     game.tankDirection,

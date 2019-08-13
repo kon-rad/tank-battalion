@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Images used in game play are stored here
  */

@@ -1,5 +1,3 @@
-'use strict';
-
 const detect = (x, y, dir, map) => {
     y = Math.floor(y / 10);
     x = Math.floor(x / 10);

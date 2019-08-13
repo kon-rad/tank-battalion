@@ -1,5 +1,3 @@
-'use strict';
-
 import game from 'modules/game';
 
 const map = {};
@@ -79,8 +77,8 @@ map.draw = (mapData) => {
 	mapData.forEach((i, index) => {
 		i = i.split('');
 		i.map((cell, cell_i) => {
-			if(Number(cell)){
-				createWallSegment((cell_i*10), (index*10), 10, 10, BRICK);
+			if (Number(cell)) {
+				createWallSegment((cell_i * 10), (index * 10), 10, 10, BRICK);
 			}
 		})
 	});

@@ -1,5 +1,3 @@
-'use strict';
-
 import game from 'modules/game';
 import events from 'modules/events';
 import map from 'maps/map';
