@@ -2,7 +2,7 @@
 
 // General game settings
 const game = {};
-document.game = game;
+window.game = game;
 game.canvas = document.getElementById('tank');
 game.context = game.canvas.getContext('2d');
 game.cw = game.canvas.width;

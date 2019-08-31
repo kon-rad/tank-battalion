@@ -173,7 +173,7 @@ const render = function render(bot_i) {
             bot.moving_right(bot_i.x, bot_i.y);
             break;
         case 'left':
-                ot.moving_left(bot_i.x, bot_i.y);
+            bot.moving_left(bot_i.x, bot_i.y);
             break;
     }
 };

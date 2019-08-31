@@ -71,8 +71,8 @@ const loading = () => {
 };
 
 const startOnePlayer = () => {
-    document.game.pause = false;
-    document.game.exit = false;
+    window.game.pause = false;
+    window.game.exit = false;
     game.playerOneLives = 3;
     game.bullets = [];
     game.bots_destroyed = 0;

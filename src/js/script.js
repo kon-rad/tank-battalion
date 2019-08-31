@@ -25,7 +25,7 @@ const pauseButton = document.getElementsByClassName('pause_button')[0];
 pauseButton.addEventListener(
     'click',
     () => {
-        document.game.pause = !document.game.pause;
+        window.game.pause = !window.game.pause;
     },
     false
 );
@@ -34,7 +34,7 @@ const exitButton = document.getElementsByClassName('exit_button')[0];
 exitButton.addEventListener(
     'click',
     () => {
-        document.game.exit = true;
+        window.game.exit = true;
     },
     false
 );
