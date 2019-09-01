@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-
+// todo: migrate all build process from gulp to webpack
 module.exports = {
   entry: './src/js/index.js',
   output: {
