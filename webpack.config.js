@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-// todo: migrate all build process from gulp to webpack
-// todo: need to load images from html, plus no css is showing
+// todo: use gulp for tasks, webpack for js only
 module.exports = {
   entry: './src/js/index.js',
   output: {
