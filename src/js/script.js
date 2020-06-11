@@ -20,6 +20,7 @@ function muteAudio(b) {
     document.getElementsByClassName('mute')[0].innerText = b ? ' 🔊' : ' 🔇';
 }
 
+debugger;
 // Pause Button
 const pauseButton = document.getElementsByClassName('pause_button')[0];
 pauseButton.addEventListener(
