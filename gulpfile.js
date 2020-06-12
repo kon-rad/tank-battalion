@@ -13,14 +13,14 @@ gulp.task('babel', () =>
         .src('src/js/**/*.js')
         .pipe(
             babel({
-                presets: ['env']
+                presets: ['@babel/env']
             })
         )
         .pipe(gulp.dest('public/js/'))
 );
 
-gulp.task('workflow', function() {
-    gulp.src('./src/stylesheets/**/*.scss')
+gulp.task('workflow', () => {
+    return gulp.src('./src/stylesheets/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(
@@ -45,44 +45,48 @@ gulp.task('moveFavicon', () =>
 );
 
 gulp.task('imagemin', () => {
-    gulp.src('./src/assets/images/*')
+    return gulp.src('./src/assets/images/*')
         .pipe(imagemin())
         .pipe(gulp.dest('./public/assets/images'));
 });
 
 gulp.task('moveJSVendor', () => {
-    gulp.src('src/js-vendor/socket.io.js').pipe(gulp.dest('public/'));
+    return gulp.src('src/js-vendor/socket.io.js').pipe(gulp.dest('public/'));
 });
 
 gulp.task('moveAudio', () => {
-    gulp.src('src/assets/audio/*').pipe(gulp.dest('public/assets/audio'));
+    return gulp.src('src/assets/audio/*').pipe(gulp.dest('public/assets/audio'));
 });
 
 gulp.task(
     'default',
-    [
+    gulp.series(
         'workflow',
         'babel',
         'copyfonts',
         'moveFavicon',
         'imagemin',
         'moveJSVendor',
-        'moveAudio'
-    ],
-    function() {
-        gulp.watch('src/stylesheets/**/*.scss', ['workflow']);
-        gulp.watch('./src/js/**/*.js', ['babel']);
-    }
+        'moveAudio',
+        (done) => {
+            gulp.watch('src/stylesheets/**/*.scss', gulp.series('workflow'));
+            gulp.watch('./src/js/**/*.js', gulp.series('babel'));
+            done();
+        }
+    )
 );
 
-gulp.task('dev', ['workflow', 'babel'], function() {
-    gulp.watch('src/stylesheets/**/*.scss', ['workflow']);
-    gulp.watch('./src/js/**/*.js', ['babel']);
-});
+gulp.task('dev', gulp.series('workflow', 'babel', (done) => {
+            gulp.watch('src/stylesheets/**/*.scss', gulp.series('workflow'));
+            gulp.watch('./src/js/**/*.js', gulp.series('babel'));
+            done();
+        }
+    )
+);
 
 gulp.task(
     'build',
-    [
+    gulp.series(
         'workflow',
         'babel',
         'copyfonts',
@@ -90,8 +94,8 @@ gulp.task(
         'imagemin',
         'moveJSVendor',
         'moveAudio'
-    ],
-    function() {
+    ,
+    () => {
         console.log('Application ready! God speed!');
     }
-);
+));
