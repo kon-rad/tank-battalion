@@ -54,9 +54,7 @@ const go = () => {
         clearInterval(game.bots);
         clearInterval(game.loadBots);
         events.clearListeners();
-        require(['setup'], function(setup) {
-            setup.restoreGame();
-        });
+        setup.restoreGame();
     }
     game.context.fillStyle = '#000';
     game.context.fillRect(0, 0, game.cw, game.ch);

@@ -4,10 +4,11 @@ const webpack = require('webpack');
 module.exports = {
   entry: './src/js/index.js',
   output: {
-    filename: 'bundle.[contenthash].js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'public'),
     publicPath: './',
   },
+  devtool: 'eval-source-map',
   resolve: {
     modules: [ path.resolve(__dirname, 'src/js'), 'node_modules']
   },
