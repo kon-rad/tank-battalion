@@ -31,9 +31,9 @@ const displayMultiplayer = () => {
         let userDisplay = '';
         const USER_SCORE_ELEMENT = document.getElementById(userIdScore);
         const USER_LIVES_ELEMENT = document.getElementById(userIdLives);
-        const USER_SCORE = parseInt(USER_SCORE_ELEMENT.innerHTML);
-        const USER_LIVES = parseInt(USER_LIVES_ELEMENT.innerHTML);
         if (document.getElementById(userId)) {
+            const USER_SCORE = parseInt(USER_SCORE_ELEMENT.innerHTML);
+            const USER_LIVES = parseInt(USER_LIVES_ELEMENT.innerHTML);
             if (USER_SCORE !== user.points) {
                 USER_SCORE_ELEMENT.innerHTML = user.points;
             }

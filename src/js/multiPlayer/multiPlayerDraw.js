@@ -3,6 +3,8 @@ import tank from 'modules/tank';
 import map from 'maps/map';
 import mapBoundary from 'maps/mapBoundary';
 import images from 'modules/images';
+import setup from 'setup';
+import multiPlayerBullet from './multiPlayerBullet';
 
 const start = () => {
     game.multiPlayerGame = setInterval(go, 100);
@@ -18,9 +20,7 @@ const go = () => {
      */
     if (game.users[game.mpCurrentId].lives < 0 || game.exit) {
         game.currentPlayer.moving = false;
-        require(['setup'], function(setup) {
-            setup.reset();
-        });
+        setup.reset();
     }
 
     if (game.currentPlayer.tankDirection === 'up') {
@@ -111,7 +111,7 @@ const go = () => {
 
     // draw bullets
     for (let bulKey in game.mpBullets) {
-        multiPlayerBullet.render_mpBullet(game.mpBullets[bulKey]);
+        multiPlayerBullet.renderMultiPlayerBullet(game.mpBullets[bulKey]);
     }
 
     // draw explosions and other tanks

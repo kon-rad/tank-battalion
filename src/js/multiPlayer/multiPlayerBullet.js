@@ -2,7 +2,7 @@ import game from 'modules/game';
 
 const multiPlayerBullet = {};
 
-multiPlayerBullet.render_multiPlayerBullet = bullet => {
+multiPlayerBullet.renderMultiPlayerBullet = bullet => {
     game.context.beginPath();
     game.context.fillStyle = 'red';
     game.context.arc(bullet.x, bullet.y, 4, 0, Math.PI * 2);
