@@ -37,10 +37,8 @@
 	display:inline-block;
 	padding-right:7px;
 }
-.mpS__user, .mpS__score, .mpS__lives {
-    span {
-    	font-size:10px;
-    	display:block;
-    	width:100%;
-    }
+.mpS__user, .mpS__score, .mpS__lives span {
+    font-size:10px;
+    display:block;
+    width:100%;
 }

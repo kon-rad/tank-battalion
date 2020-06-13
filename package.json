@@ -20,6 +20,7 @@
     "gulp-babel": "^8.0.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-imagemin": "^4.1.0",
+    "gulp-plumber": "^1.2.1",
     "jade": "^1.11.0",
     "morgan": "^1.9.1",
     "natives": "^1.1.6",

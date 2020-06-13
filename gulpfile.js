@@ -8,6 +8,8 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     autoprefixer = require('gulp-autoprefixer');
 
+const plumber = require("gulp-plumber");
+
 gulp.task('babel', () =>
     gulp
         .src('src/js/**/*.js')
@@ -20,24 +22,18 @@ gulp.task('babel', () =>
 );
 
 gulp.task('workflow', () => {
-    return gulp.src('./src/stylesheets/**/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(
-            autoprefixer({
-                browsers: ['last 2 versions'],
-                cascade: false
-            })
-        )
-        .pipe(cssnano())
-        .pipe(sourcemaps.write('./'))
+    return gulp.src('./src/stylesheets/**/*.css')
+        .pipe(plumber())
+        // .pipe(sourcemaps.init())
+        // .pipe(cssnano())
+        // .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./public/stylesheets/'));
 });
 
 gulp.task('copyfonts', () =>
     gulp
-        .src('./src/assets/fonts/*.{ttf,woff,eof,svg}')
-        .pipe(gulp.dest('./public/assets/fonts'))
+        .src('./src/stylesheets/util/*.{ttf,woff,eof,svg}')
+        .pipe(gulp.dest('./public/stylesheets/util'))
 );
 
 gulp.task('moveFavicon', () =>

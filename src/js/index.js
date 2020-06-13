@@ -3,6 +3,6 @@
 import 'modules/audio';
 import setup from './setup';
 import 'modules/mobile_controller';
-import '../stylesheets/main.scss';
+import '../stylesheets/main.css';
 
 setup.control();

@@ -20,18 +20,10 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         use: [
-          'style-loader',
           'css-loader',
           'resolve-url-loader',
-          {
-            loader: 'sass-loader?sourceMap',
-            options: {
-              sourceMap: true,
-              sourceMapContents: false
-            }
-          }
         ]
       },
       {

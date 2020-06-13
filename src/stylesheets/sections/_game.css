@@ -1,9 +1,9 @@
 canvas {
     border: 2px solid #000;
     display: block;
-    &:focus {
-    	outline: none;
-    }
+}
+canvas:focus {
+  outline: none;
 }
 .content {
   margin: 20px auto 20px;
@@ -89,38 +89,52 @@ body {
   display: flex;
   justify-content: center;
 }
-%control_button {
+.control_button {
   text-align: center;
   color: #fff;
   font-family: PixelEmulator;
   font-size: 12px;
   margin-right: 30px;
-  &:hover {
-    color:rgb(249,251,68);
-    cursor: pointer;
-  }
 }
 .mute {
   background-color: #000000;
 }
 .mute_button {
-  @extend %control_button;
+  text-align: center;
+  color: #fff;
+  font-family: PixelEmulator;
+  font-size: 12px;
+  margin-right: 30px;
   display: block;
   align-items: center;
   text-align: center;
   margin-right: 30px;
 }
+.mute_button:hover, .pause_button:hover, .exit_button:hover, .game_title__instructions:hover {
+  color:rgb(249,251,68);
+  cursor: pointer;
+}
 .pause_button {
-  @extend %control_button;
+  text-align: center;
+  color: #fff;
+  font-family: PixelEmulator;
+  font-size: 12px;
+  margin-right: 30px;
   width: 40px;
-  //display: none;
 }
 .exit_button {
-  @extend %control_button;
+  text-align: center;
+  color: #fff;
+  font-family: PixelEmulator;
+  font-size: 12px;
+  margin-right: 30px;
   width: 40px;
-  //display: none;
 }
 .game_title__instructions {
-  @extend %control_button;
+  text-align: center;
+  color: #fff;
+  font-family: PixelEmulator;
+  font-size: 12px;
+  margin-right: 30px;
   width: 120px;
 }

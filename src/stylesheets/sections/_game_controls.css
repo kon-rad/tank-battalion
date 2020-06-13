@@ -12,24 +12,22 @@
 .display_text__1player {
 	color: white;
     display: inline-block;
-	&:hover {
-		color:rgb(249,251,68);
-		cursor: pointer;
-	}
+}
+.display_text__1player:hover {
+    color:rgb(249,251,68);
+    cursor: pointer;
 }
 .display_text__2player {
 	color: white;
     display: inline-block;
-		&:hover {
-		color:rgb(249,251,68);
-		cursor: pointer;
-	}
 }
-#win {
-	&:hover {
-		color:rgb(249,251,68);
-		cursor: pointer;
-	}
+.display_text__2player:hover {
+    color:rgb(249,251,68);
+    cursor: pointer;
+}
+#win:hover {
+    color:rgb(249,251,68);
+    cursor: pointer;
 }
 
 .controls__content {
