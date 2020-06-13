@@ -2,7 +2,6 @@
 
 var gulp = require('gulp'),
     babel = require('gulp-babel'),
-    sass = require('gulp-sass'),
     cssnano = require('gulp-cssnano'),
     sourcemaps = require('gulp-sourcemaps'),
     imagemin = require('gulp-imagemin'),
@@ -24,9 +23,6 @@ gulp.task('babel', () =>
 gulp.task('workflow', () => {
     return gulp.src('./src/stylesheets/**/*.css')
         .pipe(plumber())
-        // .pipe(sourcemaps.init())
-        // .pipe(cssnano())
-        // .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./public/stylesheets/'));
 });
 
