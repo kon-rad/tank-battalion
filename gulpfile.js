@@ -1,11 +1,11 @@
 'use strict';
 
-var gulp = require('gulp'),
-    babel = require('gulp-babel'),
-    cssnano = require('gulp-cssnano'),
-    sourcemaps = require('gulp-sourcemaps'),
-    imagemin = require('gulp-imagemin'),
-    autoprefixer = require('gulp-autoprefixer');
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const cssnano = require('gulp-cssnano');
+const sourcemaps = require('gulp-sourcemaps');
+const imagemin = require('gulp-imagemin');
+const autoprefixer = require('gulp-autoprefixer');
 
 const plumber = require("gulp-plumber");
 
