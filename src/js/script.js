@@ -2,7 +2,7 @@
 
 // Mute Button - called from html
 const toggleAudio = () => muteAudio(window.app.audio.muted);
-// todo: fix audio and mute button
+
 /**
  * Audio control, mute/unmute and set button logo
  * @param {boolean} b

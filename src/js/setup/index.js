@@ -55,7 +55,8 @@ const startScreen = () => {
     game.context.fillStyle = '#000';
     game.context.fillRect(0, 0, game.cw, game.ch);
     game.mapData = map.parent.slice();
-    map.draw(game.mapData);
+    // delay to fix bug where bricks are not appearing
+    setTimeout(() => map.draw(game.mapData), 100);
 };
 
 const loading = () => {
