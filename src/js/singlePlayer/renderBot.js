@@ -164,7 +164,7 @@ const eraseBlock = function eraseBlock(x, y) {
 const render = function render(bot_i) {
     switch (bot_i.dir) {
         case 'up':
-            bot.moving_down(bot_i.x, bot_i.y);
+            bot.moving_up(bot_i.x, bot_i.y);
             break;
         case 'down':
             bot.moving_down(bot_i.x, bot_i.y);

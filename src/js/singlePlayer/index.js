@@ -40,8 +40,8 @@ const init = () => {
         }
     }, game.timeBetweenBotSpawn);
 
-    game.bots = setInterval(function() {
-        ai.bots.forEach(function(bot) {
+    game.bots = setInterval(() => {
+        ai.bots.forEach(bot => {
             if (!bot.moving) {
                 return;
             }
@@ -62,7 +62,7 @@ const init = () => {
                     )
                 ) {
                     bot.y += speed;
-                    bot.dir = ai.dir[Math.floor(Math.random() * 4)];
+                    bot.dir = getRandomDirection();
                 } else {
                     bot.y -= speed;
                     if (shootRandomly()) {
@@ -83,7 +83,7 @@ const init = () => {
                     )
                 ) {
                     bot.y -= speed;
-                    bot.dir = ai.dir[Math.floor(Math.random() * 4)];
+                    bot.dir = getRandomDirection();
                 } else {
                     bot.y += speed;
                     if (shootRandomly()) {
@@ -104,7 +104,7 @@ const init = () => {
                     )
                 ) {
                     bot.x -= speed;
-                    bot.dir = ai.dir[Math.floor(Math.random() * 4)];
+                    bot.dir = getRandomDirection();
                 } else {
                     bot.x += speed;
                     if (shootRandomly()) {
@@ -125,7 +125,7 @@ const init = () => {
                     )
                 ) {
                     bot.x += speed;
-                    bot.dir = ai.dir[Math.floor(Math.random() * 4)];
+                    bot.dir = getRandomDirection();
                 } else {
                     bot.x -= speed;
                     if (shootRandomly()) {
@@ -229,6 +229,10 @@ const detectEagleCollision = (game, x, y) => {
         game.eagle1_y + 2 === y ||
         game.eagle1_y - 2 === y);
 };
+
+const getRandomDirection = () => {
+    return ai.dir[Math.floor(Math.random() * 4)];
+}
 
 const singlePlayer = {
     init: init,
