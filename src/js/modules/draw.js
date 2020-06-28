@@ -76,12 +76,12 @@ const go = () => {
     // renders tank and moves if game.moving is true
     moveTank();
 
-    game.bullets.forEach(function(item, index) {
+    game.bullets.forEach((item, index) => {
         bullets.render_bullet(item, index);
     });
 
     const bots = singlePlayer.ai.bots;
-    bots.forEach(function(bot, bot_index) {
+    bots.forEach((bot, bot_index) => {
         if (bot.moving) {
             renderBot.render(bot);
         }

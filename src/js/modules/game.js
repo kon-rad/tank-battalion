@@ -22,7 +22,7 @@ game.timer = setInterval(function() {
 // Speed Settings
 game.enemy_bullet_speed = 10;
 game.enemy_speed = 8;
-game.bullet_speed = 15;
+game.bullet_speed = 10;
 game.playerOneSpeed = 14;
 
 // Single player game state

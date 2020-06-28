@@ -8,6 +8,7 @@ bullets.renderExplosion = false;
 
 bullets.render_bullet = (bullet, b_i) => {
     let speed = game.bullet_speed;
+    console.log('render bullet', speed);
     switch (bullet.dir) {
         case 'up':
             bullet.y -= speed;
