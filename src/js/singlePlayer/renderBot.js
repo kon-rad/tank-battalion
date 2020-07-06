@@ -77,7 +77,7 @@ const render_bullet = (
             window.app.audio.explode.load();
             window.app.audio.explode.play();
         } catch (e) {
-            console.log('error: ', e);
+            console.error('error: ', e);
         }
     }
     game.context.beginPath();

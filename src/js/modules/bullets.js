@@ -8,7 +8,6 @@ bullets.renderExplosion = false;
 
 bullets.render_bullet = (bullet, b_i) => {
     let speed = game.bullet_speed;
-    console.log('render bullet', speed);
     switch (bullet.dir) {
         case 'up':
             bullet.y -= speed;
@@ -31,7 +30,7 @@ bullets.render_bullet = (bullet, b_i) => {
             window.app.audio.explode.load();
             window.app.audio.explode.play();
         } catch (e) {
-            console.log('error: ', e);
+            console.error('error: ', e);
         }
     }
 
