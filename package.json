@@ -7,7 +7,7 @@
     "start:watch": "node app.js",
     "dev": "webpack  --devtool source-map --watch",
     "devFullstack": "npm run dev & npm run start:watch",
-    "build": "webpack"
+    "build": "gulp build & webpack"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.5.5",

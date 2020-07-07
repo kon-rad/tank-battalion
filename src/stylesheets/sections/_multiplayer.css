@@ -4,6 +4,7 @@
     background-color: rgba(114, 114, 114, 0.79);
     margin: 0 auto;
     padding: 40px 20px;
+    border-radius: 12px;
 }
 #mpName {
     width: 80%;
@@ -11,12 +12,13 @@
     border: solid 1px;
     padding: 0px 6px;
     border-color: white;
+    border-radius: 6px;
 }
 #mpColor {
     width: 40%;
     height: 30px;
     margin: 10px 10px 10px 0;
-    border-radius: 0px!important;
+    border-radius: 6px!important;
 }
 #mpSubmit {
     width: 35%;
@@ -24,6 +26,7 @@
     border: solid 1px;
     background-color: white;
     border-color: white;
+    border-radius: 6px;
 }
 #mpS {
     min-width:200px;

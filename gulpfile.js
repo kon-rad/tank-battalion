@@ -43,7 +43,7 @@ gulp.task('imagemin', () => {
 });
 
 gulp.task('moveJSVendor', () => {
-    return gulp.src('src/js-vendor/socket.io.js').pipe(gulp.dest('public/'));
+    return gulp.src('src/js-vendor/').pipe(gulp.dest('public/'));
 });
 
 gulp.task('moveAudio', () => {
@@ -85,9 +85,9 @@ gulp.task(
         'moveFavicon',
         'imagemin',
         'moveJSVendor',
-        'moveAudio'
-    ,
-    () => {
-        console.log('Application ready! God speed!');
-    }
-));
+        'moveAudio',
+        () => {
+            console.log('Application ready! God speed!');
+        }
+    )
+);
