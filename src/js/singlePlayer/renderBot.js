@@ -153,7 +153,7 @@ const checkBulletCollision = (
     return false;
 };
 
-const eraseBlock = function eraseBlock(x, y) {
+const eraseBlock = (x, y) => {
     let row = game.mapData[y];
     row = row.split('');
     row[x] = '0';
@@ -161,7 +161,7 @@ const eraseBlock = function eraseBlock(x, y) {
     game.mapData[y] = row;
 };
 
-const render = function render(bot_i) {
+const render = (bot_i) => {
     switch (bot_i.dir) {
         case 'up':
             bot.moving_up(bot_i.x, bot_i.y);

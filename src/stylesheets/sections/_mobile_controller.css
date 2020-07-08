@@ -145,7 +145,7 @@
     bottom: 72px;
     border-radius: 5px;
     background-color: #bdbdbd;
-  cursor: pointer;
+    cursor: pointer;
 }
 .mobile_controller__main_buttons::before, .mobile_controller__main_buttons::after {
     position: absolute;
