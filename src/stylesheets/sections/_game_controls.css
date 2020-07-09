@@ -65,6 +65,11 @@
     border: 1px solid #888;
     width: 80%; 
     border-radius: 12px;
+    width: 450px;
+}
+
+.instructions_modal__heading {
+	color: red;
 }
 
 #instructions_modal__close {
@@ -79,7 +84,4 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
-}
-.instructions_modal__text span {
-	color: red;
 }

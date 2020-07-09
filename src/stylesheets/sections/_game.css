@@ -1,6 +1,6 @@
 canvas {
-    border: 2px solid #000;
-    display: block;
+  border: 2px solid #000;
+  display: block;
 }
 canvas:focus {
   outline: none;

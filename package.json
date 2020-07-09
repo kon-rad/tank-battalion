@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "start:watch": "node app.js",
-    "dev": "webpack  --devtool source-map --watch",
+    "dev": "webpack  --devtool source-map --watch & gulp dev",
     "devFullstack": "npm run dev & npm run start:watch",
     "build": "gulp build & webpack"
   },
