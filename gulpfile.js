@@ -43,7 +43,7 @@ gulp.task('imagemin', () => {
 });
 
 gulp.task('moveJSVendor', () => {
-    return gulp.src('src/js-vendor/').pipe(gulp.dest('public/'));
+    return gulp.src('src/js-vendor/*').pipe(gulp.dest('public/'));
 });
 
 gulp.task('moveAudio', () => {
